@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Registro</title>
+</head>
+<body>
+    <h1>PI - Pisos & Inmuebles</h1>
+    
+    <h2>Registro de Usuario</h2>
+    
+    <section>
+        <form action="#" method="post">
+            <label for = "nombre">Nombre:</label>
+            <input type = "text" id = "nombre" name = "nombre" minlength = "3" maxlength = "15" pattern = "[A-Za-z][A-Za-z0-9]{2,14}" required>
+
+            <label for = "email"><br>Email:</label>
+            <input type = "email" id = "email" name = "email"  required maxlength = "254" pattern = "^(?!\.)(?!.*\.\.)([a-zA-Z0-9!#$%&'*+\-/=?^_`{|}~.]{1,64})(?<!\.)@([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"
+            title = "Introduce un correo válido. Ejemplo: usuario@dominio.com">
+
+            <label for = "password"><br>Contraseña:</label>
+            <input type="password" id="password" name="password" minlength="6" maxlength="15" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[A-Za-z0-9\-_]+" title="Debe contener mayúscula, minúscula, número y guiones." required>
+
+            <label for = "confirmar_password"><br>Repetir Contraseña:</label>
+            <input type="password" id="confirmar_password" name="confirmar_password" minlength="6" maxlength="15" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[A-Za-z0-9\-_]+" required>
+            
+            <br><label for = "sexo">Sexo:</label>
+            <input type="radio" id="mujer" name="sexo" value="mujer" required>
+            <label for="mujer">Mujer</label>
+            <input type="radio" id="hombre" name="sexo" value="hombre">
+            <label for="hombre">Hombre</label>
+
+            <label for = "fecha_nacimiento"><br>Fecha nacimiento:</label>
+            <input type = "date" id = "fecha_nacimiento" name = "fecha_nacimiento" max = "2008-09-21" required>
+
+
+            <br><label for="ciudad">Ciudad de residencia:</label>
+            <input type="text" id="ciudad" name="ciudad">
+
+            <br><label for="pais">País de residencia:</label>
+            <select id="pais" name="pais">
+                <option value="">Selecciona un país...</option>
+                <option value="espana">España</option>
+                <option value="mexico">México</option>
+                <option value="argentina">Argentina</option>
+            </select>
+
+            <label for = "foto"><br>Foto de Perfil: </label>
+            <input type = "file" id = "foto" name = "foto" accept = "image/*">
+
+            <br><br>
+            <button type="submit">Registrarse</button>
+        </form>
+            
+    </section>
+
+</body>
+</html>
