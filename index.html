@@ -28,6 +28,16 @@
     </header>
 
     <main>
+        <section id="busqueda-rapida">
+            <h2>Búsqueda Rápida</h2>
+            <form action="advertencia.html" method="get">
+                <label for="texto_busqueda">Palabra clave:</label>
+                <input type="text" id="texto_busqueda" name="texto_busqueda">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+
         <section id="destacados">
             <h2>Últimos anuncios publicados</h2>
 
@@ -124,7 +134,83 @@
                         Chalet amplio con jardín y piscina, ideal para familias
                     </p>
                 </li>
+
+                <li>
+                    <h3>
+                        <a href="advertencia.html">Dúplex en Gran Via del Marqués del Túria, Gran Vía, Valéncia</a>
+                    </h3>
+
+                    <img 
+                        src="img/duplex-valencia.jpg" 
+                        alt="Alquiler de dúplex en Gran Via del Maequés del Túria" 
+                        width="150" 
+                        height="100"
+                    >
+
+                    <p>
+                        <b>Localización:</b> Passatge de Ripalda, Sant Francesc, Valéncia
+                    </p>
+
+                    <p>
+                        <b>Precio:</b> 2.300€/mes |
+                        <b>Habitaciones:</b> 2 |
+                        <b>Baños:</b> 2
+                    </p>
+
+                    <p>
+                        <b>Publicado el:</b> 24/07/2026
+                    </p>
+
+                    <p>
+                        Disfruta de Valencia viviendo en este duplex en una de las zonas más señoriales de la ciudad.
+                    </p>
+                </li>
+
+                                <li>
+                    <h3>
+                        <a href="advertencia.html">Piso en Passatge de Ripalda, Sant Fransesc, Valéncia</a>
+                    </h3>
+
+                    <img 
+                        src="img/piso-valencia.jpg" 
+                        alt="Piso Valencia" 
+                        width="150" 
+                        height="100"
+                    >
+
+                    <p>
+                        <b>Localización:</b> Sant Fransesc, Valéncia, España
+                    </p>
+
+                    <p>
+                        <b>Precio:</b> 1.400.400€ |
+                        <b>Habitaciones:</b> 4 |
+                        <b>Baños:</b> 3
+                    </p>
+
+                    <p>
+                        <b>Publicado el:</b> 12/04/2026
+                    </p>
+
+                    <p>
+                       Échale un vistaso a este piso en Passatge de Ripalda, Sant Francesc, Valéncia
+                    </p>
+                </li>
+
             </ul>
+        </section>
+
+                <section id = "acceso">
+            <h2>Iniciar Sesión</h2>
+            <form action="index_sesion.html" method="post">
+                <label for="login_usuario">Usuario:</label>
+                <input type="text" id="login_usuario" name="login_usuario" required>
+
+                <label for="login_password">Contraseña:</label>
+                <input type="password" id="login_password" name="login_password" required>
+
+                <button type="submit">Entrar</button>
+            </form>
         </section>
     </main>
 
