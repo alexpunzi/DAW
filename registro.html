@@ -49,6 +49,8 @@
                 name="email"
                 required
                 maxlength="254"
+                pattern="[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+"
+                title="Formato: parte-local@dominio (sin puntos consecutivos ni al principio/final)."
             >
 
             <label for="password">
@@ -106,7 +108,7 @@
                 type="date"
                 id="fecha_nacimiento"
                 name="fecha_nacimiento"
-                max="2008-09-21"
+                max="2008-09-23"
                 required
             >
 
@@ -125,9 +127,9 @@
 
             <select id="pais" name="pais">
                 <option value="">Selecciona un país...</option>
+                <option value="argentina">Argentina</option>
                 <option value="espana">España</option>
                 <option value="mexico">México</option>
-                <option value="argentina">Argentina</option>
             </select>
 
             <label for="foto">
@@ -159,6 +161,7 @@
 
         <p>
             <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
                 &copy; 2026 PI - Pisos & Inmuebles. El portal de tu vivienda.
             </small>
         </p>

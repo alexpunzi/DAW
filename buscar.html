@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Búsqueda Rápida</title>
+    <title>Página de Búsqueda</title>
 </head>
 
 <body>
     <header>
         <h1>PI - Pisos & Inmuebles</h1>
 
-        <!-- Menú de navegación -->
         <nav>
             <ul>
                 <li>
@@ -27,7 +26,7 @@
     <main>
         <h2>Formulario de Búsqueda</h2>
 
-        <form action="resultados.html" method="get">
+        <form action="busqueda_rapida.html" method="get">
             <br>
             <label for="tipo_anuncio">Tipo de Anuncio:</label>
 
@@ -42,11 +41,11 @@
 
             <select id="tipo_vivienda" name="tipo_vivienda">
                 <option value="">Selecciona un tipo de vivienda...</option>
-                <option value="obra_nueva">Obra Nueva</option>
-                <option value="vivienda">Vivienda</option>
-                <option value="oficina">Oficina</option>
-                <option value="local">Local</option>
                 <option value="garaje">Garaje</option>
+                <option value="local">Local</option>
+                <option value="obra_nueva">Obra Nueva</option>
+                <option value="oficina">Oficina</option>
+                <option value="vivienda">Vivienda</option>
             </select>
 
             <br>
@@ -58,20 +57,30 @@
 
             <select id="pais" name="pais">
                 <option value="">Cualquier país...</option>
+                <option value="argentina">Argentina</option>
                 <option value="espana">España</option>
                 <option value="mexico">México</option>
-                <option value="argentina">Argentina</option>
             </select>
 
             <br>
-            <label for="precio">Precio Máximo (€):</label>
-            <input type="number" id="precio" name="precio" min="0">
+            <label for="precio_desde">Precio desde (€):</label>
+            <input type="number" id="precio_desde" name="precio_desde" min="0">
+
+            <label for="precio_hasta">
+                hasta (€):
+            </label>
+            <input type="number" id="precio_hasta" name="precio_hasta" min="0">
 
             <br>
-            <label for="fecha_publicacion">
-                Fecha de publicación (desde):
+            <label for="fecha_desde">
+                Fecha de publicación desde:
             </label>
-            <input type="date" id="fecha_publicacion" name="fecha_publicacion">
+            <input type="date" id="fecha_desde" name="fecha_desde">
+
+            <label for="fecha_hasta">
+                hasta:
+            </label>
+            <input type="date" id="fecha_hasta" name="fecha_hasta">
 
             <br>
             <br>
@@ -90,6 +99,7 @@
 
         <p>
             <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
                 &copy; 2026 PI - Pisos & Inmuebles. El portal de tu vivienda.
             </small>
         </p>

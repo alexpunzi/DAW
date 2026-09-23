@@ -28,15 +28,27 @@
     </header>
 
     <main>
+        <section id="acceso">
+            <h2>Iniciar Sesión</h2>
+            <form action="index_sesion.html" method="post">
+                <label for="login_usuario">Usuario:</label>
+                <input type="text" id="login_usuario" name="login_usuario" required>
+
+                <label for="login_password">Contraseña:</label>
+                <input type="password" id="login_password" name="login_password" required>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
         <section id="busqueda-rapida">
             <h2>Búsqueda Rápida</h2>
-            <form action="advertencia.html" method="get">
+            <form action="busqueda_rapida.html" method="get">
                 <label for="texto_busqueda">Palabra clave:</label>
                 <input type="text" id="texto_busqueda" name="texto_busqueda">
                 <button type="submit">Buscar</button>
             </form>
         </section>
-
 
         <section id="destacados">
             <h2>Últimos anuncios publicados</h2>
@@ -44,32 +56,32 @@
             <ul>
                 <li>
                     <h3>
-                        <a href="advertencia.html">Piso Céntrico con Terraza</a>
+                        <a href="advertencia.html">Chalet Independiente con Piscina</a>
                     </h3>
 
-                    <img 
-                        src="img/piso-terraza.jpg" 
-                        alt="Piso céntrico con terraza en Jávea" 
-                        width="150" 
+                    <img
+                        src="img/chalet-piscina.jpg"
+                        alt="Chalet independiente con piscina en Altea"
+                        width="150"
                         height="100"
                     >
 
                     <p>
-                        <b>Localización:</b> Jávea, Alicante, España
+                        <b>Localización:</b> Altea, Alicante, España
                     </p>
 
                     <p>
-                        <b>Precio:</b> 150.000€ |
-                        <b>Habitaciones:</b> 3 |
-                        <b>Baños:</b> 2
+                        <b>Precio:</b> 320.000€ |
+                        <b>Habitaciones:</b> 4 |
+                        <b>Baños:</b> 3
                     </p>
 
                     <p>
-                        <b>Publicado el:</b> 15/09/2026
+                        <b>Publicado el:</b> 22/09/2026
                     </p>
 
                     <p>
-                        Piso amplio y luminoso situado en el centro, con una gran terraza
+                        Chalet amplio con jardín y piscina, ideal para familias
                     </p>
                 </li>
 
@@ -106,32 +118,32 @@
 
                 <li>
                     <h3>
-                        <a href="advertencia.html">Chalet Independiente con Piscina</a>
+                        <a href="advertencia.html">Piso Céntrico con Terraza</a>
                     </h3>
 
                     <img 
-                        src="img/chalet-piscina.jpg" 
-                        alt="Chalet independiente con piscina en Altea" 
+                        src="img/piso-terraza.jpg" 
+                        alt="Piso céntrico con terraza en Jávea" 
                         width="150" 
                         height="100"
                     >
 
                     <p>
-                        <b>Localización:</b> Altea, Alicante, España
+                        <b>Localización:</b> Jávea, Alicante, España
                     </p>
 
                     <p>
-                        <b>Precio:</b> 320.000€ |
-                        <b>Habitaciones:</b> 4 |
-                        <b>Baños:</b> 3
+                        <b>Precio:</b> 150.000€ |
+                        <b>Habitaciones:</b> 3 |
+                        <b>Baños:</b> 2
                     </p>
 
                     <p>
-                        <b>Publicado el:</b> 22/09/2026
+                        <b>Publicado el:</b> 15/09/2026
                     </p>
 
                     <p>
-                        Chalet amplio con jardín y piscina, ideal para familias
+                        Piso amplio y luminoso situado en el centro, con una gran terraza
                     </p>
                 </li>
 
@@ -142,13 +154,13 @@
 
                     <img 
                         src="img/duplex-valencia.jpg" 
-                        alt="Alquiler de dúplex en Gran Via del Maequés del Túria" 
+                        alt="Dúplex en Gran Via del Marqués del Túria, Valéncia" 
                         width="150" 
                         height="100"
                     >
 
                     <p>
-                        <b>Localización:</b> Passatge de Ripalda, Sant Francesc, Valéncia
+                        <b>Localización:</b> Sant Francesc, Valéncia, España
                     </p>
 
                     <p>
@@ -166,24 +178,24 @@
                     </p>
                 </li>
 
-                                <li>
+                <li>
                     <h3>
-                        <a href="advertencia.html">Piso en Passatge de Ripalda, Sant Fransesc, Valéncia</a>
+                        <a href="advertencia.html">Piso en Passatge de Ripalda, Sant Francesc, Valéncia</a>
                     </h3>
 
                     <img 
                         src="img/piso-valencia.jpg" 
-                        alt="Piso Valencia" 
+                        alt="Piso en venta en Passatge de Ripalda, Valéncia" 
                         width="150" 
                         height="100"
                     >
 
                     <p>
-                        <b>Localización:</b> Sant Fransesc, Valéncia, España
+                        <b>Localización:</b> Sant Francesc, Valéncia, España
                     </p>
 
                     <p>
-                        <b>Precio:</b> 1.400.400€ |
+                        <b>Precio:</b> 1.400.000€ |
                         <b>Habitaciones:</b> 4 |
                         <b>Baños:</b> 3
                     </p>
@@ -193,24 +205,10 @@
                     </p>
 
                     <p>
-                       Échale un vistaso a este piso en Passatge de Ripalda, Sant Francesc, Valéncia
+                       Échale un vistazo a este piso en Passatge de Ripalda, Sant Francesc, Valéncia
                     </p>
                 </li>
-
             </ul>
-        </section>
-
-                <section id = "acceso">
-            <h2>Iniciar Sesión</h2>
-            <form action="index_sesion.html" method="post">
-                <label for="login_usuario">Usuario:</label>
-                <input type="text" id="login_usuario" name="login_usuario" required>
-
-                <label for="login_password">Contraseña:</label>
-                <input type="password" id="login_password" name="login_password" required>
-
-                <button type="submit">Entrar</button>
-            </form>
         </section>
     </main>
 
@@ -224,6 +222,7 @@
 
         <p>
             <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
                 &copy; 2026 PI - Pisos & Inmuebles. El portal de tu vivienda.
             </small>
         </p>
