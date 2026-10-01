@@ -79,7 +79,7 @@
 
                 <tr>
                     <th scope="row">Resolución &lt;= 300 dpi</th>
-                    <td>2 € por pág.</td>
+                    <td>0 € por pág.</td>
                 </tr>
 
                 <tr>
@@ -104,12 +104,12 @@
 
                     <p>
                         <label for="nombre">Nombre completo(*):</label>
-                        <input type="text" id="nombre" name="nombre">
+                        <input type="text" id="nombre" name="nombre" maxlength="200" required>
                     </p>
 
                     <p>
                         <label for="correo">Correo electrónico(*):</label>
-                        <input type="email" id="correo" name="correo">
+                        <input type="email" id="correo" name="correo" maxlength="200" required>
                     </p>
 
                     <p>
@@ -128,8 +128,12 @@
                         <label for="numero">Número:</label>
                         <input type="text" id="numero" name="numero" size="5" required>
 
-                        <label for="piso">Piso/Puerta:</label>
-                        <input type="text" id="piso" name="piso" size="5" required>
+                        <label for="puerta">Puerta</label>
+                        <input type="text" id="puerta" name="puerta" size="5" required>
+
+                        <!-- No obligatorio, pero disponible para gente que vive en pisos -->
+                        <label for="piso">Piso</label>
+                        <input type="text" id="piso" name="piso" size="5">
                     </p>
 
                     <p>
