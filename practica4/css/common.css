@@ -248,6 +248,24 @@ footer small {
 }
 
 
+/* Enlace "Saltar al contenido" */
+
+.enlace-saltar {
+    display: inline-block;
+    margin: 8px 20px;
+    padding: 5px 8px;
+    color: var(--color-principal);
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: var(--radio);
+}
+
+.enlace-saltar:hover {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+}
+
+
 /* Pantallas pequeñas */
 
 @media (max-width: 700px) {
