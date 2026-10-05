@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   estilos.css  –  PI - Pisos & Inmuebles
+   Hoja de estilos principal: solo importa los módulos. Es la única hoja que
+   enlazan las páginas HTML. El orden importa (de lo general a lo concreto).
+
+   Fuentes: Inter y Playfair Display (Google Fonts, licencia OFL).
+   Iconos: Material Symbols (Google, licencia Apache 2.0).
+   ========================================================================== */
+
+/* Tipografías e iconos (los @import de URL deben ir los primeros) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block');
+
+/* Módulos */
+@import url('variables.css');
+@import url('base.css');
+@import url('layout.css');
+@import url('componentes.css');
+@import url('formularios.css');
+@import url('tablas.css');
+@import url('responsive.css');

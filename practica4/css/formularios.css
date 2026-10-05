@@ -1,0 +1,127 @@
+/* ==========================================================================
+   formularios.css
+   Maquetación de formularios. Cada pareja etiqueta + control va en un <p>:
+   en pantallas pequeñas se apilan y en pantallas medianas/grandes se
+   alinean en dos columnas (la etiqueta a la izquierda, el control a la
+   derecha). Ver responsive.css.
+   ========================================================================== */
+
+form {
+    max-width: var(--ancho-formulario);
+    margin-top: var(--espacio-m);
+}
+
+form p {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+form label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Controles
+   -------------------------------------------------------------------------- */
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    border: 1px solid var(--color-texto);
+    border-radius: var(--radio);
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--color-principal);
+}
+
+form input[type="color"] {
+    height: 44px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+form input[type="range"] {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    accent-color: var(--color-principal);
+}
+
+form input[type="file"] {
+    padding: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Grupos de controles (fieldset + legend)
+   -------------------------------------------------------------------------- */
+
+form fieldset {
+    min-width: 0;
+    margin-bottom: var(--espacio-m);
+    padding: 15px 20px 5px;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+}
+
+form legend {
+    padding: 0 8px;
+    font-weight: 600;
+}
+
+/* Grupos de botones de radio: <label><input type="radio"> Texto</label> */
+form fieldset > label {
+    margin: 0 var(--espacio-m) 15px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Botones (hijos directos del formulario)
+   -------------------------------------------------------------------------- */
+
+form button {
+    margin: 0 var(--espacio-s) var(--espacio-s) 0;
+    padding: 12px 28px;
+    background: var(--color-principal);
+    color: var(--color-superficie);
+    border: 1px solid var(--color-principal);
+    border-radius: var(--radio);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+form button:hover {
+    background: var(--color-principal-hover);
+}
+
+/* Botón secundario (borrar datos) */
+form button[type="reset"] {
+    background: transparent;
+    color: var(--color-principal);
+}
+
+form button[type="reset"]:hover {
+    background: var(--color-borde);
+}

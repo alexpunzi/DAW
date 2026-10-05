@@ -1,0 +1,110 @@
+/* ==========================================================================
+   layout.css
+   Maquetación general: cabecera, menú, contenido principal y pie.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Cabecera y menú de navegación
+   -------------------------------------------------------------------------- */
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 15px;
+    background: var(--color-principal);
+    border-bottom: 1px solid var(--color-borde-sobre-oscuro);
+}
+
+header h1 {
+    color: var(--color-superficie);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 25px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+header nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-texto-sobre-oscuro);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+}
+
+header nav a:hover {
+    color: var(--color-superficie);
+}
+
+/* --------------------------------------------------------------------------
+   Contenido principal
+   -------------------------------------------------------------------------- */
+
+main {
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+main > h2,
+section h2 {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color-texto);
+    letter-spacing: -0.02em;
+}
+
+section {
+    margin-bottom: var(--espacio-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Pie de página
+   -------------------------------------------------------------------------- */
+
+footer {
+    margin-top: 50px;
+    padding: 40px 15px;
+    background: var(--color-principal);
+    color: var(--color-texto-sobre-oscuro);
+    text-align: center;
+}
+
+footer hr {
+    margin: 0 0 25px;
+    border-top-color: var(--color-borde-sobre-oscuro);
+}
+
+footer nav a {
+    display: inline-block;
+    margin: 5px 15px;
+    color: var(--color-enlace-pie);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+footer nav a:hover {
+    color: var(--color-superficie);
+}
+
+footer p,
+footer small {
+    color: var(--color-texto-pie);
+}

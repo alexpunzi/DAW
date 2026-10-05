@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <title>PI - Pisos & Inmuebles</title>
 </head>
 
@@ -19,10 +19,10 @@
         <nav>
             <ul>
                 <li>
-                    <a href="registro.html">Registro</a>
+                    <a href="registro.html"><span class="material-symbols-outlined" aria-hidden="true">person_add</span> Registro</a>
                 </li>
                 <li>
-                    <a href="buscar.html">Buscar</a>
+                    <a href="buscar.html"><span class="material-symbols-outlined" aria-hidden="true">search</span> Buscar</a>
                 </li>
             </ul>
         </nav>
@@ -36,11 +36,15 @@
             <p><small>* Campos obligatorios</small></p>
 
             <form action="index_sesion.html" method="post">
-                <label for="login_usuario">Usuario *</label>
-                <input type="text" id="login_usuario" name="login_usuario" required>
+                <p>
+                    <label for="login_usuario"><span class="material-symbols-outlined" aria-hidden="true">person</span> Usuario *</label>
+                    <input type="text" id="login_usuario" name="login_usuario" required>
+                </p>
 
-                <label for="login_password">Contraseña *</label>
-                <input type="password" id="login_password" name="login_password" required>
+                <p>
+                    <label for="login_password"><span class="material-symbols-outlined" aria-hidden="true">lock</span> Contraseña *</label>
+                    <input type="password" id="login_password" name="login_password" required>
+                </p>
 
                 <button type="submit">Entrar</button>
             </form>
@@ -50,8 +54,10 @@
             <h2>Búsqueda Rápida</h2>
 
             <form action="busqueda_rapida.html" method="get">
-                <label for="texto_busqueda">Palabra clave</label>
-                <input type="text" id="texto_busqueda" name="texto_busqueda">
+                <p>
+                    <label for="texto_busqueda">Palabra clave</label>
+                    <input type="text" id="texto_busqueda" name="texto_busqueda">
+                </p>
 
                 <button type="submit">Buscar</button>
             </form>
@@ -63,7 +69,7 @@
             <ul class="cards-grid">
                 <li class="card">
                     <h3>
-                        <a class="card-title" href="advertencia.html">Chalet Independiente con Piscina</a>
+                        <a href="advertencia.html">Chalet Independiente con Piscina</a>
                     </h3>
 
                     <img src="img/chalet-piscina.jpg" alt="Chalet independiente con piscina en Altea" width="150" height="100">
@@ -89,7 +95,7 @@
 
                 <li class="card">
                     <h3>
-                        <a class="card-title" href="advertencia.html">Estudio Luminoso para Estudiantes</a>
+                        <a href="advertencia.html">Estudio Luminoso para Estudiantes</a>
                     </h3>
 
                     <img src="img/estudio.jpg" alt="Estudio luminoso para estudiantes en Alicante" width="150" height="100">
@@ -115,7 +121,7 @@
 
                 <li class="card">
                     <h3>
-                        <a class="card-title" href="advertencia.html">Piso Céntrico con Terraza</a>
+                        <a href="advertencia.html">Piso Céntrico con Terraza</a>
                     </h3>
 
                     <img src="img/piso-terraza.jpg" alt="Piso céntrico con terraza en Jávea" width="150" height="100">
@@ -141,7 +147,7 @@
 
                 <li class="card">
                     <h3>
-                        <a class="card-title" href="advertencia.html">Dúplex Elegante con Amplias Estancias</a>
+                        <a href="advertencia.html">Dúplex Elegante con Amplias Estancias</a>
                     </h3>
 
                     <img src="img/duplex-valencia.jpg" alt="Dúplex Elegante con Amplias Estancias" width="150" height="100">
@@ -167,7 +173,7 @@
 
                 <li class="card">
                     <h3>
-                        <a class="card-title" href="advertencia.html">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
+                        <a href="advertencia.html">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
                     </h3>
 
                     <img src="img/piso-valencia.jpg" alt="Piso en venta en Passatge de Ripalda, Valencia" width="150" height="100">

@@ -1,0 +1,69 @@
+/* ==========================================================================
+   tablas.css
+   Maquetación de tablas: espaciado, bordes, tipografía, fondo, estilo cebra
+   y hover (técnica de la sección 4.4 del enunciado).
+   ========================================================================== */
+
+/* Espaciado y distribución */
+table {
+    width: 100%;
+    margin: 30px 0;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--color-borde-claro);
+    text-align: left;
+}
+
+/* Fondo y forma */
+table {
+    overflow: hidden;
+    background: var(--color-superficie);
+    border-radius: var(--radio);
+    box-shadow: 0 4px 20px var(--color-sombra);
+}
+
+/* Tipografía */
+caption {
+    margin-bottom: 15px;
+    font: 600 1.15rem var(--fuente-titulos);
+    text-align: left;
+}
+
+tbody th {
+    font-weight: 500;
+}
+
+td {
+    font-size: 0.9rem;
+}
+
+thead {
+    background: var(--color-principal);
+}
+
+thead th {
+    color: var(--color-superficie);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Estilo cebra */
+tbody tr:nth-child(even) {
+    background: var(--color-fondo);
+}
+
+/* Hover */
+tbody tr:hover {
+    background: var(--color-fila-hover);
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <title>PI - Pisos & Inmuebles</title>
 </head>
 
@@ -18,19 +18,19 @@
         <nav>
             <ul>
                 <li>
-                    <a href="buscar.html">Buscar</a>
+                    <a href="buscar.html"><span class="material-symbols-outlined" aria-hidden="true">search</span> Buscar</a>
                 </li>
                 <li>
-                    <a href="index.html">Cerrar sesión</a>
+                    <a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">logout</span> Cerrar sesión</a>
                 </li>
                 <li>
-                    <a href="error404.html">Chats</a>
+                    <a href="error404.html"><span class="material-symbols-outlined" aria-hidden="true">chat</span> Chats</a>
                 </li>
                 <li>
-                    <a href="error404.html">Favoritos</a>
+                    <a href="error404.html"><span class="material-symbols-outlined" aria-hidden="true">favorite</span> Favoritos</a>
                 </li>
                 <li>
-                    <a href="error404.html">Publicar</a>
+                    <a href="error404.html"><span class="material-symbols-outlined" aria-hidden="true">add_circle</span> Publicar</a>
                 </li>
             </ul>
         </nav>
@@ -69,8 +69,10 @@
             <h2>Búsqueda Rápida</h2>
 
             <form action="busqueda_rapida.html" method="get">
-                <label for="texto_busqueda">Palabra clave</label>
-                <input type="text" id="texto_busqueda" name="texto_busqueda">
+                <p>
+                    <label for="texto_busqueda">Palabra clave</label>
+                    <input type="text" id="texto_busqueda" name="texto_busqueda">
+                </p>
                 <button type="submit">Buscar</button>
             </form>
         </section>

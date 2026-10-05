@@ -1,0 +1,176 @@
+/* ==========================================================================
+   responsive.css
+   Diseño adaptativo "mobile first": los demás ficheros definen el aspecto
+   para pantallas pequeñas (480px) y aquí se amplía a medida que crece la
+   pantalla con media queries de tipo min-width.
+
+   Puntos de ruptura (breakpoints):
+     <= 480px   teléfono pequeño (retoques)
+     >= 600px   tablet vertical: 2 columnas de tarjetas, formularios alineados
+     >= 700px   cabecera en una sola fila
+     >= 960px   escritorio: 3 columnas, detalle del anuncio en 2 columnas
+     >= 1920px  pantalla grande: contenido más ancho y texto algo mayor
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Pantallas pequeñas: 480px o menos
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 20px 10px;
+    }
+
+    section h2,
+    main > h2 {
+        font-size: 1.25rem;
+    }
+
+    footer nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    form button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Pantallas medianas: 600px o más
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+
+    main {
+        padding: 50px 20px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card img {
+        height: 220px;
+    }
+
+    /* Formularios: etiqueta a la izquierda, control a la derecha */
+    form p {
+        grid-template-columns: var(--ancho-etiqueta) 1fr;
+        align-items: center;
+        column-gap: var(--espacio-m);
+    }
+
+    form p:has(textarea) {
+        align-items: start;
+    }
+
+    th,
+    td {
+        padding: 16px 20px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Cabecera en una fila: 700px o más
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 700px) {
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 25px 40px;
+    }
+
+    header h1 {
+        text-align: left;
+    }
+
+    header nav ul {
+        justify-content: flex-end;
+        gap: 10px 30px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Escritorio: 960px o más
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 960px) {
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card img {
+        height: 240px;
+    }
+
+    /* Detalle del anuncio: fotos a la izquierda, datos a la derecha */
+    article {
+        grid-template-columns: 3fr 2fr;
+        gap: var(--espacio-l);
+        align-items: start;
+    }
+
+    article > h2,
+    article > form {
+        grid-column: 1 / -1;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Pantallas grandes: 1920px o más
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1920px) {
+
+    html {
+        font-size: 112.5%;
+    }
+
+    main {
+        max-width: 1500px;
+    }
+
+    .cards-grid {
+        gap: 40px;
+    }
+
+    header {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+
+    header nav ul {
+        gap: 10px 40px;
+    }
+
+    footer {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Preferencias del usuario: sin animaciones si las ha desactivado
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        transition: none !important;
+    }
+}
