@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 
-    <title>Solicitar Folleto - PI Pisos &amp; Inmuebles</title>
+    <title>Solicitar Folleto | PI - Pisos &amp; Inmuebles</title>
 </head>
 
 <body>
@@ -21,17 +21,40 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index_sesion.html">
-                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-                        Página principal
-                    </a>
-                </li>
-                <li>
                     <a href="buscar.html">
                         <span class="material-symbols-outlined" aria-hidden="true">search</span>
                         Buscar
                     </a>
                 </li>
+
+                <li>
+                    <a href="mis_mensajes.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                        Chats
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+                        Favoritos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">list_alt</span>
+                        Mis anuncios
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+                        Publicar
+                    </a>
+                </li>
+
                 <li>
                     <a href="index.html">
                         <span class="material-symbols-outlined" aria-hidden="true">logout</span>
@@ -65,7 +88,6 @@
                 </thead>
 
                 <tbody>
-
                     <tr>
                         <th scope="row">Coste procesamiento y envío</th>
                         <td>10 €</td>
@@ -105,7 +127,6 @@
                         <th scope="row">Resolución &gt; 300 dpi</th>
                         <td>0,2 € por foto</td>
                     </tr>
-
                 </tbody>
             </table>
         </section>
@@ -246,8 +267,13 @@
                             <span class="material-symbols-outlined" aria-hidden="true">text_fields</span>
                             Texto adicional para el folleto
                         </label>
-                        <textarea id="texto_adicional" name="texto_adicional" rows="4" maxlength="4000"
-                            placeholder="Información adicional a la que ya tiene el anuncio..."></textarea>
+                        <textarea
+                            id="texto_adicional"
+                            name="texto_adicional"
+                            rows="4"
+                            maxlength="4000"
+                            placeholder="Información adicional a la que ya tiene el anuncio..."
+                        ></textarea>
                     </p>
 
                     <p>
@@ -263,7 +289,15 @@
                             <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
                             Número de copias *
                         </label>
-                        <input type="number" id="num_copias" name="num_copias" min="1" max="99" value="1" required>
+                        <input
+                            type="number"
+                            id="num_copias"
+                            name="num_copias"
+                            min="1"
+                            max="99"
+                            value="1"
+                            required
+                        >
                     </p>
 
                     <p>
@@ -272,9 +306,17 @@
                             Resolución (150 - 900 dpi) *
                             <output id="salida_resolucion" for="resolucion">150 dpi</output>
                         </label>
-                        <input type="range" id="resolucion" name="resolucion" min="150" max="900" step="150"
+
+                        <input
+                            type="range"
+                            id="resolucion"
+                            name="resolucion"
+                            min="150"
+                            max="900"
+                            step="150"
                             value="150"
-                            oninput="salida_resolucion.value = resolucion.value + ' dpi'">
+                            oninput="salida_resolucion.value = resolucion.value + ' dpi'"
+                        >
                     </p>
 
                     <p>
@@ -292,12 +334,24 @@
                         </legend>
 
                         <label for="imp_color">
-                            <input type="radio" id="imp_color" name="tipo_impresion" value="color" checked required>
+                            <input
+                                type="radio"
+                                id="imp_color"
+                                name="tipo_impresion"
+                                value="color"
+                                checked
+                                required
+                            >
                             A todo color
                         </label>
 
                         <label for="imp_bn">
-                            <input type="radio" id="imp_bn" name="tipo_impresion" value="blanco_negro">
+                            <input
+                                type="radio"
+                                id="imp_bn"
+                                name="tipo_impresion"
+                                value="blanco_negro"
+                            >
                             Blanco y negro
                         </label>
                     </fieldset>
@@ -309,12 +363,24 @@
                         </legend>
 
                         <label for="precio_si">
-                            <input type="radio" id="precio_si" name="imprimir_precio" value="si" checked required>
+                            <input
+                                type="radio"
+                                id="precio_si"
+                                name="imprimir_precio"
+                                value="si"
+                                checked
+                                required
+                            >
                             Sí
                         </label>
 
                         <label for="precio_no">
-                            <input type="radio" id="precio_no" name="imprimir_precio" value="no">
+                            <input
+                                type="radio"
+                                id="precio_no"
+                                name="imprimir_precio"
+                                value="no"
+                            >
                             No
                         </label>
                     </fieldset>
@@ -346,6 +412,17 @@
                 <span class="material-symbols-outlined" aria-hidden="true">search</span>
                 Buscar
             </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span>
+                Modificar mis datos
+            </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_remove</span>
+                Darse de baja
+            </a>
+
             <a href="index.html">
                 <span class="material-symbols-outlined" aria-hidden="true">logout</span>
                 Cerrar sesión

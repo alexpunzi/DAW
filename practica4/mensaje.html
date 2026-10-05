@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <title>Enviar Mensaje - PI Pisos &amp; Inmuebles</title>
+
+    <title>Enviar Mensaje | PI - Pisos &amp; Inmuebles</title>
 </head>
 
 <body>
@@ -15,24 +17,48 @@
 
     <header>
         <h1>PI - Pisos &amp; Inmuebles</h1>
+
         <nav>
             <ul>
-                <li>
-                    <a href="index.html">
-                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-                        Página principal
-                    </a>
-                </li>
-                <li>
-                    <a href="registro.html">
-                        <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
-                        Registro
-                    </a>
-                </li>
                 <li>
                     <a href="buscar.html">
                         <span class="material-symbols-outlined" aria-hidden="true">search</span>
                         Buscar
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mis_mensajes.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                        Chats
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+                        Favoritos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">list_alt</span>
+                        Mis anuncios
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+                        Publicar
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                        Cerrar sesión
                     </a>
                 </li>
             </ul>
@@ -40,6 +66,7 @@
     </header>
 
     <main id="contenido">
+
         <section>
             <h2>Contactar con el anunciante</h2>
 
@@ -50,6 +77,7 @@
                         <span class="material-symbols-outlined" aria-hidden="true">mail</span>
                         Tipo de mensaje *
                     </label>
+
                     <select id="tipo_mensaje" name="tipo_mensaje" required>
                         <option value="">Selecciona el motivo...</option>
                         <option value="cita">Solicitar una cita</option>
@@ -63,6 +91,7 @@
                         <span class="material-symbols-outlined" aria-hidden="true">edit</span>
                         Texto del mensaje *
                     </label>
+
                     <textarea
                         id="texto"
                         name="texto"
@@ -80,23 +109,36 @@
 
             </form>
         </section>
+
     </main>
 
     <footer>
         <hr>
 
         <nav>
-            <a href="index.html">
-                <span class="material-symbols-outlined" aria-hidden="true">home</span>
-                Página principal
-            </a>
-            <a href="registro.html">
-                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
-                Registro
-            </a>
             <a href="buscar.html">
                 <span class="material-symbols-outlined" aria-hidden="true">search</span>
                 Buscar
+            </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span>
+                Modificar mis datos
+            </a>
+
+            <a href="solicitar_folleto.html">
+                <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                Solicitar folleto
+            </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_remove</span>
+                Darse de baja
+            </a>
+
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                Cerrar sesión
             </a>
         </nav>
 
@@ -107,6 +149,7 @@
             </small>
         </p>
     </footer>
+
 </body>
 
 </html>
