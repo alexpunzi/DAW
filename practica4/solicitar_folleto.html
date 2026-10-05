@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
     <title>Solicitar Folleto - PI Pisos &amp; Inmuebles</title>
 </head>
 
 <body>
+
     <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
 
     <header>
@@ -17,13 +21,22 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index_sesion.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> Página principal</a>
+                    <a href="index_sesion.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Página principal
+                    </a>
                 </li>
                 <li>
-                    <a href="buscar.html"><span class="material-symbols-outlined" aria-hidden="true">search</span> Buscar</a>
+                    <a href="buscar.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                        Buscar
+                    </a>
                 </li>
                 <li>
-                    <a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">logout</span> Cerrar sesión</a>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                        Cerrar sesión
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -39,7 +52,10 @@
             </p>
 
             <table>
-                <caption>Tarifas de impresión y envío</caption>
+                <caption>
+                    <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+                    Tarifas de impresión y envío
+                </caption>
 
                 <thead>
                     <tr>
@@ -50,45 +66,46 @@
 
                 <tbody>
 
-                <tr>
-                    <th scope="row">Coste procesamiento y envío</th>
-                    <td>10 €</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Coste procesamiento y envío</th>
+                        <td>10 €</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">&lt; 5 páginas</th>
-                    <td>2 € por pág.</td>
-                </tr>
+                    <tr>
+                        <th scope="row">&lt; 5 páginas</th>
+                        <td>2 € por pág.</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">Entre 5 y 10 páginas</th>
-                    <td>1,8 € por pág.</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Entre 5 y 10 páginas</th>
+                        <td>1,8 € por pág.</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">&gt; 10 páginas</th>
-                    <td>1,6 € por pág.</td>
-                </tr>
+                    <tr>
+                        <th scope="row">&gt; 10 páginas</th>
+                        <td>1,6 € por pág.</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">Blanco y negro</th>
-                    <td>0 €</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Blanco y negro</th>
+                        <td>0 €</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">Color</th>
-                    <td>0,5 € por foto</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Color</th>
+                        <td>0,5 € por foto</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">Resolución &lt;= 300 dpi</th>
-                    <td>0 € por foto</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Resolución &lt;= 300 dpi</th>
+                        <td>0 € por foto</td>
+                    </tr>
 
-                <tr>
-                    <th scope="row">Resolución &gt; 300 dpi</th>
-                    <td>0,2 € por foto</td>
-                </tr>
+                    <tr>
+                        <th scope="row">Resolución &gt; 300 dpi</th>
+                        <td>0,2 € por foto</td>
+                    </tr>
+
                 </tbody>
             </table>
         </section>
@@ -107,60 +124,96 @@
                     <legend>Datos de contacto y envío</legend>
 
                     <p>
-                        <label for="nombre"><span class="material-symbols-outlined" aria-hidden="true">person</span> Nombre completo *</label>
+                        <label for="nombre">
+                            <span class="material-symbols-outlined" aria-hidden="true">person</span>
+                            Nombre completo *
+                        </label>
                         <input type="text" id="nombre" name="nombre" maxlength="200" required>
                     </p>
 
                     <p>
-                        <label for="correo"><span class="icono-unicode" aria-hidden="true">&#9993;</span> Correo electrónico *</label>
+                        <label for="correo">
+                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                            Correo electrónico *
+                        </label>
                         <input type="email" id="correo" name="correo" maxlength="200" required>
                     </p>
 
                     <p>
-                        <label for="telefono"><span class="icono-unicode" aria-hidden="true">&#9742;</span> Teléfono</label>
+                        <label for="telefono">
+                            <span class="material-symbols-outlined" aria-hidden="true">phone</span>
+                            Teléfono
+                        </label>
                         <input type="tel" id="telefono" name="telefono">
                     </p>
 
                     <fieldset>
-                        <legend>Dirección de envío *</legend>
+                        <legend>
+                            <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                            Dirección de envío *
+                        </legend>
 
                         <p>
-                            <label for="calle">Calle *</label>
+                            <label for="calle">
+                                <span class="material-symbols-outlined" aria-hidden="true">signpost</span>
+                                Calle *
+                            </label>
                             <input type="text" id="calle" name="calle" required>
                         </p>
 
                         <p>
-                            <label for="numero">Número *</label>
+                            <label for="numero">
+                                <span class="material-symbols-outlined" aria-hidden="true">pin</span>
+                                Número *
+                            </label>
                             <input type="text" id="numero" name="numero" required>
                         </p>
 
                         <p>
-                            <label for="puerta">Puerta *</label>
+                            <label for="puerta">
+                                <span class="material-symbols-outlined" aria-hidden="true">door_front</span>
+                                Puerta *
+                            </label>
                             <input type="text" id="puerta" name="puerta" required>
                         </p>
 
                         <p>
-                            <label for="piso">Piso</label>
+                            <label for="piso">
+                                <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
+                                Piso
+                            </label>
                             <input type="text" id="piso" name="piso">
                         </p>
 
                         <p>
-                            <label for="cp">Código Postal *</label>
+                            <label for="cp">
+                                <span class="material-symbols-outlined" aria-hidden="true">markunread_mailbox</span>
+                                Código Postal *
+                            </label>
                             <input type="text" id="cp" name="cp" required>
                         </p>
 
                         <p>
-                            <label for="localidad">Localidad *</label>
+                            <label for="localidad">
+                                <span class="material-symbols-outlined" aria-hidden="true">location_city</span>
+                                Localidad *
+                            </label>
                             <input type="text" id="localidad" name="localidad" required>
                         </p>
 
                         <p>
-                            <label for="provincia">Provincia *</label>
+                            <label for="provincia">
+                                <span class="material-symbols-outlined" aria-hidden="true">map</span>
+                                Provincia *
+                            </label>
                             <input type="text" id="provincia" name="provincia" required>
                         </p>
 
                         <p>
-                            <label for="pais">País *</label>
+                            <label for="pais">
+                                <span class="material-symbols-outlined" aria-hidden="true">public</span>
+                                País *
+                            </label>
                             <select id="pais" name="pais" required>
                                 <option value="">Selecciona un país...</option>
                                 <option value="argentina">Argentina</option>
@@ -168,6 +221,7 @@
                                 <option value="mexico">México</option>
                             </select>
                         </p>
+
                     </fieldset>
                 </fieldset>
 
@@ -175,7 +229,10 @@
                     <legend>Detalles de impresión</legend>
 
                     <p>
-                        <label for="anuncio">Anuncio a imprimir *</label>
+                        <label for="anuncio">
+                            <span class="material-symbols-outlined" aria-hidden="true">campaign</span>
+                            Anuncio a imprimir *
+                        </label>
                         <select id="anuncio" name="anuncio" required>
                             <option value="">-- Selecciona uno de tus anuncios --</option>
                             <option value="1">Chalet Independiente con Piscina</option>
@@ -185,32 +242,54 @@
                     </p>
 
                     <p>
-                        <label for="texto_adicional">Texto adicional para el folleto</label>
-                        <textarea id="texto_adicional" name="texto_adicional" rows="4" maxlength="4000" placeholder="Información adicional a la que ya tiene el anuncio..."></textarea>
+                        <label for="texto_adicional">
+                            <span class="material-symbols-outlined" aria-hidden="true">text_fields</span>
+                            Texto adicional para el folleto
+                        </label>
+                        <textarea id="texto_adicional" name="texto_adicional" rows="4" maxlength="4000"
+                            placeholder="Información adicional a la que ya tiene el anuncio..."></textarea>
                     </p>
 
                     <p>
-                        <label for="color_portada">Color de la portada *</label>
+                        <label for="color_portada">
+                            <span class="material-symbols-outlined" aria-hidden="true">palette</span>
+                            Color de la portada *
+                        </label>
                         <input type="color" id="color_portada" name="color_portada" value="#000000">
                     </p>
 
                     <p>
-                        <label for="num_copias">Número de copias *</label>
+                        <label for="num_copias">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Número de copias *
+                        </label>
                         <input type="number" id="num_copias" name="num_copias" min="1" max="99" value="1" required>
                     </p>
 
                     <p>
-                        <label for="resolucion">Resolución (150 - 900 dpi) * <output id="salida_resolucion" for="resolucion">150 dpi</output></label>
-                        <input type="range" id="resolucion" name="resolucion" min="150" max="900" step="150" value="150" oninput="salida_resolucion.value = resolucion.value + ' dpi'">
+                        <label for="resolucion">
+                            <span class="material-symbols-outlined" aria-hidden="true">high_quality</span>
+                            Resolución (150 - 900 dpi) *
+                            <output id="salida_resolucion" for="resolucion">150 dpi</output>
+                        </label>
+                        <input type="range" id="resolucion" name="resolucion" min="150" max="900" step="150"
+                            value="150"
+                            oninput="salida_resolucion.value = resolucion.value + ' dpi'">
                     </p>
 
                     <p>
-                        <label for="fecha_recepcion">Fecha aproximada de recepción</label>
+                        <label for="fecha_recepcion">
+                            <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                            Fecha aproximada de recepción
+                        </label>
                         <input type="date" id="fecha_recepcion" name="fecha_recepcion">
                     </p>
 
                     <fieldset>
-                        <legend>¿Impresión a color? *</legend>
+                        <legend>
+                            <span class="material-symbols-outlined" aria-hidden="true">print</span>
+                            ¿Impresión a color? *
+                        </legend>
 
                         <label for="imp_color">
                             <input type="radio" id="imp_color" name="tipo_impresion" value="color" checked required>
@@ -224,7 +303,10 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>¿Imprimir el precio del anuncio? *</legend>
+                        <legend>
+                            <span class="material-symbols-outlined" aria-hidden="true">sell</span>
+                            ¿Imprimir el precio del anuncio? *
+                        </legend>
 
                         <label for="precio_si">
                             <input type="radio" id="precio_si" name="imprimir_precio" value="si" checked required>
@@ -236,10 +318,18 @@
                             No
                         </label>
                     </fieldset>
+
                 </fieldset>
 
-                <button type="submit">Solicitar folleto</button>
-                <button type="reset">Borrar datos</button>
+                <button type="submit">
+                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                    Solicitar folleto
+                </button>
+
+                <button type="reset">
+                    <span class="material-symbols-outlined" aria-hidden="true">delete_sweep</span>
+                    Borrar datos
+                </button>
 
             </form>
 
@@ -252,8 +342,14 @@
         <hr>
 
         <nav>
-            <a href="buscar.html">Buscar</a>
-            <a href="index.html">Cerrar sesión</a>
+            <a href="buscar.html">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                Buscar
+            </a>
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                Cerrar sesión
+            </a>
         </nav>
 
         <p>
