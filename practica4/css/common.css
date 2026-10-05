@@ -1,116 +1,166 @@
-/* Variables */
+/* ==========================================================================
+   Importación de tipografía y Variables
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --color-principal: #1976d2;
-    --color-principal-hover: #1565c0;
-    --color-texto: #1a1a1a;
-    --color-texto-gris: #666666;
-    --color-fondo: #fafafa;
+    --color-principal: #1c1c1e;
+    --color-principal-hover: #2c2c2e;
+    --color-texto: #1c1c1e;
+    --color-texto-gris: #6e6e73;
+    --color-fondo: #f5f5f7;
     --color-blanco: #ffffff;
-    --color-borde: #cccccc;
-    --color-borde-claro: #e0e0e0;
-    --color-sombra: #dddddd;
-    --radio: 6px;
+
+    /* Bordes y Sombras */
+    --color-borde: rgba(0, 0, 0, 0.08);
+    --color-borde-claro: rgba(0, 0, 0, 0.04);
+    --color-sombra: rgba(0, 0, 0, 0.03);
+    --color-sombra-hover: rgba(0, 0, 0, 0.08);
+
+    /* Radios */
+    --radio: 10px;
 }
 
 
-/* Estilos generales */
+/* ==========================================================================
+   Estilos Generales
+   ========================================================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
     background-color: var(--color-fondo);
     color: var(--color-texto);
+    font-family: 'Inter', sans-serif;
 }
 
 main {
-    padding: 20px;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 
-/* Secciones */
+/* ==========================================================================
+   Secciones y Encabezados
+   ========================================================================== */
 
 section {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 section h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--color-borde-claro);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color-texto);
+    color: var(--color-texto);
 }
 
 
-/* Cabecera */
+/* ==========================================================================
+   Cabecera
+   ========================================================================== */
 
 header {
-    background-color: var(--color-blanco);
-    border-bottom: 1px solid var(--color-borde-claro);
-    padding: 20px;
+    background-color: var(--color-principal);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px 40px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 header h1 {
-    font-size: 24px;
+    color: var(--color-blanco);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 header nav ul {
     display: flex;
     list-style: none;
-    gap: 15px;
+    gap: 30px;
 }
 
 header nav a {
     text-decoration: none;
-    color: var(--color-principal);
-    font-weight: bold;
-    padding: 6px 10px;
+    color: #e5e5ea;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.25s ease;
 }
 
 header nav a:hover {
-    text-decoration: underline;
-    color: var(--color-principal-hover);
+    color: var(--color-blanco);
 }
 
 
-/* Tarjetas */
+/* ==========================================================================
+   Tarjetas de Propiedades
+   ========================================================================== */
 
 .cards-grid {
     list-style: none;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 30px;
 }
 
 .card {
     border: 1px solid var(--color-borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 15px;
     background-color: var(--color-blanco);
+    box-shadow: 0 4px 20px var(--color-sombra);
+    overflow: hidden;
+
+    transition:
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 }
 
 .card:hover {
-    box-shadow: 0 4px 12px var(--color-sombra);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 35px var(--color-sombra-hover);
+    border-color: var(--color-texto);
 }
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 240px;
     object-fit: cover;
     border-radius: var(--radio);
+
+    transition: transform 0.6s ease;
+}
+
+.card:hover img {
+    transform: scale(1.02);
+}
+
+.card-content {
+    padding: 24px;
 }
 
 .card h3 {
-    font-size: 17px;
-    margin: 12px 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.01em;
 }
 
 .card h3 a {
@@ -119,63 +169,96 @@ header nav a:hover {
 }
 
 .card h3 a:hover {
-    color: var(--color-principal);
+    text-decoration: underline;
 }
 
 .card p {
-    margin: 4px 0;
+    margin: 6px 0;
     font-size: 14px;
     color: var(--color-texto-gris);
+    font-weight: 400;
 }
 
 
-/* Formularios */
+/* ==========================================================================
+   Formularios y Filtros
+   ========================================================================== */
 
 form {
     margin-top: 20px;
+
+    display: flex;
+    gap: 12px;
 }
 
 form input {
-    border: 1px solid var(--color-borde);
+    border: 1px solid var(--color-texto);
     border-radius: var(--radio);
-    padding: 8px 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--color-texto);
     background-color: var(--color-blanco);
+    font-family: 'Inter', sans-serif;
 }
 
 form input:focus {
     outline: none;
-    border-color: var(--color-principal);
+    box-shadow: 0 0 0 2px rgba(28, 28, 30, 0.15);
 }
 
 form button,
 form input[type="submit"] {
     border: 1px solid var(--color-principal);
     border-radius: var(--radio);
-    padding: 8px 16px;
+    padding: 12px 28px;
+
     background-color: var(--color-principal);
     color: var(--color-blanco);
+
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
     cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 form button:hover,
 form input[type="submit"]:hover {
     background-color: var(--color-principal-hover);
+    border-color: var(--color-principal-hover);
 }
 
 
-/* Tablas */
+/* ==========================================================================
+   Tablas de Especificaciones
+   ========================================================================== */
+
 table {
     table-layout: fixed;
     width: 100%;
+
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 30px 0;
+
+    background-color: var(--color-blanco);
+    border-radius: var(--radio);
+    box-shadow: 0 4px 20px var(--color-sombra);
+
+    overflow: hidden;
 }
 
 caption {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: var(--color-texto)
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-bottom: 15px;
+    color: var(--color-texto);
 }
 
 thead {
@@ -184,108 +267,275 @@ thead {
 
 thead th {
     color: var(--color-blanco);
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: left;
+    padding: 16px 20px;
 }
 
-tr td {
-    text-align: center;
-}
-
-/* Tamaños de las columnas (50% cada una) */
-thead th:nth-child(1) {
-    width: 50%;
-}
-
-thead th:nth-child(2) {
-    width: 50%;
-}
-
-/* Separación y líneas para todas las celdas */
-th, td {
-    padding: 10px;
+th,
+td {
+    padding: 16px 20px;
     border-bottom: 1px solid var(--color-borde-claro);
 }
 
+tr td {
+    text-align: left;
+    font-size: 14px;
+    color: var(--color-texto);
+}
 
-/* Pie de página */
+tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================================================
+   Pie de Página
+   ========================================================================== */
 
 footer {
-    background-color: var(--color-blanco);
-    border-top: 1px solid var(--color-borde-claro);
-    margin-top: 40px;
-    padding: 30px 20px;
+    background-color: var(--color-principal);
+    color: #e5e5ea;
+
+    margin-top: 80px;
+    padding: 60px 20px;
+
     text-align: center;
 }
 
 footer hr {
     border: 0;
-    border-top: 1px solid #eeeeee;
-    margin-bottom: 15px;
-}
-
-footer nav {
-    margin-bottom: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 25px;
 }
 
 footer nav a {
     text-decoration: none;
-    color: var(--color-principal);
-    margin: 0 10px;
-    font-size: 14px;
+    color: #aeaeab;
+    margin: 0 15px;
+    font-size: 13px;
+
+    transition: color 0.25s ease;
 }
 
 footer nav a:hover {
-    text-decoration: underline;
-    color: var(--color-principal-hover);
+    color: var(--color-blanco);
 }
 
-footer p {
-    color: var(--color-texto-gris);
-}
-
+footer p,
 footer small {
-    font-size: 12px;
-    color: var(--color-texto-gris);
+    color: #8e8e93;
 }
 
 
-/* Enlace "Saltar al contenido" */
+/* ==========================================================================
+   Accesibilidad y Enlace de Salto
+   ========================================================================== */
 
 .enlace-saltar {
     display: inline-block;
+
     margin: 8px 20px;
-    padding: 5px 8px;
-    color: var(--color-principal);
-    font-size: 14px;
+    padding: 6px 12px;
+
+    color: var(--color-texto);
+    font-size: 13px;
     text-decoration: none;
+
+    border: 1px solid var(--color-texto);
     border-radius: var(--radio);
 }
 
 .enlace-saltar:hover {
-    background-color: var(--color-principal);
+    background-color: var(--color-texto);
     color: var(--color-blanco);
 }
 
 
-/* Pantallas pequeñas */
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Pantallas medianas - hasta 700px
+   -------------------------------------------------------------------------- */
 
 @media (max-width: 700px) {
 
     header {
         flex-direction: column;
-        gap: 15px;
-        text-align: center;
+        gap: 20px;
+        padding: 20px;
     }
 
     header nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 15px;
     }
 
     .cards-grid {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     main {
+        padding: 30px 15px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form input,
+    form button,
+    form input[type="submit"] {
+        width: 100%;
+    }
+
+    section {
+        margin-bottom: 45px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Pantallas pequeñas - 480px o menos
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 15px 10px;
+    }
+
+    header h1 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    header nav a {
+        font-size: 12px;
+    }
+
+    main {
+        padding: 20px 10px;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    section h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .cards-grid {
+        gap: 20px;
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .card-content {
         padding: 15px;
+    }
+
+    .card h3 {
+        font-size: 17px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    form {
+        gap: 10px;
+    }
+
+    form input {
+        padding: 11px 12px;
+    }
+
+    form button,
+    form input[type="submit"] {
+        padding: 11px 20px;
+    }
+
+    table {
+        table-layout: auto;
+        font-size: 11px;
+    }
+
+    thead th {
+        font-size: 10px;
+    }
+
+    th,
+    td {
+        padding: 8px 5px;
+    }
+
+    caption {
+        font-size: 1.1rem;
+    }
+
+    .enlace-saltar {
+        margin: 8px 10px;
+        font-size: 12px;
+    }
+
+    footer {
+        margin-top: 50px;
+        padding: 40px 15px;
+    }
+
+    footer nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Pantallas grandes - 1920px o más
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1920px) {
+
+    main {
+        max-width: 1400px;
+    }
+
+    .cards-grid {
+        gap: 40px;
+    }
+
+    header {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    header nav ul {
+        gap: 40px;
+    }
+
+    footer {
+        padding-top: 70px;
+        padding-bottom: 70px;
     }
 }
