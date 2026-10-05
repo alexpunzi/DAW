@@ -186,12 +186,20 @@ header nav a:hover {
 
 form {
     margin-top: 20px;
-
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
 }
 
-form input {
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+form input,
+form select {
     border: 1px solid var(--color-texto);
     border-radius: var(--radio);
     padding: 12px 16px;
@@ -201,7 +209,8 @@ form input {
     font-family: 'Inter', sans-serif;
 }
 
-form input:focus {
+form input:focus,
+form select:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(28, 28, 30, 0.15);
 }
@@ -231,6 +240,86 @@ form button:hover,
 form input[type="submit"]:hover {
     background-color: var(--color-principal-hover);
     border-color: var(--color-principal-hover);
+}
+
+
+/* Grupos de opciones */
+
+form fieldset {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 15px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    background-color: var(--color-blanco);
+}
+
+form legend {
+    padding: 0 8px;
+    font-weight: 600;
+}
+
+form fieldset input[type="radio"] {
+    width: auto;
+}
+
+
+/* Campos */
+
+form label + input[type="number"],
+form label + input[type="date"] {
+    margin-top: 0;
+}
+
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    header nav ul {
+        gap: 15px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    main {
+        padding: 30px 15px;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form input,
+    form select,
+    form button,
+    form input[type="submit"] {
+        width: 100%;
+    }
+
+    form fieldset {
+        width: 100%;
+    }
+
+    section {
+        margin-bottom: 45px;
+    }
 }
 
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/common.css">
-    <title>Solicitar Folleto - PI Pisos & Inmuebles</title>
+    <title>Solicitar Folleto - PI Pisos &amp; Inmuebles</title>
 
     <style>
         table, tr, th, td {
@@ -18,7 +18,7 @@
     <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
 
     <header>
-        <h1>PI - Pisos & Inmuebles</h1>
+        <h1>PI - Pisos &amp; Inmuebles</h1>
 
         <nav>
             <ul>
@@ -105,66 +105,64 @@
                     <legend>Datos de contacto y envío</legend>
 
                     <p>
-                        <label for="nombre">Nombre completo(*):</label>
+                        <label for="nombre">Nombre completo *</label>
                         <input type="text" id="nombre" name="nombre" maxlength="200" required>
                     </p>
 
                     <p>
-                        <label for="correo">Correo electrónico(*):</label>
+                        <label for="correo">Correo electrónico *</label>
                         <input type="email" id="correo" name="correo" maxlength="200" required>
                     </p>
 
                     <p>
-                        <label for="telefono">Teléfono:</label>
+                        <label for="telefono">Teléfono</label>
                         <input type="tel" id="telefono" name="telefono">
                     </p>
 
                     <p>
-                        <strong>Dirección de envío(*):</strong>
+                        <strong>Dirección de envío *</strong>
                     </p>
 
                     <p>
-                        <label for="calle">Calle:</label>
+                        <label for="calle">Calle *</label>
                         <input type="text" id="calle" name="calle" required>
 
-                        <label for="numero">Número:</label>
+                        <label for="numero">Número *</label>
                         <input type="text" id="numero" name="numero" size="5" required>
 
-                        <label for="puerta">Puerta</label>
+                        <label for="puerta">Puerta *</label>
                         <input type="text" id="puerta" name="puerta" size="5" required>
 
-                        <!-- No obligatorio, pero disponible para gente que vive en pisos -->
                         <label for="piso">Piso</label>
                         <input type="text" id="piso" name="piso" size="5">
                     </p>
 
                     <p>
-                        <label for="cp">Código Postal:</label>
+                        <label for="cp">Código Postal *</label>
                         <input type="text" id="cp" name="cp" size="10" required>
 
-                        <label for="localidad">Localidad:</label>
+                        <label for="localidad">Localidad *</label>
                         <input type="text" id="localidad" name="localidad" required>
                     </p>
 
                     <p>
-                        <label for="provincia">Provincia:</label>
+                        <label for="provincia">Provincia *</label>
                         <input type="text" id="provincia" name="provincia" required>
 
-                        <label for="pais">País:</label>
+                        <label for="pais">País</label>
                         <select id="pais">
                             <option value="">Selecciona un país...</option>
                             <option value="argentina">Argentina</option>
                             <option value="espana">España</option>
                             <option value="mexico">México</option>
                         </select>
-
                     </p>
 
                     <fieldset>
                         <legend>Detalles de impresión</legend>
 
                         <p>
-                            <label for="anuncio">Anuncio a imprimir (*):</label>
+                            <label for="anuncio">Anuncio a imprimir *</label>
 
                             <select id="anuncio" name="anuncio" required>
                                 <option value="">
@@ -184,7 +182,7 @@
 
                         <p>
                             <label for="texto_adicional">
-                                Texto adicional para el folleto:
+                                Texto adicional para el folleto
                             </label>
                             <br>
 
@@ -193,7 +191,7 @@
 
                         <p>
                             <label for="color_portada">
-                                Color de la portada (*):
+                                Color de la portada *
                             </label>
 
                             <input type="color" id="color_portada" name="color_portada" value="#000000">
@@ -201,7 +199,7 @@
 
                         <p>
                             <label for="num_copias">
-                                Número de copias (*):
+                                Número de copias *
                             </label>
 
                             <input type="number" id="num_copias" name="num_copias" min="1" max="99" value="1" required>
@@ -209,7 +207,7 @@
 
                         <p>
                             <label for="resolucion">
-                                Resolución de impresión (150 - 900 dpi) (*):
+                                Resolución de impresión (150 - 900 dpi) *
                             </label>
 
                             <input type="range" id="resolucion" name="resolucion" min="150" max="900" step="150" value="150" oninput="salida_resolucion.value = resolucion.value">
@@ -219,14 +217,14 @@
 
                         <p>
                             <label for="fecha_recepcion">
-                                Fecha aproximada de recepción:
+                                Fecha aproximada de recepción
                             </label>
 
                             <input type="date" id="fecha_recepcion" name="fecha_recepcion">
                         </p>
 
                         <p>
-                            <strong>¿Impresión a color? (*)</strong>
+                            <strong>¿Impresión a color? *</strong>
                             <br>
 
                             <input type="radio" id="imp_color" name="tipo_impresion" value="color" checked required>
@@ -239,7 +237,7 @@
                         </p>
 
                         <p>
-                            <strong>¿Imprimir el precio del anuncio? (*)</strong>
+                            <strong>¿Imprimir el precio del anuncio? *</strong>
                             <br>
 
                             <input type="radio" id="precio_si" name="imprimir_precio" value="si" checked required>
@@ -278,7 +276,7 @@
         <p>
             <small>
                 Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
-                &copy; 2026 PI - Pisos & Inmuebles. El portal de tu vivienda.
+                &copy; 2026 PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
             </small>
         </p>
 
