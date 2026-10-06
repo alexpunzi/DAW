@@ -1,144 +1,105 @@
 /* ==========================================================================
    responsive.css
-   Diseño adaptativo "mobile first": los demás ficheros definen el aspecto
-   para pantallas pequeñas (480px) y aquí se amplía a medida que crece la
-   pantalla con media queries de tipo min-width.
+   Diseño adaptativo "móvil primero": los demás ficheros ya valen para
+   480px y aquí se va ampliando con min-width (de menor a mayor pantalla).
+   Se queda el orden de menor a mayor porque si dos reglas valen igual,
+   gana la última.
 
-   Puntos de ruptura (breakpoints):
-     <= 480px   teléfono pequeño (retoques)
-     >= 600px   tablet vertical: 2 columnas de tarjetas, formularios alineados
-     >= 700px   cabecera en una sola fila
-     >= 960px   escritorio: 3 columnas, detalle del anuncio en 2 columnas
-     >= 1920px  pantalla grande: contenido más ancho y texto algo mayor
+   Puntos de ruptura:
+     hasta 480px  móvil (ajustes pequeños)
+     600px        tarjetas en 2 columnas y formularios alineados
+     900px        cabecera en una fila, 3 columnas y detalle en 2 columnas
+     1920px       pantallas grandes
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Pantallas pequeñas: 480px o menos
-   -------------------------------------------------------------------------- */
-
+/* Móvil: botones a todo el ancho (más fáciles de pulsar con el dedo) */
 @media (max-width: 480px) {
 
-    main {
-        padding: 20px 10px;
+    header h1 {
+        font-size: 1.1rem;
     }
 
-    section h2,
-    main > h2 {
-        font-size: 1.25rem;
-    }
-
-    footer nav a {
+    button {
         display: block;
-        margin: 10px 0;
-    }
-
-    table {
-        font-size: 0.75rem;
-    }
-
-    form button {
         width: 100%;
-        margin-right: 0;
+        margin: 0 0 10px;
     }
 }
-
-/* --------------------------------------------------------------------------
-   Pantallas medianas: 600px o más
-   -------------------------------------------------------------------------- */
 
 @media (min-width: 600px) {
 
     main {
-        padding: 50px 20px;
+        padding: 40px 20px;
     }
 
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 25px;
     }
 
-    .card {
-        padding: 15px;
-    }
-
-    .card img {
-        height: 220px;
-    }
-
-    /* Formularios: etiqueta a la izquierda, control a la derecha */
+    /* Formularios: etiqueta a la izquierda (220px) y campo a la derecha */
     form p {
-        grid-template-columns: var(--ancho-etiqueta) 1fr;
-        align-items: center;
-        column-gap: var(--espacio-m);
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        column-gap: 20px;
     }
 
-    form p:has(textarea) {
-        align-items: start;
+    form p label {
+        margin-bottom: 0;
+        padding-top: 10px;      /* para que la etiqueta quede a la altura del texto del campo */
+    }
+
+    /* El <output> del range va en la 2ª columna, debajo del campo */
+    form output {
+        grid-column: 2;
     }
 
     th,
     td {
-        padding: 16px 20px;
+        padding: 15px;
     }
 }
 
-/* --------------------------------------------------------------------------
-   Cabecera en una fila: 700px o más
-   -------------------------------------------------------------------------- */
-
-@media (min-width: 700px) {
+@media (min-width: 900px) {
 
     header {
-        flex-direction: row;
+        display: flex;
         justify-content: space-between;
-        padding: 25px 40px;
-    }
-
-    header h1 {
+        align-items: center;
+        padding: 20px 40px;
         text-align: left;
     }
 
-    header nav ul {
-        justify-content: flex-end;
-        gap: 10px 30px;
+    header h1 {
+        margin-bottom: 0;
     }
-}
-
-/* --------------------------------------------------------------------------
-   Escritorio: 960px o más
-   -------------------------------------------------------------------------- */
-
-@media (min-width: 960px) {
 
     .cards-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .card img {
-        height: 240px;
-    }
-
-    /* Detalle del anuncio: fotos a la izquierda, datos a la derecha */
+    /* Detalle del anuncio: fotos a la izquierda y datos a la derecha.
+       El título y el botón ocupan las dos columnas (de la línea 1 a la 3). */
     article {
-        grid-template-columns: 3fr 2fr;
-        gap: var(--espacio-l);
-        align-items: start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
     }
 
-    article > h2,
-    article > form {
-        grid-column: 1 / -1;
+    article h2,
+    article form {
+        grid-column: 1 / 3;
+    }
+
+    article section {
+        margin-bottom: 0;
     }
 }
 
-/* --------------------------------------------------------------------------
-   Pantallas grandes: 1920px o más
-   -------------------------------------------------------------------------- */
-
 @media (min-width: 1920px) {
 
-    html {
-        font-size: 112.5%;
+    body {
+        font-size: 18px;
     }
 
     main {
@@ -147,30 +108,5 @@
 
     .cards-grid {
         gap: 40px;
-    }
-
-    header {
-        padding-right: 60px;
-        padding-left: 60px;
-    }
-
-    header nav ul {
-        gap: 10px 40px;
-    }
-
-    footer {
-        padding-top: 70px;
-        padding-bottom: 70px;
-    }
-}
-
-/* --------------------------------------------------------------------------
-   Preferencias del usuario: sin animaciones si las ha desactivado
-   -------------------------------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-    * {
-        transition: none !important;
     }
 }

@@ -17,6 +17,24 @@
 
     <header>
         <h1>PI - Pisos &amp; Inmuebles</h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Página principal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="registro.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                        Registro
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main id="contenido">
@@ -25,10 +43,7 @@
         <form action="busqueda_rapida.html" method="get">
 
             <p>
-                <label for="tipo_anuncio">
-                    <span class="material-symbols-outlined" aria-hidden="true">campaign</span>
-                    Tipo de Anuncio
-                </label>
+                <label for="tipo_anuncio">Tipo de Anuncio</label>
                 <select id="tipo_anuncio" name="tipo_anuncio">
                     <option value="">Selecciona un tipo de anuncio...</option>
                     <option value="venta">Venta</option>
@@ -37,10 +52,7 @@
             </p>
 
             <p>
-                <label for="tipo_vivienda">
-                    <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
-                    Tipo de Vivienda
-                </label>
+                <label for="tipo_vivienda">Tipo de Vivienda</label>
                 <select id="tipo_vivienda" name="tipo_vivienda">
                     <option value="">Selecciona un tipo de vivienda...</option>
                     <option value="garaje">Garaje</option>
@@ -52,18 +64,12 @@
             </p>
 
             <p>
-                <label for="ciudad">
-                    <span class="material-symbols-outlined" aria-hidden="true">location_city</span>
-                    Ciudad
-                </label>
+                <label for="ciudad">Ciudad</label>
                 <input type="text" id="ciudad" name="ciudad">
             </p>
 
             <p>
-                <label for="pais">
-                    <span class="material-symbols-outlined" aria-hidden="true">public</span>
-                    País
-                </label>
+                <label for="pais">País</label>
                 <select id="pais" name="pais">
                     <option value="">Cualquier país...</option>
                     <option value="argentina">Argentina</option>
@@ -73,34 +79,22 @@
             </p>
 
             <p>
-                <label for="precio_desde">
-                    <span class="material-symbols-outlined" aria-hidden="true">euro</span>
-                    Precio desde (€)
-                </label>
+                <label for="precio_desde">Precio desde (€)</label>
                 <input type="number" id="precio_desde" name="precio_desde" min="0">
             </p>
 
             <p>
-                <label for="precio_hasta">
-                    <span class="material-symbols-outlined" aria-hidden="true">euro</span>
-                    Precio hasta (€)
-                </label>
+                <label for="precio_hasta">Precio hasta (€)</label>
                 <input type="number" id="precio_hasta" name="precio_hasta" min="0">
             </p>
 
             <p>
-                <label for="fecha_desde">
-                    <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
-                    Fecha de publicación desde
-                </label>
+                <label for="fecha_desde">Fecha de publicación desde</label>
                 <input type="date" id="fecha_desde" name="fecha_desde">
             </p>
 
             <p>
-                <label for="fecha_hasta">
-                    <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
-                    Fecha de publicación hasta
-                </label>
+                <label for="fecha_hasta">Fecha de publicación hasta</label>
                 <input type="date" id="fecha_hasta" name="fecha_hasta">
             </p>
 
@@ -114,6 +108,18 @@
 
     <footer>
         <hr>
+
+        <nav>
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                Página principal
+            </a>
+
+            <a href="registro.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                Registro
+            </a>
+        </nav>
 
         <p>
             <small>

@@ -21,6 +21,13 @@
         <nav>
             <ul>
                 <li>
+                    <a href="index_sesion.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
                     <a href="buscar.html">
                         <span class="material-symbols-outlined" aria-hidden="true">search</span>
                         Buscar
@@ -75,10 +82,7 @@
             </p>
 
             <table>
-                <caption>
-                    <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
-                    Tarifas de impresión y envío
-                </caption>
+                <caption>Tarifas de impresión y envío</caption>
 
                 <thead>
                     <tr>
@@ -153,88 +157,56 @@
                     </p>
 
                     <p>
-                        <label for="correo">
-                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                            Correo electrónico *
-                        </label>
+                        <label for="correo"><span class="icono-unicode" aria-hidden="true">&#9993;</span> Correo electrónico *</label>
                         <input type="email" id="correo" name="correo" maxlength="200" required>
                     </p>
 
                     <p>
-                        <label for="telefono">
-                            <span class="material-symbols-outlined" aria-hidden="true">phone</span>
-                            Teléfono
-                        </label>
+                        <label for="telefono"><span class="icono-unicode" aria-hidden="true">&#9742;</span> Teléfono</label>
                         <input type="tel" id="telefono" name="telefono">
                     </p>
 
+                    <!-- fieldset dentro de otro fieldset: así el lector de pantalla anuncia "Dirección de envío" en cada campo. -->
                     <fieldset>
-                        <legend>
-                            <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
-                            Dirección de envío *
-                        </legend>
+                        <legend>Dirección de envío *</legend>
 
                         <p>
-                            <label for="calle">
-                                <span class="material-symbols-outlined" aria-hidden="true">signpost</span>
-                                Calle *
-                            </label>
+                            <label for="calle">Calle *</label>
                             <input type="text" id="calle" name="calle" required>
                         </p>
 
                         <p>
-                            <label for="numero">
-                                <span class="material-symbols-outlined" aria-hidden="true">pin</span>
-                                Número *
-                            </label>
+                            <label for="numero">Número *</label>
                             <input type="text" id="numero" name="numero" required>
                         </p>
 
                         <p>
-                            <label for="puerta">
-                                <span class="material-symbols-outlined" aria-hidden="true">door_front</span>
-                                Puerta *
-                            </label>
+                            <label for="puerta">Puerta *</label>
                             <input type="text" id="puerta" name="puerta" required>
                         </p>
 
                         <p>
-                            <label for="piso">
-                                <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
-                                Piso
-                            </label>
+                            <label for="piso">Piso</label>
                             <input type="text" id="piso" name="piso">
                         </p>
 
                         <p>
-                            <label for="cp">
-                                <span class="material-symbols-outlined" aria-hidden="true">markunread_mailbox</span>
-                                Código Postal *
-                            </label>
+                            <label for="cp">Código Postal *</label>
                             <input type="text" id="cp" name="cp" required>
                         </p>
 
                         <p>
-                            <label for="localidad">
-                                <span class="material-symbols-outlined" aria-hidden="true">location_city</span>
-                                Localidad *
-                            </label>
+                            <label for="localidad">Localidad *</label>
                             <input type="text" id="localidad" name="localidad" required>
                         </p>
 
                         <p>
-                            <label for="provincia">
-                                <span class="material-symbols-outlined" aria-hidden="true">map</span>
-                                Provincia *
-                            </label>
+                            <label for="provincia">Provincia *</label>
                             <input type="text" id="provincia" name="provincia" required>
                         </p>
 
                         <p>
-                            <label for="pais">
-                                <span class="material-symbols-outlined" aria-hidden="true">public</span>
-                                País *
-                            </label>
+                            <label for="pais">País *</label>
                             <select id="pais" name="pais" required>
                                 <option value="">Selecciona un país...</option>
                                 <option value="argentina">Argentina</option>
@@ -250,10 +222,7 @@
                     <legend>Detalles de impresión</legend>
 
                     <p>
-                        <label for="anuncio">
-                            <span class="material-symbols-outlined" aria-hidden="true">campaign</span>
-                            Anuncio a imprimir *
-                        </label>
+                        <label for="anuncio">Anuncio a imprimir *</label>
                         <select id="anuncio" name="anuncio" required>
                             <option value="">-- Selecciona uno de tus anuncios --</option>
                             <option value="1">Chalet Independiente con Piscina</option>
@@ -263,10 +232,7 @@
                     </p>
 
                     <p>
-                        <label for="texto_adicional">
-                            <span class="material-symbols-outlined" aria-hidden="true">text_fields</span>
-                            Texto adicional para el folleto
-                        </label>
+                        <label for="texto_adicional">Texto adicional para el folleto</label>
                         <textarea
                             id="texto_adicional"
                             name="texto_adicional"
@@ -276,19 +242,14 @@
                         ></textarea>
                     </p>
 
+                    <!-- OJO: el input de color no admite required (siempre tiene valor; por defecto, negro). -->
                     <p>
-                        <label for="color_portada">
-                            <span class="material-symbols-outlined" aria-hidden="true">palette</span>
-                            Color de la portada *
-                        </label>
+                        <label for="color_portada">Color de la portada *</label>
                         <input type="color" id="color_portada" name="color_portada" value="#000000">
                     </p>
 
                     <p>
-                        <label for="num_copias">
-                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
-                            Número de copias *
-                        </label>
+                        <label for="num_copias">Número de copias *</label>
                         <input
                             type="number"
                             id="num_copias"
@@ -300,13 +261,10 @@
                         >
                     </p>
 
+                    <!-- NOTA: el range es el único sitio donde se permite JavaScript (oninput). Enseña el valor elegido en el <output>.
+                         El <output> va fuera del <label>: dentro da error en el validador. -->
                     <p>
-                        <label for="resolucion">
-                            <span class="material-symbols-outlined" aria-hidden="true">high_quality</span>
-                            Resolución (150 - 900 dpi) *
-                            <output id="salida_resolucion" for="resolucion">150 dpi</output>
-                        </label>
-
+                        <label for="resolucion">Resolución (150 - 900 dpi) *</label>
                         <input
                             type="range"
                             id="resolucion"
@@ -317,21 +275,17 @@
                             value="150"
                             oninput="salida_resolucion.value = resolucion.value + ' dpi'"
                         >
+                        <output id="salida_resolucion" for="resolucion">150 dpi</output>
                     </p>
 
                     <p>
-                        <label for="fecha_recepcion">
-                            <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
-                            Fecha aproximada de recepción
-                        </label>
+                        <label for="fecha_recepcion">Fecha aproximada de recepción</label>
                         <input type="date" id="fecha_recepcion" name="fecha_recepcion">
                     </p>
 
+                    <!-- En un grupo de radios los botones comparten name; con required en uno basta. -->
                     <fieldset>
-                        <legend>
-                            <span class="material-symbols-outlined" aria-hidden="true">print</span>
-                            ¿Impresión a color? *
-                        </legend>
+                        <legend>¿Impresión a color? *</legend>
 
                         <label for="imp_color">
                             <input
@@ -357,10 +311,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>
-                            <span class="material-symbols-outlined" aria-hidden="true">sell</span>
-                            ¿Imprimir el precio del anuncio? *
-                        </legend>
+                        <legend>¿Imprimir el precio del anuncio? *</legend>
 
                         <label for="precio_si">
                             <input
@@ -408,6 +359,11 @@
         <hr>
 
         <nav>
+            <a href="index_sesion.html">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                Inicio
+            </a>
+
             <a href="buscar.html">
                 <span class="material-symbols-outlined" aria-hidden="true">search</span>
                 Buscar

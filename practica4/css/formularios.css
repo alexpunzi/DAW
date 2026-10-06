@@ -1,127 +1,103 @@
 /* ==========================================================================
    formularios.css
-   Maquetación de formularios. Cada pareja etiqueta + control va en un <p>:
-   en pantallas pequeñas se apilan y en pantallas medianas/grandes se
-   alinean en dos columnas (la etiqueta a la izquierda, el control a la
-   derecha). Ver responsive.css.
+   Cada pareja etiqueta + campo va dentro de un <p>.
+   - Móvil: la etiqueta encima del campo (una columna).
+   - Pantalla ancha (responsive.css): con grid, etiqueta a la izquierda y
+     campo a la derecha, y así todos los campos quedan alineados.
    ========================================================================== */
 
 form {
-    max-width: var(--ancho-formulario);
-    margin-top: var(--espacio-m);
-}
-
-form p {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
-    margin-bottom: 18px;
+    max-width: 700px;
 }
 
 form label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-}
-
-/* --------------------------------------------------------------------------
-   Controles
-   -------------------------------------------------------------------------- */
-
-form input,
-form select,
-form textarea {
-    width: 100%;
-    padding: 12px 16px;
-    background: var(--color-superficie);
-    color: var(--color-texto);
-    border: 1px solid var(--color-texto);
-    border-radius: var(--radio);
-    font: inherit;
-    font-size: 0.9rem;
-}
-
-form textarea {
-    resize: vertical;
-}
-
-form input[type="radio"],
-form input[type="checkbox"] {
-    width: auto;
-    accent-color: var(--color-principal);
-}
-
-form input[type="color"] {
-    height: 44px;
-    padding: 4px;
-    cursor: pointer;
-}
-
-form input[type="range"] {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    accent-color: var(--color-principal);
-}
-
-form input[type="file"] {
-    padding: 10px;
-}
-
-/* --------------------------------------------------------------------------
-   Grupos de controles (fieldset + legend)
-   -------------------------------------------------------------------------- */
-
-form fieldset {
-    min-width: 0;
-    margin-bottom: var(--espacio-m);
-    padding: 15px 20px 5px;
-    background: var(--color-superficie);
-    border: 1px solid var(--color-borde);
-    border-radius: var(--radio);
-}
-
-form legend {
-    padding: 0 8px;
+    display: block;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 
-/* Grupos de botones de radio: <label><input type="radio"> Texto</label> */
-form fieldset > label {
-    margin: 0 var(--espacio-m) 15px 0;
-}
-
-/* --------------------------------------------------------------------------
-   Botones (hijos directos del formulario)
-   -------------------------------------------------------------------------- */
-
-form button {
-    margin: 0 var(--espacio-s) var(--espacio-s) 0;
-    padding: 12px 28px;
-    background: var(--color-principal);
-    color: var(--color-superficie);
+/* Campos. OJO: por defecto los campos NO heredan la fuente del body, por eso
+   font: inherit. */
+input,
+select,
+textarea {
+    width: 100%;
+    background: var(--color-blanco);
     border: 1px solid var(--color-principal);
     border-radius: var(--radio);
+    padding: 10px;
     font: inherit;
-    font-size: 0.75rem;
+}
+
+textarea {
+    resize: vertical;           /* solo se puede estirar hacia abajo */
+}
+
+/* Estos tipos no deben ocupar todo el ancho ni llevar tanto padding */
+input[type="radio"] {
+    width: auto;
+}
+
+input[type="range"] {
+    border: 0;
+    padding: 0;
+}
+
+input[type="color"] {
+    height: 42px;
+    padding: 3px;
+}
+
+output {
     font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+}
+
+/* ---- Grupos de campos ---------------------------------------------------- */
+
+/* OJO: un fieldset tiene un min-width por defecto que en móvil puede hacer
+   que la página se salga por el lado. Con min-width: 0 se arregla. */
+fieldset {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    margin-bottom: 20px;
+    min-width: 0;
+    padding: 15px;
+}
+
+legend {
+    font-weight: 600;
+    padding: 0 8px;
+}
+
+/* Botones de radio: una etiqueta junto a otra, no una debajo de otra.
+   Se escribe fieldset > label (solo hijas directas) para no cambiar las
+   etiquetas de los <p> que hay dentro del mismo fieldset. */
+fieldset > label {
+    display: inline-block;
+    font-weight: 400;
+    margin: 0 20px 10px 0;
+}
+
+/* ---- Botones ---------------------------------------------------------------- */
+
+button {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+    border: 1px solid var(--color-principal);
+    border-radius: var(--radio);
+    padding: 10px 24px;
+    font: inherit;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    margin-right: 10px;
 }
 
-form button:hover {
-    background: var(--color-principal-hover);
+button:hover {
+    background: var(--color-suave);
 }
 
-/* Botón secundario (borrar datos) */
-form button[type="reset"] {
-    background: transparent;
+/* "Borrar datos": botón secundario, al revés de colores */
+button[type="reset"] {
+    background: var(--color-blanco);
     color: var(--color-principal);
-}
-
-form button[type="reset"]:hover {
-    background: var(--color-borde);
 }

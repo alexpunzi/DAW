@@ -1,44 +1,22 @@
 /* ==========================================================================
    variables.css
-   Único sitio donde se definen colores, tipografías y espaciados.
-   Para crear una variante visual (práctica 5) basta con modificar este
-   fichero o redefinir estas variables en otro CSS.
+   Aquí están los colores y las fuentes. Si quiero otro aspecto (práctica 5)
+   solo hay que cambiar estos valores, el resto de ficheros usa var(--nombre).
+   Los nombres dicen para qué sirve el color, no cómo es.
    ========================================================================== */
 
 :root {
-    /* --- Colores (nombrados por su función, no por su aspecto) --- */
-    --color-principal: #1c1c1e;          /* cabecera, pie y botones */
-    --color-principal-hover: #2c2c2e;
-    --color-texto: #1c1c1e;
-    --color-texto-gris: #6e6e73;         /* texto secundario */
-    --color-fondo: #f5f5f7;              /* fondo de la página */
-    --color-superficie: #ffffff;         /* tarjetas, tablas, campos */
-    --color-texto-sobre-oscuro: #e5e5ea; /* texto sobre cabecera/pie */
-    --color-texto-pie: #8e8e93;
-    --color-enlace-pie: #aeaeb2;
-    --color-foco: #2f6fed;               /* indicador de foco del teclado */
+    /* Colores: 6 en total */
+    --color-principal: #1c1c1e;   /* cabecera, pie, botones y texto */
+    --color-suave: #6e6e73;       /* texto secundario */
+    --color-fondo: #f5f5f7;       /* fondo de la página y texto sobre fondo oscuro */
+    --color-blanco: #ffffff;      /* tarjetas, campos y tablas */
+    --color-borde: #d2d2d7;
+    --color-foco: #2f6fed;        /* azul del recuadro al navegar con el teclado */
 
-    /* Bordes y sombras */
-    --color-borde: rgba(0, 0, 0, 0.08);
-    --color-borde-claro: rgba(0, 0, 0, 0.04);
-    --color-borde-sobre-oscuro: rgba(255, 255, 255, 0.08);
-    --color-sombra: rgba(0, 0, 0, 0.03);
-    --color-sombra-hover: rgba(0, 0, 0, 0.08);
-    --color-fila-hover: rgba(0, 0, 0, 0.06);    /* tablas */
-
-    /* --- Tipografías (dos: títulos y contenido) --- */
+    /* Fuentes: una para títulos y otra para el contenido */
     --fuente-titulos: 'Playfair Display', Georgia, serif;
-    --fuente-texto: 'Inter', Arial, Helvetica, sans-serif;
+    --fuente-texto: 'Inter', Arial, sans-serif;
 
-    /* --- Espaciados --- */
-    --espacio-s: 10px;
-    --espacio-m: 20px;
-    --espacio-l: 40px;
-    --espacio-xl: 60px;
-
-    /* --- Dimensiones --- */
-    --radio: 10px;
-    --ancho-maximo: 1200px;
-    --ancho-formulario: 46rem;
-    --ancho-etiqueta: 14rem;
+    --radio: 8px;                 /* esquinas redondeadas */
 }
