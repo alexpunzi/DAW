@@ -1,0 +1,113 @@
+/* ==========================================================================
+   componentes.css
+   Piezas reutilizables: tarjetas de anuncios y página de detalle.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tarjetas de anuncios (.cards-grid > .card)
+   -------------------------------------------------------------------------- */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    padding: 10px;
+    overflow: hidden;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    box-shadow: 0 4px 20px var(--color-sombra);
+    transition:
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-texto);
+    box-shadow: 0 16px 35px var(--color-sombra-hover);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radio);
+}
+
+.card h3 {
+    margin: 12px 0 8px;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+}
+
+.card h3 a {
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    text-decoration: underline;
+}
+
+.card p {
+    margin: 6px 0;
+    color: var(--color-texto-gris);
+    font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Detalle de un anuncio (article > .fotos + datos)
+   -------------------------------------------------------------------------- */
+
+article {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacio-m);
+}
+
+article > h2 {
+    margin-bottom: 0;
+}
+
+article section {
+    margin-bottom: 0;
+}
+
+/* Foto principal + miniaturas */
+.fotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-s);
+    align-content: flex-start;
+}
+
+.fotos img:first-child {
+    flex: 0 0 100%;
+    border-radius: var(--radio);
+}
+
+.fotos h3 {
+    flex: 0 0 100%;
+}
+
+.fotos img:not(:first-child) {
+    flex: 1 1 0;
+    min-width: 0;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: calc(var(--radio) / 2);
+}
+
+/* Elemento con borde (clase de uso general) */
+.conBorde {
+    padding: var(--espacio-m);
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+}

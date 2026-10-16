@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   estilos.css - hoja principal de PI - Pisos & Inmuebles
+   Es la única hoja que se enlaza desde el HTML. Solo importa las demás,
+   así cada fichero tiene una función y es fácil cambiar el estilo.
+
+   OJO: los @import tienen que ir al principio. Si se pone una regla antes,
+   el navegador los ignora sin avisar.
+   OJO 2: si cambias un CSS y no se nota, es la caché: Ctrl+F5 o Mayús+F5.
+
+   Fuentes: Inter (texto) y Playfair Display (títulos), de Google Fonts.
+   Los iconos (Material Symbols) se cargan con un <link> en cada página.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+@import url('variables.css');
+@import url('base.css');
+@import url('layout.css');
+@import url('formularios.css');
+@import url('tablas.css');
+@import url('responsive.css');   /* el último: así sus reglas ganan a las anteriores */

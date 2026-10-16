@@ -1,0 +1,112 @@
+/* ==========================================================================
+   responsive.css
+   Diseño adaptativo "móvil primero": los demás ficheros ya valen para
+   480px y aquí se va ampliando con min-width (de menor a mayor pantalla).
+   Se queda el orden de menor a mayor porque si dos reglas valen igual,
+   gana la última.
+
+   Puntos de ruptura:
+     hasta 480px  móvil (ajustes pequeños)
+     600px        tarjetas en 2 columnas y formularios alineados
+     900px        cabecera en una fila, 3 columnas y detalle en 2 columnas
+     1920px       pantallas grandes
+   ========================================================================== */
+
+/* Móvil: botones a todo el ancho (más fáciles de pulsar con el dedo) */
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px;
+    }
+}
+
+@media (min-width: 600px) {
+
+    main {
+        padding: 40px 20px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* Formularios: etiqueta a la izquierda (220px) y campo a la derecha */
+    form p {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        column-gap: 20px;
+    }
+
+    form p label {
+        margin-bottom: 0;
+        padding-top: 10px;      /* para que la etiqueta quede a la altura del texto del campo */
+    }
+
+    /* El <output> del range va en la 2ª columna, debajo del campo */
+    form output {
+        grid-column: 2;
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 900px) {
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        text-align: left;
+    }
+
+    header h1 {
+        margin-bottom: 0;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Detalle del anuncio: fotos a la izquierda y datos a la derecha.
+       El título y el botón ocupan las dos columnas (de la línea 1 a la 3). */
+    article {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    article h2,
+    article form {
+        grid-column: 1 / 3;
+    }
+
+    article section {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    main {
+        max-width: 1500px;
+    }
+
+    .cards-grid {
+        gap: 40px;
+    }
+}

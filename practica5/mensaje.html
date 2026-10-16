@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <title>Enviar Mensaje | PI - Pisos &amp; Inmuebles</title>
+</head>
+
+<body>
+
+    <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+    <header>
+        <h1>PI - Pisos &amp; Inmuebles</h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index_sesion.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="buscar.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                        Buscar
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mis_mensajes.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                        Chats
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+                        Favoritos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">list_alt</span>
+                        Mis anuncios
+                    </a>
+                </li>
+
+                <li>
+                    <a href="error404.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+                        Publicar
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                        Cerrar sesión
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <section>
+            <h2>Contactar con el anunciante</h2>
+
+            <form action="mensaje_enviado.html" method="post">
+
+                <p>
+                    <label for="tipo_mensaje">Tipo de mensaje *</label>
+                    <select id="tipo_mensaje" name="tipo_mensaje" required>
+                        <option value="">Selecciona el motivo...</option>
+                        <option value="cita">Solicitar una cita</option>
+                        <option value="informacion">Más información</option>
+                        <option value="oferta">Comunicar una oferta</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="texto">Texto del mensaje *</label>
+                    <textarea
+                        id="texto"
+                        name="texto"
+                        rows="6"
+                        cols="50"
+                        required
+                        placeholder="Escribe tu mensaje aquí..."
+                    ></textarea>
+                </p>
+
+                <button type="submit">
+                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                    Enviar mensaje
+                </button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <hr>
+
+        <nav>
+            <a href="index_sesion.html">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                Inicio
+            </a>
+
+            <a href="buscar.html">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                Buscar
+            </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span>
+                Modificar mis datos
+            </a>
+
+            <a href="solicitar_folleto.html">
+                <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                Solicitar folleto
+            </a>
+
+            <a href="error404.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_remove</span>
+                Darse de baja
+            </a>
+
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <p>
+            <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
+                &copy; 2026 PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
+            </small>
+        </p>
+    </footer>
+
+</body>
+
+</html>

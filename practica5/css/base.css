@@ -1,0 +1,113 @@
+/* ==========================================================================
+   base.css
+   Reglas generales: texto, enlaces, imágenes, iconos y accesibilidad.
+   Está pensado "móvil primero": lo que hay aquí sirve para una pantalla de
+   480px y responsive.css lo va ampliando cuando la pantalla es más grande.
+   ========================================================================== */
+
+/* Quito márgenes y padding por defecto para controlarlos yo.
+   OJO: por eso a párrafos y listas hay que darles el margen otra vez.
+   box-sizing: border-box hace que el padding y el borde cuenten dentro del
+   width. Sin esto, un campo con width:100% y padding se sale de la pantalla. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-fondo);
+    color: var(--color-principal);
+    font: 16px/1.6 var(--fuente-texto);     /* font abreviado: tamaño/interlineado familia */
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fuente-titulos);
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+main ul {
+    margin-bottom: 15px;
+    padding-left: 25px;
+}
+
+/* Los enlaces no heredan el color del texto, hay que ponérselo a ellos */
+a {
+    color: var(--color-principal);
+}
+
+/* Si la imagen es más ancha que su contenedor, se encoge (no sale de la pantalla) */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--color-borde);
+    margin: 20px 0;
+}
+
+/* ---- Iconos ---------------------------------------------------------------
+   Material Symbols va con un <link> que se carga DESPUÉS de este CSS y que
+   también define font-size. Si ambos selectores valen lo mismo, gana el
+   último. Por eso se escribe span.material-symbols-outlined (más específico):
+   así el tamaño que pongo yo no se pierde.
+   Los iconos llevan aria-hidden="true" porque siempre van junto a un texto. */
+span.material-symbols-outlined {
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* Iconos Unicode (por ejemplo &#9993; = sobre). Mismo ancho que los de arriba
+   para que las etiquetas queden alineadas. */
+.icono-unicode {
+    display: inline-block;
+    width: 1.2em;
+    margin-right: 4px;
+    text-align: center;
+}
+
+/* ---- Accesibilidad ------------------------------------------------------- */
+
+/* Enlace "saltar al contenido": fuera de la pantalla hasta que recibe el
+   foco (al pulsar Tab). Con display:none no funcionaría, porque un elemento
+   oculto así no puede recibir el foco. */
+.enlace-saltar {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    padding: 8px 14px;
+    background: var(--color-blanco);
+    border: 2px solid var(--color-principal);
+    border-radius: var(--radio);
+    text-decoration: none;
+}
+
+.enlace-saltar:focus {
+    top: 10px;
+}
+
+/* Recuadro azul al navegar con el teclado. OJO: no usar outline: none, porque
+   entonces con el teclado no se ve dónde estás. :focus-visible solo lo
+   muestra con teclado, no al hacer clic con el ratón. */
+:focus-visible {
+    outline: 3px solid var(--color-foco);
+    outline-offset: 2px;
+}
