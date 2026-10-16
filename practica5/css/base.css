@@ -86,13 +86,13 @@ span.material-symbols-outlined {
 
 /* ---- Accesibilidad ------------------------------------------------------- */
 
-/* Enlace "saltar al contenido": fuera de la pantalla hasta que recibe el
-   foco (al pulsar Tab). Con display:none no funcionaría, porque un elemento
-   oculto así no puede recibir el foco. */
+/* Enlace "saltar al contenido": siempre visible, justo encima de la cabecera.
+   Es un enlace normal (sin position:absolute), así que ocupa su sitio en la
+   página y empuja la cabecera hacia abajo. Sigue sirviendo para el teclado:
+   es el primer elemento al que llega el Tab y lleva al <main id="contenido">. */
 .enlace-saltar {
-    position: absolute;
-    top: -100px;
-    left: 10px;
+    display: inline-block;
+    margin: 8px 15px;
     padding: 8px 14px;
     background: var(--color-blanco);
     border: 2px solid var(--color-principal);
@@ -100,8 +100,9 @@ span.material-symbols-outlined {
     text-decoration: none;
 }
 
-.enlace-saltar:focus {
-    top: 10px;
+.enlace-saltar:hover {
+    background: var(--color-principal);
+    color: var(--color-blanco);
 }
 
 /* Recuadro azul al navegar con el teclado. OJO: no usar outline: none, porque
