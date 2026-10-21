@@ -1,6 +1,6 @@
 /* ==========================================================================
    base.css
-   Reglas generales: texto, enlaces, imágenes, iconos y accesibilidad.
+   Reglas generales: texto, enlaces, imágenes, iconos y accesibilidad
    ========================================================================== */
 
 
@@ -9,11 +9,11 @@
    -------------------------------------------------------------------------- */
 
 * {
-    /* Quita márgenes y padding por defecto. */
+    /* Quita márgenes y padding por defecto */
     margin: 0;
     padding: 0;
 
-    /* El padding y el borde cuentan dentro del ancho. */
+    /* El padding y el borde cuentan dentro del ancho */
     box-sizing: border-box;
 }
 
@@ -55,7 +55,7 @@ main ul {
     padding-left: 25px;
 }
 
-/* Los enlaces no heredan el color del texto. */
+/* Los enlaces no heredan el color del texto */
 a {
     color: var(--color-principal);
 }
@@ -65,17 +65,17 @@ a {
    Imágenes y líneas
    -------------------------------------------------------------------------- */
 
-/* La imagen se encoge si es más ancha que su contenedor. */
+/* La imagen se encoge si es más ancha que su contenedor */
 img {
-    /* Define el ancho máximo que puede tener un elemento. */
+    /* Define el ancho máximo que puede tener un elemento */
     max-width: 100%;
 
-    /* Hace que el navegador calcule y ajuste de forma automática la altura de un elemento según el tamaño de su contenido. */
+    /* Hace que el navegador calcule y ajuste de forma automática la altura de un elemento según el tamaño de su contenido */
     height: auto;
 }
 
 hr {
-    /* Quita el borde por defecto y deja solo una línea fina. */
+    /* Quita el borde por defecto y deja solo una línea fina */
     border: 0;
     border-top: 1px solid var(--color-borde);
     margin: 20px 0;
@@ -86,14 +86,14 @@ hr {
    Iconos
    -------------------------------------------------------------------------- */
 
-/* Más específico que .material-symbols-outlined, para que este tamaño gane. */
+/* Más específico que .material-symbols-outlined, para que este tamaño gane */
 span.material-symbols-outlined {
-    font-size: 1.2em; /* El tamaño de la fuente será un 20% más grande que el tamaño del elemento padre. */
+    font-size: 1.2em; /* El tamaño de la fuente será un 20% más grande que el tamaño del elemento padre */
     vertical-align: middle;
     margin-right: 4px;
 }
 
-/* Mismo ancho que los iconos anteriores para alinear las etiquetas. */
+/* Mismo ancho que los iconos anteriores para alinear las etiquetas */
 .icono-unicode {
     display: inline-block;
     width: 1.2em;
@@ -106,7 +106,7 @@ span.material-symbols-outlined {
    Accesibilidad
    -------------------------------------------------------------------------- */
 
-/* Enlace para saltar al contenido. */
+/* Enlace para saltar al contenido */
 .enlace-saltar {
     display: inline-block;
     margin: 8px 15px;
@@ -122,11 +122,11 @@ span.material-symbols-outlined {
     color: var(--color-blanco);
 }
 
-/* Recuadro que solo aparece al navegar con el teclado. */
+/* Recuadro que solo aparece al navegar con el teclado */
 :focus-visible {
-    /* Dibuja una línea exterior, de estilo sólido. */
+    /* Dibuja una línea exterior, de estilo sólido */
     outline: 3px solid var(--color-foco);
 
-    /* Separación entre el elemento y su línea de contorno. */
+    /* Separación entre el elemento y su línea de contorno */
     outline-offset: 2px;
 }

@@ -2,7 +2,7 @@
 
 /* ==========================================================================
    estilos.css
-   Hoja principal. Es la única que se enlaza desde el HTML.
+   Hoja principal. Es la única que se enlaza desde el HTML
    ========================================================================== */
 
 
@@ -10,7 +10,7 @@
    Fuentes
    -------------------------------------------------------------------------- */
 
-/* Los @import van siempre al principio del archivo. */
+/* Los @import van siempre al principio del archivo */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
 
 
@@ -18,11 +18,11 @@
    Hojas propias
    -------------------------------------------------------------------------- */
 
-@import url('variables.css'); /* Los ajustes de la web. */
-@import url('base.css'); /* Reglas generales. */
-@import url('layout.css'); /* La estructura de la página. */
-@import url('formularios.css'); /* Todo lo de los formularios. */
-@import url('tablas.css'); /* La tabla de tarifas. */
+@import url('variables.css'); /* Los ajustes de la web */
+@import url('base.css'); /* Reglas generales */
+@import url('layout.css'); /* La estructura de la página */
+@import url('formularios.css'); /* Todo lo de los formularios */
+@import url('tablas.css'); /* La tabla de tarifas */
 
-/* Va la última para que sus reglas ganen a las anteriores. */
-@import url('responsive.css'); /* Adaptar a cada pantalla. */
+/* Va la última para que sus reglas ganen a las anteriores */
+@import url('responsive.css'); /* Adaptar a cada pantalla */

@@ -1,7 +1,7 @@
 /* ==========================================================================
    responsive.css
    Adaptación a cada pantalla. Se diseña primero para móvil y se amplía
-   con min-width, de menor a mayor.
+   con min-width, de menor a mayor
    ========================================================================== */
 
 
@@ -15,7 +15,7 @@
         font-size: 1.1rem;
     }
 
-    /* Botones a todo el ancho. */
+    /* Botones a todo el ancho */
     button {
         display: block;
         width: 100%;
@@ -36,13 +36,13 @@
 
     .cards-grid {
         /* Crea dos columnas de igual ancho que se reparten por igual por todo el espacio disponible en el contenedor. 
-           Es lo mismo que poner grid-template-columns: 1fr 1fr;. fr significa fracción del espacio disponible en el contenedor. */
+           Es lo mismo que poner grid-template-columns: 1fr 1fr;. fr significa fracción del espacio disponible en el contenedor */
         grid-template-columns: repeat(2, 1fr);
 
         gap: 25px;
     }
 
-    /* Etiqueta a la izquierda y campo a la derecha. */
+    /* Etiqueta a la izquierda y campo a la derecha */
     form p {
         display: grid;
         grid-template-columns: 220px 1fr;
@@ -91,14 +91,14 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    /* Fotos a la izquierda y datos a la derecha. */
+    /* Fotos a la izquierda y datos a la derecha */
     article {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
     }
 
-    /* El título y el botón ocupan las dos columnas. */
+    /* El título y el botón ocupan las dos columnas */
     article h2,
     article form {
         grid-column: 1 / 3;

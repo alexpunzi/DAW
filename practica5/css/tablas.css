@@ -1,6 +1,6 @@
 /* ==========================================================================
    tablas.css
-   Tabla de tarifas: bordes, cabecera, filas alternas y hover.
+   Tabla de tarifas: bordes, cabecera, filas alternas y hover
    ========================================================================== */
 
 
@@ -13,7 +13,7 @@ table {
     margin: 20px 0;
     background: var(--color-blanco);
 
-    /* Junta los bordes de las celdas en uno solo. */
+    /* Junta los bordes de las celdas en uno solo */
     border-collapse: collapse;
 }
 
@@ -46,7 +46,7 @@ thead th {
    Filas
    -------------------------------------------------------------------------- */
 
-/* Una fila sí y otra no. */
+/* Una fila sí y otra no */
 tbody tr:nth-child(even) {
     background: var(--color-fondo);
 }
