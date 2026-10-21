@@ -1,18 +1,26 @@
 /* ==========================================================================
    base.css
    Reglas generales: texto, enlaces, imágenes, iconos y accesibilidad.
-   Está pensado "móvil primero": lo que hay aquí sirve para una pantalla de
-   480px y responsive.css lo va ampliando cuando la pantalla es más grande.
    ========================================================================== */
 
+
+/* --------------------------------------------------------------------------
+   Reinicio
+   -------------------------------------------------------------------------- */
+
 * {
-    /* Quito márgenes y padding por defecto para controlarlos yo, por eso a párrafos y listas hay que darles el margen otra vez */
+    /* Quita márgenes y padding por defecto. */
     margin: 0;
     padding: 0;
 
-    /* Hace que el padding y el borde cuenten dentro del width. Sin esto, un campo con width:100% y padding se sale de la pantalla */
-    box-sizing: border-box; 
+    /* El padding y el borde cuentan dentro del ancho. */
+    box-sizing: border-box;
 }
+
+
+/* --------------------------------------------------------------------------
+   Texto
+   -------------------------------------------------------------------------- */
 
 body {
     background: var(--color-fondo);
@@ -47,39 +55,42 @@ main ul {
     padding-left: 25px;
 }
 
-/* Los enlaces no heredan el color del texto, hay que ponérselo a ellos */
+/* Los enlaces no heredan el color del texto. */
 a {
     color: var(--color-principal);
 }
 
-/* Si la imagen es más ancha que su contenedor, se encoge (no sale de la pantalla) */
+
+/* --------------------------------------------------------------------------
+   Imágenes y líneas
+   -------------------------------------------------------------------------- */
+
+/* La imagen se encoge si es más ancha que su contenedor. */
 img {
     max-width: 100%;
     height: auto;
 }
 
 hr {
-    border: 0; /* Elimina todos los bordes predeterminados del elemento <hr> */
+    /* Quita el borde por defecto y deja solo una línea fina. */
+    border: 0;
     border-top: 1px solid var(--color-borde);
-    margin: 20px 0; /* Añade espacio exterior alrededor de la línea. 20 px para arriba y abajo */
+    margin: 20px 0;
 }
 
 
-/* ---- Iconos --------------------------------------------------------------- */
-/* Se hace uso de Material Symbols (Google) y Unicode */
+/* --------------------------------------------------------------------------
+   Iconos
+   -------------------------------------------------------------------------- */
 
-/*  Usamos span.material-symbols-outlined para controlar el tamaño de los iconos.
-    Es más específico que .material-symbols-outlined, así nuestros estilos tienen 
-    prioridad. aria-hidden="true" hace que los lectores de pantalla ignoren el 
-    icono, ya que siempre va acompañado de un texto.*/
+/* Más específico que .material-symbols-outlined, para que este tamaño gane. */
 span.material-symbols-outlined {
     font-size: 1.2em;
     vertical-align: middle;
     margin-right: 4px;
 }
 
-/* Iconos Unicode (por ejemplo &#9993; = sobre). Mismo ancho que los de arriba
-   para que las etiquetas queden alineadas. */
+/* Mismo ancho que los iconos anteriores para alinear las etiquetas. */
 .icono-unicode {
     display: inline-block;
     width: 1.2em;
@@ -88,17 +99,19 @@ span.material-symbols-outlined {
 }
 
 
-/* ---- Accesibilidad ------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Accesibilidad
+   -------------------------------------------------------------------------- */
 
-/* Enlace "saltar al contenido": siempre visible, justo encima de la cabecera. */
+/* Enlace para saltar al contenido. */
 .enlace-saltar {
-    display: inline-block; /* Permite que el enlace parezca un botón y tenga espacio alrededor sin ocupar toda la línea */
+    display: inline-block;
     margin: 8px 15px;
-    padding: 8px 14px; /* Amplía la zona clicable */
+    padding: 8px 14px;
     background: var(--color-blanco);
     border: 2px solid var(--color-principal);
     border-radius: var(--radio);
-    text-decoration: none; /* Quita el subrayado que los navegadores suelen poner por defecto en los enlaces (<a>) */
+    text-decoration: none;
 }
 
 .enlace-saltar:hover {
@@ -106,9 +119,7 @@ span.material-symbols-outlined {
     color: var(--color-blanco);
 }
 
-/* Recuadro azul al navegar con el teclado. OJO: no usar outline: none, porque
-   entonces con el teclado no se ve dónde estás. :focus-visible solo lo
-   muestra con teclado, no al hacer clic con el ratón. */
+/* Recuadro que solo aparece al navegar con el teclado. */
 :focus-visible {
     outline: 3px solid var(--color-foco);
     outline-offset: 2px;

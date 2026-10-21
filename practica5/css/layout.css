@@ -1,10 +1,12 @@
 /* ==========================================================================
    layout.css
-   Maquetación: cabecera, menú, contenido, tarjetas de anuncios, detalle del
-   anuncio y pie de página.
+   Estructura de la página: cabecera, contenido, tarjetas, detalle y pie.
    ========================================================================== */
 
-/* ---- Cabecera y menú (en móvil: todo centrado y en columna) -------------- */
+
+/* --------------------------------------------------------------------------
+   Cabecera y menú
+   -------------------------------------------------------------------------- */
 
 header {
     background: var(--color-principal);
@@ -22,7 +24,9 @@ header h1 {
 header ul {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;            /* si no caben en una línea, pasan a la siguiente */
+
+    /* Si no caben en una línea, pasan a la siguiente. */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 8px 22px;
 }
@@ -39,11 +43,16 @@ header a:hover {
     text-decoration: underline;
 }
 
-/* ---- Contenido ------------------------------------------------------------ */
+
+/* --------------------------------------------------------------------------
+   Contenido
+   -------------------------------------------------------------------------- */
 
 main {
-    max-width: 1200px;          /* en pantallas grandes no se estira del todo */
-    margin: 0 auto;             /* auto a los lados = centrado */
+    max-width: 1200px;
+
+    /* Centra el contenido. */
+    margin: 0 auto;
     padding: 30px 15px;
 }
 
@@ -56,13 +65,18 @@ section {
     margin-bottom: 40px;
 }
 
-/* ---- Tarjetas de anuncios (index, index_sesion y resultados) -------------- */
+
+/* --------------------------------------------------------------------------
+   Tarjetas de anuncios
+   -------------------------------------------------------------------------- */
 
 .cards-grid {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr;     /* móvil: una columna */
+
+    /* Una columna en móvil. */
+    grid-template-columns: 1fr; /* Establece las columnas, ocupa una fracción del espacio disponible. */
     gap: 20px;
 }
 
@@ -77,10 +91,10 @@ section {
     border-color: var(--color-principal);
 }
 
-/* Las fotos tienen proporciones distintas (una es vertical). Con height fijo
-   y object-fit: cover se recortan para que todas las tarjetas queden igual. */
 .card img {
     width: 100%;
+
+    /* Altura fija y recorte para que todas las tarjetas queden iguales. */
     height: 200px;
     object-fit: cover;
     border-radius: var(--radio);
@@ -104,12 +118,14 @@ section {
     margin: 8px 0 0;
 }
 
-/* El texto de la tarjeta es gris, pero los iconos van en negro */
 .card span.material-symbols-outlined {
     color: var(--color-principal);
 }
 
-/* ---- Detalle del anuncio --------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Detalle del anuncio
+   -------------------------------------------------------------------------- */
 
 .fotos img {
     display: block;
@@ -119,15 +135,13 @@ section {
     border-radius: var(--radio);
 }
 
-/* Miniaturas: 3 en una fila. OJO: entre imágenes en línea hay un pequeño
-   hueco (el espacio del HTML), por eso 32% y no 33%: si no, no caben. */
+/* Tres miniaturas por fila. Se usa 32% y no 33% por el hueco entre imágenes. */
 .fotos .miniatura {
     display: inline-block;
     width: 32%;
     height: 90px;
 }
 
-/* Cuadro con borde (para los datos del anuncio) */
 .conBorde {
     background: var(--color-blanco);
     border: 1px solid var(--color-borde);
@@ -135,7 +149,10 @@ section {
     padding: 20px;
 }
 
-/* ---- Pie de página --------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Pie de página
+   -------------------------------------------------------------------------- */
 
 footer {
     background: var(--color-principal);
@@ -150,7 +167,7 @@ footer hr {
 }
 
 footer a {
-    display: inline-block;      /* para poder darle margen arriba y abajo */
+    display: inline-block;
     color: var(--color-fondo);
     font-size: 0.9rem;
     margin: 5px 10px;

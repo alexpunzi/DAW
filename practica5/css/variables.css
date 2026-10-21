@@ -1,22 +1,48 @@
 /* ==========================================================================
    variables.css
-   Aquí están los colores y las fuentes. Si quiero otro aspecto (práctica 5)
-   solo hay que cambiar estos valores, el resto de ficheros usa var(--nombre).
-   Los nombres dicen para qué sirve el color, no cómo es.
+   Colores, fuentes y medidas que usan el resto de hojas.
    ========================================================================== */
 
 :root {
-    /* Colores: 6 en total */
-    --color-principal: #1c1c1e;   /* cabecera, pie, botones y texto */
-    --color-suave: #6e6e73;       /* texto secundario */
-    --color-fondo: #f5f5f7;       /* fondo de la página y texto sobre fondo oscuro */
-    --color-blanco: #ffffff;      /* tarjetas, campos y tablas */
-    --color-borde: #d2d2d7;
-    --color-foco: #2f6fed;        /* azul del recuadro al navegar con el teclado */
 
-    /* Fuentes: una para títulos y otra para el contenido */
+    /* ----------------------------------------------------------------------
+       Colores
+       ---------------------------------------------------------------------- */
+
+    /* Cabecera, pie, botones y texto. */
+    --color-principal: #1c1c1e;
+
+    /* Texto secundario. */
+    --color-suave: #6e6e73;
+
+    /* Fondo de la página y texto sobre fondo oscuro. */
+    --color-fondo: #f5f5f7;
+
+    /* Tarjetas, campos y tablas. */
+    --color-blanco: #ffffff;
+
+    /* Líneas y bordes. */
+    --color-borde: #d2d2d7;
+
+    /* Recuadro al navegar con el teclado. */
+    --color-foco: #2f6fed;
+
+
+    /* ----------------------------------------------------------------------
+       Fuentes
+       ---------------------------------------------------------------------- */
+
+    /* Títulos. */
     --fuente-titulos: 'Playfair Display', Georgia, serif;
+
+    /* Contenido. */
     --fuente-texto: 'Inter', Arial, sans-serif;
 
-    --radio: 8px;                 /* esquinas redondeadas */
+
+    /* ----------------------------------------------------------------------
+       Medidas
+       ---------------------------------------------------------------------- */
+
+    /* Esquinas redondeadas. */
+    --radio: 8px;
 }
