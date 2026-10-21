@@ -5,20 +5,21 @@
    480px y responsive.css lo va ampliando cuando la pantalla es más grande.
    ========================================================================== */
 
-/* Quito márgenes y padding por defecto para controlarlos yo.
-   OJO: por eso a párrafos y listas hay que darles el margen otra vez.
-   box-sizing: border-box hace que el padding y el borde cuenten dentro del
-   width. Sin esto, un campo con width:100% y padding se sale de la pantalla. */
 * {
+    /* Quito márgenes y padding por defecto para controlarlos yo, por eso a párrafos y listas hay que darles el margen otra vez */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
+    /* Hace que el padding y el borde cuenten dentro del width. Sin esto, un campo con width:100% y padding se sale de la pantalla */
+    box-sizing: border-box; 
 }
 
 body {
     background: var(--color-fondo);
     color: var(--color-principal);
-    font: 16px/1.6 var(--fuente-texto);     /* font abreviado: tamaño/interlineado familia */
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
 }
 
 h1,
@@ -58,17 +59,19 @@ img {
 }
 
 hr {
-    border: 0;
+    border: 0; /* Elimina todos los bordes predeterminados del elemento <hr> */
     border-top: 1px solid var(--color-borde);
-    margin: 20px 0;
+    margin: 20px 0; /* Añade espacio exterior alrededor de la línea. 20 px para arriba y abajo */
 }
 
-/* ---- Iconos ---------------------------------------------------------------
-   Material Symbols va con un <link> que se carga DESPUÉS de este CSS y que
-   también define font-size. Si ambos selectores valen lo mismo, gana el
-   último. Por eso se escribe span.material-symbols-outlined (más específico):
-   así el tamaño que pongo yo no se pierde.
-   Los iconos llevan aria-hidden="true" porque siempre van junto a un texto. */
+
+/* ---- Iconos --------------------------------------------------------------- */
+/* Se hace uso de Material Symbols (Google) y Unicode */
+
+/*  Usamos span.material-symbols-outlined para controlar el tamaño de los iconos.
+    Es más específico que .material-symbols-outlined, así nuestros estilos tienen 
+    prioridad. aria-hidden="true" hace que los lectores de pantalla ignoren el 
+    icono, ya que siempre va acompañado de un texto.*/
 span.material-symbols-outlined {
     font-size: 1.2em;
     vertical-align: middle;
@@ -84,20 +87,18 @@ span.material-symbols-outlined {
     text-align: center;
 }
 
+
 /* ---- Accesibilidad ------------------------------------------------------- */
 
-/* Enlace "saltar al contenido": siempre visible, justo encima de la cabecera.
-   Es un enlace normal (sin position:absolute), así que ocupa su sitio en la
-   página y empuja la cabecera hacia abajo. Sigue sirviendo para el teclado:
-   es el primer elemento al que llega el Tab y lleva al <main id="contenido">. */
+/* Enlace "saltar al contenido": siempre visible, justo encima de la cabecera. */
 .enlace-saltar {
-    display: inline-block;
+    display: inline-block; /* Permite que el enlace parezca un botón y tenga espacio alrededor sin ocupar toda la línea */
     margin: 8px 15px;
-    padding: 8px 14px;
+    padding: 8px 14px; /* Amplía la zona clicable */
     background: var(--color-blanco);
     border: 2px solid var(--color-principal);
     border-radius: var(--radio);
-    text-decoration: none;
+    text-decoration: none; /* Quita el subrayado que los navegadores suelen poner por defecto en los enlaces (<a>) */
 }
 
 .enlace-saltar:hover {
