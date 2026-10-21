@@ -35,7 +35,10 @@
     }
 
     .cards-grid {
+        /* Crea dos columnas de igual ancho que se reparten por igual por todo el espacio disponible en el contenedor. 
+           Es lo mismo que poner grid-template-columns: 1fr 1fr;. fr significa fracción del espacio disponible en el contenedor. */
         grid-template-columns: repeat(2, 1fr);
+
         gap: 25px;
     }
 
@@ -69,8 +72,12 @@
 @media (min-width: 900px) {
 
     header {
+        /* Diseño de caja flexible (Flexbox) que permite alinear y distribuir elementos dentro de un contenedor de forma automática y dinámica */
         display: flex;
+        
+        /* Distribuye los elementos uniformemente a lo largo del eje principal */
         justify-content: space-between;
+        
         align-items: center;
         padding: 20px 40px;
         text-align: left;

@@ -67,7 +67,10 @@ a {
 
 /* La imagen se encoge si es más ancha que su contenedor. */
 img {
+    /* Define el ancho máximo que puede tener un elemento. */
     max-width: 100%;
+
+    /* Hace que el navegador calcule y ajuste de forma automática la altura de un elemento según el tamaño de su contenido. */
     height: auto;
 }
 
@@ -85,7 +88,7 @@ hr {
 
 /* Más específico que .material-symbols-outlined, para que este tamaño gane. */
 span.material-symbols-outlined {
-    font-size: 1.2em;
+    font-size: 1.2em; /* El tamaño de la fuente será un 20% más grande que el tamaño del elemento padre. */
     vertical-align: middle;
     margin-right: 4px;
 }
@@ -121,6 +124,9 @@ span.material-symbols-outlined {
 
 /* Recuadro que solo aparece al navegar con el teclado. */
 :focus-visible {
+    /* Dibuja una línea exterior, de estilo sólido. */
     outline: 3px solid var(--color-foco);
+
+    /* Separación entre el elemento y su línea de contorno. */
     outline-offset: 2px;
 }
