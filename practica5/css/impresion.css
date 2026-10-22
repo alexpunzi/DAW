@@ -1,0 +1,141 @@
+@charset "UTF-8"; 
+
+/*Tamaño y margenes de hoja*/
+
+@page{
+    size: A4; 
+    margin: 2cm; 
+}
+
+body{
+    background-color: #ffffff;
+    color: black;
+    font-family: Georgia, "Times New Roman", serif; /* serif para leer en papel */
+    font-size: 12pt;
+    line-height: 1.4;
+}
+
+/*quitamos los elementos que no tendrian sentido que aparezcan a la hora de imprimir*/
+header nav, 
+footer nav, 
+footer hr, 
+.enlace-saltar, 
+form,
+#acceso,
+#busqueda-rapida, 
+span.material-symbols-outlined, 
+input[type = "color"], 
+.fotos h3, 
+.fotos .miniatura{
+    display: none; 
+}
+
+/*cabecera y pie */ 
+header {
+    border-bottom: 1pt solid #000000;
+    margin-bottom: 1cm;
+    padding-bottom: 0.3cm
+}
+
+header h1{
+    font-size: 18pt;
+    text-transform: uppercase;
+}
+
+footer{
+    border-top: 1pt solid #000000;
+    margin-top: 1cm;
+    padding-top: 0.3cm;
+    font-size: 10pt;
+    text-align: center; 
+}
+
+/*------------- Texto --------- */ 
+h1,
+h2,
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #000000;
+    break-after: avoid; /* un título nunca queda solo al final de página */
+    page-break-after: avoid; /* nombre antiguo, por compatibilidad */
+}
+
+h2 {
+    font-size: 16pt;
+    border-bottom: 1pt solid #000000;
+    margin-bottom: 0.4cm;
+}
+
+h3 {
+    font-size: 13pt;
+    margin-bottom: 0.2cm;
+}
+
+p,
+li {
+    orphans: 3; /* mínimo de líneas al final de una página */
+    widows: 3; /* mínimo de líneas al principio de la siguiente */
+}
+
+p {
+    margin-bottom: 0.3cm;
+}
+
+ul {
+    padding-left: 1cm;
+}
+/* ---- Enlaces: subrayados, de otro color, y mostrando a dónde van ----------- */
+a {
+    color: #003399;
+    text-decoration: underline;
+}
+
+main a[href]:not([href^="#"])::after {
+content: " (" attr(href) ")";
+font-size: 10pt;
+color: #000000;
+}
+/* ---- Imágenes ------------------------------------------------------------- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ---- Tarjetas (index y resultados de búsqueda) ----------------------------- */
+.cards-grid {
+    display: block; /* en papel, una debajo de otra */
+    list-style: none;
+    padding: 0;
+}
+
+.card {
+    border: 1pt solid #000000;
+    padding: 0.3cm;
+    margin-bottom: 0.5cm;
+    break-inside: avoid; /* una tarjeta no se parte entre dos hojas */
+    page-break-inside: avoid;
+}
+
+.card img {
+    display: block;
+    width: 5cm;
+    height: auto;
+    margin: 0.2cm 0;
+}
+
+.card p {
+    margin-bottom: 0.15cm;
+}
+
+/* ---- Detalle del anuncio y justificante ----------------------------------- */
+.fotos img {
+    display: block;
+    width: 12cm;
+    margin-bottom: 0.5cm;
+}
+
+.conBorde {
+    border: 1pt solid #000000;
+    padding: 0.4cm;
+}

@@ -1,0 +1,44 @@
+@charset "UTF-8"; 
+
+html{
+    font-size: 125%;
+}
+
+body{
+    font-size: 1rem;
+    line-height: 1,8;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+caption {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+p {
+    margin-bottom: 1.2rem;
+}
+
+main p,
+main li {
+    max-width: 70ch;
+}
+
+header a,
+footer a {
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+}
+/* Con letra grande, la columna de las etiquetas necesita más sitio */
+@media (min-width: 600px) {
+    form p {
+        grid-template-columns: 280px 1fr;
+    }
+}
+/* Con letra grande, 3 tarjetas por fila quedan estrechas: 2 columnas */
+@media (min-width: 900px) {
+.cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
