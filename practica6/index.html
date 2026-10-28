@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilo base: persistente (sin title). media="screen" para que no se use al imprimir -->
+    <link rel="stylesheet" href="css/estilos.css" media="screen">
+
+    <!-- Estilos alternativos: se eligen desde el navegador (Firefox: Ver > Estilo de página) -->
+    <link rel="alternate stylesheet" href="css/noche.css" title="Modo Noche" media="screen">
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Letra grande" media="screen">
+
+    <!-- Impresión: media="print" y SIN title -->
+    <link rel="stylesheet" href="css/impresion.css" media="print">
+
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste y letra grande" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Alto contraste y letra grande" media="screen">
+
+    <!-- Material Symbols (Google) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <!-- NOTA: los iconos son de Material Symbols (Google) y necesitan internet. Sin conexión se ve el nombre del icono en texto (person, lock...). -->
+    <title>Página principal | PI - Pisos &amp; Inmuebles</title>
+</head>
+
+<body>
+
+    <!-- Enlace "saltar a": se esconde con CSS y solo aparece al pulsar Tab (ver base.css). El destino es el id="contenido" del <main>. -->
+    <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+    <header>
+        <h1>PI - Pisos &amp; Inmuebles</h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="registro.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                        Registro
+                    </a>
+                </li>
+
+                <li>
+                    <a href="buscar.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                        Buscar
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <section id="acceso">
+            <h2>Iniciar Sesión</h2>
+
+            <p><small>* Campos obligatorios</small></p>
+
+            <form action="index_sesion.html" method="post">
+                <p>
+                    <label for="login_usuario">
+                        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+                        Usuario *
+                    </label>
+                    <input type="text" id="login_usuario" name="login_usuario" required>
+                </p>
+
+                <p>
+                    <label for="login_password">
+                        <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+                        Contraseña *
+                    </label>
+                    <input type="password" id="login_password" name="login_password" required>
+                </p>
+
+                <button type="submit">
+                    <span class="material-symbols-outlined" aria-hidden="true">login</span>
+                    Entrar
+                </button>
+            </form>
+        </section>
+
+        <section id="busqueda-rapida">
+            <h2>Búsqueda Rápida</h2>
+
+            <form action="busqueda_rapida.html" method="get">
+                <p>
+                    <label for="texto_busqueda">
+                        <span class="material-symbols-outlined" aria-hidden="true">key</span>
+                        Palabra clave
+                    </label>
+                    <input type="text" id="texto_busqueda" name="texto_busqueda">
+                </p>
+
+                <button type="submit">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    Buscar
+                </button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Últimos anuncios publicados</h2>
+
+            <ul class="cards-grid">
+                <li class="card">
+                    <h3>
+                        <a href="advertencia.html">Chalet Independiente con Piscina</a>
+                    </h3>
+
+                    <img src="img/chalet-piscina.jpg"
+                        alt="Chalet independiente con piscina en Altea"
+                        width="150"
+                        height="100">
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        Altea, Alicante, España
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> 320.000€ |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> 4 |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> 3
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        22/09/2026
+                    </p>
+
+                    <p>
+                        Chalet amplio con jardín y piscina, ideal para familias
+                    </p>
+                </li>
+
+                <li class="card">
+                    <h3>
+                        <a href="advertencia.html">Estudio Luminoso para Estudiantes</a>
+                    </h3>
+
+                    <img src="img/estudio.jpg"
+                        alt="Estudio luminoso para estudiantes en Alicante"
+                        width="150"
+                        height="100">
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        Alicante, Alicante, España
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> 600€/mes |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> 1 |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baño</b> 1
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        18/09/2026
+                    </p>
+
+                    <p>
+                        Estudio completamente equipado, ideal para estudiantes y situado cerca de la universidad
+                    </p>
+                </li>
+
+                <li class="card">
+                    <h3>
+                        <a href="advertencia.html">Piso Céntrico con Terraza</a>
+                    </h3>
+
+                    <img src="img/piso-terraza.jpg"
+                        alt="Piso céntrico con terraza en Jávea"
+                        width="150"
+                        height="100">
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        Jávea, Alicante, España
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> 150.000€ |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> 3 |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> 2
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        15/09/2026
+                    </p>
+
+                    <p>
+                        Piso amplio y luminoso situado en el centro, con una gran terraza
+                    </p>
+                </li>
+
+                <li class="card">
+                    <h3>
+                        <a href="advertencia.html">Dúplex Elegante con Amplias Estancias</a>
+                    </h3>
+
+                    <img src="img/duplex-valencia.jpg"
+                        alt="Dúplex Elegante con Amplias Estancias"
+                        width="150"
+                        height="100">
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        Sant Francesc, Valencia, España
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> 2.300€/mes |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> 2 |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> 2
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        24/07/2026
+                    </p>
+
+                    <p>
+                        Disfruta de Valencia viviendo en este duplex en una de las zonas más señoriales de la ciudad.
+                    </p>
+                </li>
+
+                <li class="card">
+                    <h3>
+                        <a href="advertencia.html">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
+                    </h3>
+
+                    <img src="img/piso-valencia.jpg"
+                        alt="Piso en venta en Passatge de Ripalda, Valencia"
+                        width="150"
+                        height="100">
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        Sant Francesc, Valencia, España
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> 1.400.000€ |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> 4 |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> 3
+                    </p>
+
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        12/04/2026
+                    </p>
+
+                    <p>
+                        Échale un vistazo a este piso en Passatge de Ripalda, Sant Francesc, Valencia
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <hr>
+
+        <nav>
+            <a href="registro.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                Registro
+            </a>
+
+            <a href="buscar.html">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                Buscar
+            </a>
+
+            <a href="accesibilidad.html">
+                <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
+                Accesibilidad
+            </a>
+        </nav>
+
+        <p>
+            <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
+                &copy; 2026 PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
+            </small>
+        </p>
+    </footer>
+
+</body>
+
+</html>

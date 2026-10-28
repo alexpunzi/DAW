@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/* noche.css - Estilo alternativo "Modo noche"
+   Fondo oscuro y texto gris claro */
+   
+:root {
+    color-scheme: dark; /* Barras de scroll y controles en oscuro */
+
+    --color-principal: #e4e4e7; /* Color del texto (claro) */
+    --color-suave: #a1a1aa; /* Texto secundario */
+    --color-fondo: #121214; /* Fondo de la página */
+    --color-blanco: #1e1e22; /* Superficies */
+    --color-borde: #3a3a40;
+    --color-foco: #8ab4ff; /* Recuadro del teclado al hacer foco */
+}
+
+/* Cabecera y pie */
+header,
+footer {
+    background-color: var(--color-blanco);
+}
+
+header h1 {
+    color: var(--color-principal);
+}
+
+header a,
+footer,
+footer a {
+    color: var(--color-principal);
+}
+
+footer hr {
+    border-top-color: var(--color-borde);
+}
+
+/* Los campos no tenían color de texto propio: el navegador usaba negro */
+input,
+select,
+textarea {
+    color: var(--color-principal);
+}
+
+/* Cabecera de la tabla de tarifas: sin barra clara llamativa */
+thead th {
+    background-color: var(--color-borde);
+    color: var(--color-principal);
+}

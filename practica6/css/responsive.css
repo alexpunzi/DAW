@@ -1,0 +1,130 @@
+/* ==========================================================================
+   responsive.css
+   Adaptación a cada pantalla. Se diseña primero para móvil y se amplía
+   con min-width, de menor a mayor
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Hasta 480px
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    /* Botones a todo el ancho */
+    button {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Desde 600px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+
+    main {
+        padding: 40px 20px;
+    }
+
+    .cards-grid {
+        /* Crea dos columnas de igual ancho que se reparten por igual por todo el espacio disponible en el contenedor. 
+           Es lo mismo que poner grid-template-columns: 1fr 1fr;. fr significa fracción del espacio disponible en el contenedor */
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 25px;
+    }
+
+    /* Etiqueta a la izquierda y campo a la derecha */
+    form p {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        column-gap: 20px;
+    }
+
+    form p label {
+        margin-bottom: 0;
+        padding-top: 10px;
+    }
+
+    form output {
+        grid-column: 2;
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Desde 900px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+
+    header {
+        /* Diseño de caja flexible (Flexbox) que permite alinear y distribuir elementos dentro de un contenedor de forma automática y dinámica */
+        display: flex;
+        
+        /* Distribuye los elementos uniformemente a lo largo del eje principal */
+        justify-content: space-between;
+        
+        align-items: center;
+        padding: 20px 40px;
+        text-align: left;
+    }
+
+    header h1 {
+        margin-bottom: 0;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Fotos a la izquierda y datos a la derecha */
+    article {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    /* El título y el botón ocupan las dos columnas */
+    article h2,
+    article form {
+        grid-column: 1 / 3;
+    }
+
+    article section {
+        margin-bottom: 0;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Desde 1920px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1920px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    main {
+        max-width: 1500px;
+    }
+
+    .cards-grid {
+        gap: 40px;
+    }
+}

@@ -1,0 +1,132 @@
+/* ==========================================================================
+   base.css
+   Reglas generales: texto, enlaces, imágenes, iconos y accesibilidad
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Reinicio
+   -------------------------------------------------------------------------- */
+
+* {
+    /* Quita márgenes y padding por defecto */
+    margin: 0;
+    padding: 0;
+
+    /* El padding y el borde cuentan dentro del ancho */
+    box-sizing: border-box;
+}
+
+
+/* --------------------------------------------------------------------------
+   Texto
+   -------------------------------------------------------------------------- */
+
+body {
+    background: var(--color-fondo);
+    color: var(--color-principal);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fuente-titulos);
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+main ul {
+    margin-bottom: 15px;
+    padding-left: 25px;
+}
+
+/* Los enlaces no heredan el color del texto */
+a {
+    color: var(--color-principal);
+}
+
+
+/* --------------------------------------------------------------------------
+   Imágenes y líneas
+   -------------------------------------------------------------------------- */
+
+/* La imagen se encoge si es más ancha que su contenedor */
+img {
+    /* Define el ancho máximo que puede tener un elemento */
+    max-width: 100%;
+
+    /* Hace que el navegador calcule y ajuste de forma automática la altura de un elemento según el tamaño de su contenido */
+    height: auto;
+}
+
+hr {
+    /* Quita el borde por defecto y deja solo una línea fina */
+    border: 0;
+    border-top: 1px solid var(--color-borde);
+    margin: 20px 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   Iconos
+   -------------------------------------------------------------------------- */
+
+/* Más específico que .material-symbols-outlined, para que este tamaño gane */
+span.material-symbols-outlined {
+    font-size: 1.2em; /* El tamaño de la fuente será un 20% más grande que el tamaño del elemento padre */
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* Mismo ancho que los iconos anteriores para alinear las etiquetas */
+.icono-unicode {
+    display: inline-block;
+    width: 1.2em;
+    margin-right: 4px;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   Accesibilidad
+   -------------------------------------------------------------------------- */
+
+/* Enlace para saltar al contenido */
+.enlace-saltar {
+    display: inline-block;
+    margin: 8px 15px;
+    padding: 8px 14px;
+    background: var(--color-blanco);
+    border: 2px solid var(--color-principal);
+    border-radius: var(--radio);
+    text-decoration: none;
+}
+
+.enlace-saltar:hover {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+}
+
+/* Recuadro que solo aparece al navegar con el teclado */
+:focus-visible {
+    /* Dibuja una línea exterior, de estilo sólido */
+    outline: 3px solid var(--color-foco);
+
+    /* Separación entre el elemento y su línea de contorno */
+    outline-offset: 2px;
+}

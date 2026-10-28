@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilo base: persistente (sin title). media="screen" para que no se use al imprimir -->
+    <link rel="stylesheet" href="css/estilos.css" media="screen">
+
+    <!-- Estilos alternativos: se eligen desde el navegador (Firefox: Ver > Estilo de página) -->
+    <link rel="alternate stylesheet" href="css/noche.css" title="Modo Noche" media="screen">
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Letra grande" media="screen">
+
+    <!-- Impresión: media="print" y SIN title -->
+    <link rel="stylesheet" href="css/impresion.css" media="print">
+
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste y letra grande" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Alto contraste y letra grande" media="screen">
+
+    <!-- Material Symbols (Google) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <title>Página de Búsqueda | PI - Pisos &amp; Inmuebles</title>
+</head>
+
+<body>
+
+    <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+    <header>
+        <h1>PI - Pisos &amp; Inmuebles</h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Página principal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="registro.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                        Registro
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <h2>Formulario de Búsqueda</h2>
+
+        <form action="busqueda_rapida.html" method="get">
+
+            <p>
+                <label for="tipo_anuncio">Tipo de Anuncio</label>
+                <select id="tipo_anuncio" name="tipo_anuncio">
+                    <option value="">Selecciona un tipo de anuncio...</option>
+                    <option value="venta">Venta</option>
+                    <option value="alquiler">Alquiler</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="tipo_vivienda">Tipo de Vivienda</label>
+                <select id="tipo_vivienda" name="tipo_vivienda">
+                    <option value="">Selecciona un tipo de vivienda...</option>
+                    <option value="garaje">Garaje</option>
+                    <option value="local">Local</option>
+                    <option value="obra_nueva">Obra Nueva</option>
+                    <option value="oficina">Oficina</option>
+                    <option value="vivienda">Vivienda</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" name="ciudad">
+            </p>
+
+            <p>
+                <label for="pais">País</label>
+                <select id="pais" name="pais">
+                    <option value="">Cualquier país...</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="espana">España</option>
+                    <option value="mexico">México</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="precio_desde">Precio desde (€)</label>
+                <input type="number" id="precio_desde" name="precio_desde" min="0">
+            </p>
+
+            <p>
+                <label for="precio_hasta">Precio hasta (€)</label>
+                <input type="number" id="precio_hasta" name="precio_hasta" min="0">
+            </p>
+
+            <p>
+                <label for="fecha_desde">Fecha de publicación desde</label>
+                <input type="date" id="fecha_desde" name="fecha_desde">
+            </p>
+
+            <p>
+                <label for="fecha_hasta">Fecha de publicación hasta</label>
+                <input type="date" id="fecha_hasta" name="fecha_hasta">
+            </p>
+
+            <button type="submit">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                Buscar Anuncios
+            </button>
+
+        </form>
+    </main>
+
+    <footer>
+        <hr>
+
+        <nav>
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                Página principal
+            </a>
+
+            <a href="registro.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                Registro
+            </a>
+
+            <a href="accesibilidad.html">
+                <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
+                Accesibilidad
+            </a>
+        </nav>
+
+        <p>
+            <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
+                &copy; 2026 PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
+            </small>
+        </p>
+    </footer>
+
+</body>
+
+</html>

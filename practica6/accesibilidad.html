@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilo base: persistente (sin title). media="screen" para que no se use al imprimir -->
+    <link rel="stylesheet" href="css/estilos.css" media="screen">
+
+    <!-- Estilos alternativos: se eligen desde el navegador (Firefox: Ver > Estilo de página) -->
+    <link rel="alternate stylesheet" href="css/noche.css" title="Modo Noche" media="screen">
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Letra grande" media="screen">
+
+    <!-- Impresión: media="print" y SIN title -->
+    <link rel="stylesheet" href="css/impresion.css" media="print">
+
+    <link rel="alternate stylesheet" href="css/contraste.css" title="Alto contraste y letra grande" media="screen">
+    <link rel="alternate stylesheet" href="css/letra-grande.css" title="Alto contraste y letra grande" media="screen">
+
+    <!-- Material Symbols (Google) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <title>Declaración de accesibilidad | PI - Pisos &amp; Inmuebles</title>
+</head>
+<body>
+
+    <a href="#contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+    <header>
+        <h1>PI - Pisos &amp; Inmuebles</h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                        Página principal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="registro.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                        Registro
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <h2>Declaración de accesibilidad</h2>
+        <p>
+            PI - Pisos &amp; Inmuebles se compromete a que su sitio web sea utilizable por el
+            mayor número de personas posible. Esta declaración describe las medidas adoptadas,
+            cómo activar los estilos accesibles y las limitaciones conocidas.
+        </p>
+        <p><small>Última revisión: 22/10/2026</small></p>
+        
+        <section>
+            <h3>Características de accesibilidad implementadas</h3>
+            <ul>
+                <li>
+                    <strong>Etiquetado semántico:</strong>
+                    Hemos estructurado todas las páginas utilizando etiquetas de HTML5 como <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> y <code>&lt;footer&gt;</code> para definir claramente las regiones del sitio. Los encabezados (de <code>&lt;h1&gt;</code> a <code>&lt;h3&gt;</code>) mantienen un orden lógico jerárquico. Además, empleamos listas (<code>&lt;ul&gt;</code>) para los menús de navegación y las tarjetas de los inmuebles, y tablas accesibles con <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code> y celdas de encabezado con el atributo <code>scope</code>.
+                </li>
+                <li>
+                    <strong>Texto alternativo:</strong>
+                    Todas las imágenes significativas de los inmuebles incluyen un atributo <code>alt</code> descriptivo para que los lectores de pantalla puedan transmitir su contenido. Los iconos puramente decorativos se ocultan a las tecnologías de asistencia usando <code>aria-hidden="true"</code>, ya que siempre están acompañados de texto visible que explica su función.
+                </li>
+                <li>
+                    <strong>Uso de los colores:</strong>
+                    Garantizamos un ratio de contraste mínimo de 4,5:1 (nivel AA) en nuestro estilo base entre el texto y el fondo. Asimismo, nos aseguramos de que la información nunca se transmita exclusivamente mediante el color; por ejemplo, los campos obligatorios de los formularios se identifican explícitamente con un asterisco (*).
+                </li>
+                <li>
+                    <strong>Navegación con teclado:</strong>
+                    El sitio es plenamente operable mediante teclado. Hemos incluido un enlace de "Saltar al contenido principal" al inicio de la página, y todos los elementos interactivos muestran un recuadro de foco fuertemente visible (usando <code>:focus-visible</code>) al navegar con la tecla Tabulador.
+                </li>
+                <li>
+                    <strong>Formularios:</strong>
+                    Todos los campos de entrada de datos cuentan con una etiqueta <code>&lt;label&gt;</code> asociada correctamente mediante los atributos <code>for</code> e <code>id</code>. Usamos <code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code> para agrupar controles relacionados lógicamente, y aplicamos atributos HTML5 como <code>required</code> y tipos de <code>input</code> adecuados para facilitar la validación y la introducción de datos.
+                </li>
+                <li>
+                    <strong>Diseño adaptable:</strong>
+                    La interfaz se ha desarrollado con un enfoque <em>Mobile First</em> (móvil primero), asegurando que el contenido se adapte a cualquier tamaño de pantalla y permitiendo al usuario ampliar el zoom de la página de forma nativa sin pérdida de información ni funcionalidad.
+                </li>
+                <li>
+                    <strong>Idioma:</strong> 
+                    El idioma principal de la página está correctamente identificado mediante el atributo <code>lang="es"</code> en la etiqueta raíz.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Estilos alternativos disponibles</h3>
+            <table>
+                <caption>Estilos que se pueden seleccionar en el navegador</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Estilo</th>
+                        <th scope="col">Pensado para</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Modo noche</th>
+                        <td>Entornos oscuros y menor fatiga visual</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Alto contraste</th>
+                        <td>Baja visión que necesita más contraste (nivel AAA, 7:1)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Letra grande</th>
+                        <td>Baja visión que necesita texto mayor; fuente Atkinson Hyperlegible</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Alto contraste y letra grande</th>
+                        <td>Combinación de los dos anteriores</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Cómo activar un estilo accesible</h3>
+            <ol>
+                <li>Abre el sitio en Mozilla Firefox.</li>
+                <li>Pulsa la tecla Alt para mostrar la barra de menús.</li>
+                <li>Elige Ver, después Estilo de página y selecciona el estilo deseado.</li>
+            </ol>
+            <p>
+                Para volver al aspecto normal, elige «Estilo básico de la página».
+            </p>
+        </section>
+
+        <section>
+            <h3>Versión para impresión</h3>
+            <p>
+                El sitio está optimizado para imprimir correctamente las páginas de contenido, como los detalles de los inmuebles y los listados de búsqueda. Al imprimir, el sistema oculta automáticamente los elementos innecesarios en papel (como la barra de navegación y los menús), elimina los colores de fondo para ahorrar tinta, cambia la tipografía a una fuente serif para mejorar la legibilidad en papel y expande el contenido principal para ocupar todo el ancho disponible del folio.
+            </p>
+        </section>
+
+        <section>
+            <h3>Limitaciones conocidas</h3>
+            <ul>
+                <li>La selección del estilo de página no se conserva automáticamente al cambiar o navegar a otra página distinta del sitio.</li>
+                <li>Navegadores como Google Chrome no ofrecen la opción nativa de seleccionar estilos alternativos (requieren extensiones de terceros).</li>
+                <li>El mapa interactivo de ubicación de los inmuebles puede presentar barreras para los usuarios de lectores de pantalla al navegar exclusivamente por teclado.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+
+        <nav>
+            <a href="index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                Página principal
+            </a>
+
+            <a href="registro.html">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                Registro
+            </a>
+
+            <a href="accesibilidad.html">
+                <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
+                Accesibilidad
+            </a>
+        </nav>
+
+        <p>
+            <small>
+                Autores: Juana Valentina Echeveste y Alex Punzano Gil<br>
+                &copy; 2026 PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
+            </small>
+        </p>
+    </footer>
+</body>
+</html>

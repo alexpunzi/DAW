@@ -1,0 +1,48 @@
+/* ==========================================================================
+   variables.css
+   Colores, fuentes y medidas que usan el resto de hojas
+   ========================================================================== */
+
+:root {
+
+    /* ----------------------------------------------------------------------
+       Colores
+       ---------------------------------------------------------------------- */
+
+    /* Cabecera, pie, botones y texto */
+    --color-principal: #1c1c1e;
+
+    /* Texto secundario */
+    --color-suave: #6e6e73;
+
+    /* Fondo de la página y texto sobre fondo oscuro */
+    --color-fondo: #f5f5f7;
+
+    /* Tarjetas, campos y tablas */
+    --color-blanco: #ffffff;
+
+    /* Líneas y bordes */
+    --color-borde: #d2d2d7;
+
+    /* Recuadro al navegar con el teclado */
+    --color-foco: #2f6fed;
+
+
+    /* ----------------------------------------------------------------------
+       Fuentes
+       ---------------------------------------------------------------------- */
+
+    /* Títulos */
+    --fuente-titulos: 'Playfair Display', Georgia, serif;
+
+    /* Contenido */
+    --fuente-texto: 'Inter', Arial, sans-serif;
+
+
+    /* ----------------------------------------------------------------------
+       Medidas
+       ---------------------------------------------------------------------- */
+
+    /* Esquinas redondeadas */
+    --radio: 8px;
+}
