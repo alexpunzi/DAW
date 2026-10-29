@@ -22,7 +22,6 @@
 
     <!-- Material Symbols (Google) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 
     <!-- Scripts -->
     <!-- defer hace que el script se ejecute cuando el HTML ya está leído -->
@@ -65,7 +64,7 @@
 
         <p><small>* Campos obligatorios</small></p>
 
-        <form id="form_registro" action="index_sesion.html" method="post" enctype = "multipart/form-data" novalidate>
+        <form id="form_registro" action="index_sesion.html" method="post" enctype="multipart/form-data" novalidate>
 
             <p>
                 <label for="nombre">
@@ -81,7 +80,7 @@
 
             <p>
                 <label for="email">
-                    <span class="icono-unicode" aria-hidden="true">&#9993</span>
+                    <span class="icono-unicode" aria-hidden="true">&#9993;</span>
                     Email *
                 </label>
                 <input type="text" id="email" name="email"
@@ -93,7 +92,20 @@
 
             <p>
                 <label for="password">
-                    <span class="material-symbols-outlined" aria-hiden="true">lock</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+                    Contraseña *
+                </label>
+                <input type="password" id="password" name="password"
+                    data-ayuda="ayuda_password" aria-describedby="ayuda_password">
+                <small id="ayuda_password" class="ayuda">
+                    6 a 15 caracteres: letras inglesas, números, - y _. Al menos una mayúscula,
+                    una minúscula y un número.
+                </small>
+            </p>
+
+            <p>
+                <label for="confirmar_password">
+                    <span class="material-symbols-outlined" aria-hidden="true">lock</span>
                     Repetir contraseña *
                 </label>
                 <input type="password" id="confirmar_password" name="confirmar_password"
@@ -104,9 +116,7 @@
             </p>
 
             <p>
-                <label for="sexo">
-                    Sexo *
-                </label>
+                <label for="sexo">Sexo *</label>
                 <select id="sexo" name="sexo"> <!-- Sin required -->
                     <option value="">Selecciona una opción...</option>
                     <option value="mujer">Mujer</option>
@@ -115,9 +125,7 @@
             </p>
 
             <p>
-                <label for="fecha_nacimiento">
-                    Fecha nacimiento *
-                </label>
+                <label for="fecha_nacimiento">Fecha nacimiento *</label>
                 <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
                     data-ayuda="ayuda_fecha" aria-describedby="ayuda_fecha">
                 <small id="ayuda_fecha" class="ayuda">
@@ -127,11 +135,7 @@
 
             <p>
                 <label for="ciudad">Ciudad de residencia</label>
-                <input
-                    type="text"
-                    id="ciudad"
-                    name="ciudad"
-                >
+                <input type="text" id="ciudad" name="ciudad">
             </p>
 
             <p>
@@ -143,6 +147,17 @@
                     <option value="mexico">México</option>
                 </select>
             </p>
+
+            <!-- La subida de ficheros no se valida con JavaScript en esta práctica -->
+            <p>
+                <label for="foto">Foto de Perfil</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+            </p>
+
+            <button type="submit">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                Registrarse
+            </button>
 
         </form>
 

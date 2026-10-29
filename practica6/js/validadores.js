@@ -41,7 +41,7 @@ function validarPassword(valor) {
     for (const c of valor) {
         if (esMayuscula(c)) {
             hayMayuscula = true;
-        } else if (esMayuscula(c)) {
+        } else if (esMinuscula(c)) {
             hayMinuscula = true;
         } else if (esDigito(c)) {
             hayNumero = true;
@@ -62,6 +62,7 @@ function validarRepetir(valor) {
     if (valor !== $("password").value) {
         return "Las contraseñas no coinciden.";
     }
+    return "";
 }
 
 function validarSexo(valor) {
@@ -91,7 +92,7 @@ function validarParteLocal(local) {
 }
 
 function validarDominio(dominio) {
-    if (!dominio.length < 1 || dominio.length > 255) {
+    if (dominio.length < 1 || dominio.length > 255) {
         return "El dominio (después de la @) debe tener entre 1 y 255 caracteres.";
     }
     for (const sub of dominio.split(".")) {
@@ -135,13 +136,24 @@ function validarFecha(valor) {
     if (estaVacio(valor)) {
         return "Selecciona tu fecha de nacimiento (día, mes y año completos).";
     }
-    const partes = valor.split("-"); // ["aaaa", "mm", "dd"]
-    if (partes.length !== 3) {
+    let anio, mes, dia;
+    if (valor.includes("/")) {
+        // Respaldo: navegadores antiguos que tratan type="date" como texto (dd/mm/aaaa)
+        const p = valor.split("/");
+        if (p.length !== 3) {
+            return "Escribe la fecha con el formato dd/mm/aaaa.";
+        }
+        [dia, mes, anio] = p.map(Number);
+    } else {
+        const p = valor.split("-"); // ["aaaa", "mm", "dd"]
+        if (p.length !== 3) {
+            return "La fecha no es válida. Vuelve a seleccionarla.";
+        }
+        [anio, mes, dia] = p.map(Number);
+    }
+    if (Number.isNaN(anio) || Number.isNaN(mes) || Number.isNaN(dia)) {
         return "La fecha no es válida. Vuelve a seleccionarla.";
     }
-    const anio = Number(partes[0]);
-    const mes = Number(partes[1]);
-    const dia = Number(partes[2]);
     // Red de seguridad: Date "corrige" fechas imposibles (31/02 -> 03/03); si cambia algo, no existía
     const fecha = new Date(anio, mes - 1, dia);
     if (fecha.getFullYear() !== anio || fecha.getMonth() !== mes - 1 || fecha.getDate() !== dia) {

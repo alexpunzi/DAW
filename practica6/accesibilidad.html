@@ -79,7 +79,7 @@
                 </li>
                 <li>
                     <strong>Formularios:</strong>
-                    Todos los campos de entrada de datos cuentan con una etiqueta <code>&lt;label&gt;</code> asociada correctamente mediante los atributos <code>for</code> e <code>id</code>. Usamos <code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code> para agrupar controles relacionados lógicamente, y aplicamos atributos HTML5 como <code>required</code> y tipos de <code>input</code> adecuados para facilitar la validación y la introducción de datos.
+                    Todos los campos de entrada de datos cuentan con una etiqueta <code>&lt;label&gt;</code> asociada correctamente mediante los atributos <code>for</code> e <code>id</code>. Usamos <code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code> para agrupar controles relacionados lógicamente, y mostramos un texto de ayuda bajo los campos con reglas (formato, longitud, ejemplos). La validación se realiza con JavaScript: los mensajes de error aparecen junto al campo afectado, empiezan por la palabra «Error», se anuncian a los lectores de pantalla (<code>role="alert"</code>, <code>aria-invalid</code> y <code>aria-describedby</code>) y el cursor se coloca en el primer campo incorrecto. El error no depende solo del color, ya que además del texto el campo cambia de borde.
                 </li>
                 <li>
                     <strong>Diseño adaptable:</strong>
@@ -147,7 +147,7 @@
             <ul>
                 <li>La selección del estilo de página no se conserva automáticamente al cambiar o navegar a otra página distinta del sitio.</li>
                 <li>Navegadores como Google Chrome no ofrecen la opción nativa de seleccionar estilos alternativos (requieren extensiones de terceros).</li>
-                <li>El mapa interactivo de ubicación de los inmuebles puede presentar barreras para los usuarios de lectores de pantalla al navegar exclusivamente por teclado.</li>
+                <li>La validación de los formularios necesita JavaScript activado; sin él, los datos se envían sin comprobar.</li>
             </ul>
         </section>
     </main>

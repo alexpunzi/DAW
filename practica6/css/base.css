@@ -130,3 +130,9 @@ span.material-symbols-outlined {
     /* Separación entre el elemento y su línea de contorno */
     outline-offset: 2px;
 }
+
+
+/* El atributo hidden debe ocultar siempre, aunque otra regla defina display */
+[hidden] {
+    display: none !important;
+}
