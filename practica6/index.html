@@ -22,6 +22,11 @@
     <!-- Material Symbols (Google) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 
+    <!-- Scripts -->
+    <!-- defer hace que el script se ejecute cuando el HTML ya está leído -->
+     <script src="js/utilidades.js" defer></script>
+     <script src="js/login.js" defer></script>
+
     <!-- NOTA: los iconos son de Material Symbols (Google) y necesitan internet. Sin conexión se ve el nombre del icono en texto (person, lock...). -->
     <title>Página principal | PI - Pisos &amp; Inmuebles</title>
 </head>
@@ -60,13 +65,13 @@
 
             <p><small>* Campos obligatorios</small></p>
 
-            <form action="index_sesion.html" method="post">
+            <form id="form_login" action="index_sesion.html" method="post" novalidate>
+                
                 <p>
                     <label for="login_usuario">
                         <span class="material-symbols-outlined" aria-hidden="true">person</span>
                         Usuario *
                     </label>
-                    <input type="text" id="login_usuario" name="login_usuario" required>
                 </p>
 
                 <p>
@@ -74,13 +79,13 @@
                         <span class="material-symbols-outlined" aria-hidden="true">lock</span>
                         Contraseña *
                     </label>
-                    <input type="password" id="login_password" name="login_password" required>
                 </p>
 
                 <button type="submit">
                     <span class="material-symbols-outlined" aria-hidden="true">login</span>
                     Entrar
                 </button>
+
             </form>
         </section>
 
