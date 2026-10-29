@@ -129,28 +129,26 @@ function validarEmail(valor) {
     return validarParteLocal(local) || validarDominio(dominio); // "" || "" = ""
 }
 
+// Con <input type="date"> el valor llega SIEMPRE como "aaaa-mm-dd",
+// o como "" si el usuario no ha elegido fecha o la ha dejado a medias.
 function validarFecha(valor) {
-    const partes = valor.split("/");
-    if (partes.length !== 3 || partes[0].length !== 2 || partes [1].length !== 2 || partes[2].length !== 4) {
-        return "Escribe la fecha con el formato dd/mm/aaaa (ejemplo: 25/03/1999).";
+    if (estaVacio(valor)) {
+        return "Selecciona tu fecha de nacimiento (día, mes y año completos).";
     }
-    for (const parte of partes) {
-        for (const c of parte) {
-            if (!esDigito(c)) {
-                return "La fecha solo puede contener números y barras.";
-            }
-        }
+    const partes = valor.split("-"); // ["aaaa", "mm", "dd"]
+    if (partes.length !== 3) {
+        return "La fecha no es válida. Vuelve a seleccionarla.";
     }
-    const dia = Number(partes[0]);
+    const anio = Number(partes[0]);
     const mes = Number(partes[1]);
-    const anio = Number(partes[2]);
-    // Date "corrige" fechas imposibles (31/02 -> 03/03); si cambia algo, la fecha no existía
+    const dia = Number(partes[2]);
+    // Red de seguridad: Date "corrige" fechas imposibles (31/02 -> 03/03); si cambia algo, no existía
     const fecha = new Date(anio, mes - 1, dia);
-    if (fecha.getFullYear() != anio || fecha.getMonth() != mes-1 || fecha.getDate() !== dia) {
-        return "La fecha no existe. Revisa el dia y el mes.";
+    if (fecha.getFullYear() !== anio || fecha.getMonth() !== mes - 1 || fecha.getDate() !== dia) {
+        return "La fecha no es válida. Vuelve a seleccionarla.";
     }
     // Tiene 18 años si hoy es igual o posterior al día en que cumple 18
-    const cumple18 = new Date(anio + 18, mes-1, dia);
+    const cumple18 = new Date(anio + 18, mes - 1, dia);
     const hoy = new Date();
     hoy.setHours(0, 0, 0, 0);
     if (cumple18 > hoy) {
