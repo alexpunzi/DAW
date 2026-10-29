@@ -12,6 +12,7 @@
     --color-blanco: #1e1e22; /* Superficies */
     --color-borde: #3a3a40;
     --color-foco: #8ab4ff; /* Recuadro del teclado al hacer foco */
+    --color-error: #ff8a8a; /* Claro, para que se lea sobre fondo oscuro */
 }
 
 /* Cabecera y pie */

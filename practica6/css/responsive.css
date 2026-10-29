@@ -54,7 +54,9 @@
         padding-top: 10px;
     }
 
-    form output {
+    form output,
+    form .ayuda,
+    form .mensaje-error {
         grid-column: 2;
     }
 

@@ -22,6 +22,7 @@
 @import url('base.css'); /* Reglas generales */
 @import url('layout.css'); /* La estructura de la página */
 @import url('formularios.css'); /* Todo lo de los formularios */
+@import url('validacion.css'); /* Errores y ayuda de los formularios */
 @import url('tablas.css'); /* La tabla de tarifas */
 
 /* Va la última para que sus reglas ganen a las anteriores */

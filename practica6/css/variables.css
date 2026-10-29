@@ -27,6 +27,9 @@
     /* Recuadro al navegar con el teclado */
     --color-foco: #2f6fed;
 
+    /* Mensajes de error (7, 3 : 1 sobre blanco) */
+    --color-error: #b00200;
+
 
     /* ----------------------------------------------------------------------
        Fuentes
