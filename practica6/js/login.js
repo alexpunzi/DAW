@@ -1,8 +1,8 @@
 const camposLogin = [
     {
-        id: "login_usuario",
-        validar: (valor) => estaVacio(valor)
-            ? "Escribe tu nombre de usuario (no puede estar vacío ni ser solo espacios)." : ""
+        id: "login_email",
+        // Mismas reglas que el email del registro (se ignoran los espacios de los extremos)
+        validar: (valor) => validarEmail(valor.trim())
     },
     {
         id: "login_password",
@@ -13,4 +13,4 @@ const camposLogin = [
 
 document.addEventListener("DOMContentLoaded", () => {
     activarValidacion("form_login", camposLogin);
-})
+});

@@ -168,3 +168,56 @@ function validarFecha(valor) {
     }
     return "";
 }
+
+// ---- Nombre y apellidos de una PERSONA (distintos del "nombre de usuario" del registro) ----
+// Aquí sí se permiten tildes, ñ, espacios, guion y apóstrofo (José, María José, De la Cruz, O'Brien).
+const LETRAS_ACENTUADAS = "áéíóúüñçàèìòùâêîôûäëïöÁÉÍÓÚÜÑÇÀÈÌÒÙÂÊÎÔÛÄËÏÖ";
+
+function esLetraPersona(c) {
+    return esLetra(c) || LETRAS_ACENTUADAS.includes(c);
+}
+
+// Comprueba un texto de nombre o apellidos. Devuelve "" si es correcto o el mensaje de error.
+function comprobarNombrePersona(valor, maximo) {
+    const texto = valor.trim();
+    if (texto.length > maximo) {
+        return `Máximo ${maximo} caracteres.`;
+    }
+    let hayLetra = false;
+    for (const c of texto) {
+        if (esLetraPersona(c)) {
+            hayLetra = true;
+        } else if (esDigito(c)) {
+            return "No se admiten números.";
+        } else if (c !== " " && c !== "-" && c !== "'") {
+            return `El carácter "${c}" no está permitido. Solo letras, espacios, guion (-) y apóstrofo (').`;
+        }
+    }
+    if (!hayLetra) {
+        return "Debe contener letras.";
+    }
+    const primero = texto[0];
+    const ultimo = texto[texto.length - 1];
+    if (primero === "-" || primero === "'" || ultimo === "-" || ultimo === "'") {
+        return "No puede empezar ni terminar con guion o apóstrofo.";
+    }
+    return "";
+}
+
+// Nombre de pila: obligatorio, hasta 40 caracteres
+function validarNombrePersona(valor) {
+    if (estaVacio(valor)) {
+        return "Escribe tu nombre.";
+    }
+    return comprobarNombrePersona(valor, 40);
+}
+
+// Apellido/s: hasta 60 caracteres. Si "obligatorio" es false, se puede dejar vacío.
+function crearValidadorApellidos(obligatorio) {
+    return (valor) => {
+        if (estaVacio(valor)) {
+            return obligatorio ? "Escribe al menos un apellido." : "";
+        }
+        return comprobarNombrePersona(valor, 60);
+    };
+}

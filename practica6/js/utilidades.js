@@ -106,6 +106,13 @@ function activarValidacion(idFormulario, lista) {
         }
     });
 
+    // Al pulsar "Borrar datos" (reset) también se limpian los errores
+    formulario.addEventListener("reset", () => {
+        for (const { id } of lista) {
+            limpiarError($(id));
+        }
+    });
+
     // Al terminar de escribir un campo se validará en tiempo real
     for (const { id, validar } of lista) {
         $(id).addEventListener("change", () => validarCampo($(id), validar));

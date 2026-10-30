@@ -25,6 +25,7 @@
     <!-- Scripts -->
     <!-- defer hace que el script se ejecute cuando el HTML ya está leído -->
      <script src="js/utilidades.js" defer></script>
+     <script src="js/validadores.js" defer></script>
      <script src="js/login.js" defer></script>
 
     <!-- NOTA: los iconos son de Material Symbols (Google) y necesitan internet. Sin conexión se ve el nombre del icono en texto (person, lock...). -->
@@ -68,11 +69,15 @@
             <form id="form_login" action="index_sesion.html" method="post" novalidate>
                 
                 <p>
-                    <label for="login_usuario">
-                        <span class="material-symbols-outlined" aria-hidden="true">person</span>
-                        Usuario *
+                    <label for="login_email">
+                        <span class="icono-unicode" aria-hidden="true">&#9993;</span>
+                        Correo electrónico *
                     </label>
-                    <input type="text" id="login_usuario" name="login_usuario">
+                    <input type="text" id="login_email" name="login_email"
+                        data-ayuda="ayuda_login_email" aria-describedby="ayuda_login_email">
+                    <small id="ayuda_login_email" class="ayuda">
+                        Formato: parte-local@dominio (ej.: ana.lopez@ua.es).
+                    </small>
                 </p>
 
                 <p>

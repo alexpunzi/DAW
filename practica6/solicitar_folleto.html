@@ -25,6 +25,8 @@
      <!-- Scripts -->
     <!-- defer hace que el script se ejecute cuando el HTML ya está leído -->
      <script src="js/utilidades.js" defer></script>
+     <script src="js/validadores.js" defer></script>
+     <script src="js/solicitud.js" defer></script>
      <script src="js/folleto.js" defer></script>
 
     <title>Solicitar Folleto | PI - Pisos &amp; Inmuebles</title>
@@ -176,7 +178,7 @@
                 Rellena el siguiente formulario aportando todos los detalles para confeccionar tu folleto publicitario. Los campos marcados con un asterisco (*) son obligatorios.
             </p>
 
-            <form action="respuesta_solicitar_folleto.html" method="post">
+            <form id="form_solicitud" action="respuesta_solicitar_folleto.html" method="post" novalidate>
 
                 <fieldset>
                     <legend>Datos de contacto y envío</legend>
@@ -184,19 +186,31 @@
                     <p>
                         <label for="nombre">
                             <span class="material-symbols-outlined" aria-hidden="true">person</span>
-                            Nombre completo *
+                            Nombre *
                         </label>
-                        <input type="text" id="nombre" name="nombre" maxlength="200" required>
+                        <input type="text" id="nombre" name="nombre" data-ayuda="ayuda_nombre" aria-describedby="ayuda_nombre">
+                        <small id="ayuda_nombre" class="ayuda">Tu nombre de pila (se permiten tildes y nombres compuestos).</small>
+                    </p>
+
+                    <p>
+                        <label for="apellidos">
+                            <span class="material-symbols-outlined" aria-hidden="true">badge</span>
+                            Apellido/s *
+                        </label>
+                        <input type="text" id="apellidos" name="apellidos" data-ayuda="ayuda_apellidos" aria-describedby="ayuda_apellidos">
+                        <small id="ayuda_apellidos" class="ayuda">Al menos un apellido. Solo letras, espacios y guiones.</small>
                     </p>
 
                     <p>
                         <label for="correo"><span class="icono-unicode" aria-hidden="true">&#9993;</span> Correo electrónico *</label>
-                        <input type="email" id="correo" name="correo" maxlength="200" required>
+                        <input type="text" id="correo" name="correo" data-ayuda="ayuda_correo" aria-describedby="ayuda_correo">
+                        <small id="ayuda_correo" class="ayuda">Formato: parte-local@dominio (ej.: ana.lopez@ua.es).</small>
                     </p>
 
                     <p>
                         <label for="telefono"><span class="icono-unicode" aria-hidden="true">&#9742;</span> Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono">
+                        <input type="tel" id="telefono" name="telefono" data-ayuda="ayuda_telefono" aria-describedby="ayuda_telefono">
+                        <small id="ayuda_telefono" class="ayuda">Opcional. Solo números, espacios y + inicial (9 a 15 cifras).</small>
                     </p>
 
                     <!-- fieldset dentro de otro fieldset: así el lector de pantalla anuncia "Dirección de envío" en cada campo. -->
@@ -205,17 +219,17 @@
 
                         <p>
                             <label for="calle">Calle *</label>
-                            <input type="text" id="calle" name="calle" required>
+                            <input type="text" id="calle" name="calle">
                         </p>
 
                         <p>
                             <label for="numero">Número *</label>
-                            <input type="text" id="numero" name="numero" required>
+                            <input type="text" id="numero" name="numero">
                         </p>
 
                         <p>
                             <label for="puerta">Puerta *</label>
-                            <input type="text" id="puerta" name="puerta" required>
+                            <input type="text" id="puerta" name="puerta">
                         </p>
 
                         <p>
@@ -225,22 +239,23 @@
 
                         <p>
                             <label for="cp">Código Postal *</label>
-                            <input type="text" id="cp" name="cp" required>
+                            <input type="text" id="cp" name="cp" data-ayuda="ayuda_cp" aria-describedby="ayuda_cp">
+                        <small id="ayuda_cp" class="ayuda">5 dígitos (ej.: 03690).</small>
                         </p>
 
                         <p>
                             <label for="localidad">Localidad *</label>
-                            <input type="text" id="localidad" name="localidad" required>
+                            <input type="text" id="localidad" name="localidad">
                         </p>
 
                         <p>
                             <label for="provincia">Provincia *</label>
-                            <input type="text" id="provincia" name="provincia" required>
+                            <input type="text" id="provincia" name="provincia">
                         </p>
 
                         <p>
                             <label for="pais">País *</label>
-                            <select id="pais" name="pais" required>
+                            <select id="pais" name="pais">
                                 <option value="">Selecciona un país...</option>
                                 <option value="argentina">Argentina</option>
                                 <option value="espana">España</option>
@@ -256,7 +271,7 @@
 
                     <p>
                         <label for="anuncio">Anuncio a imprimir *</label>
-                        <select id="anuncio" name="anuncio" required>
+                        <select id="anuncio" name="anuncio">
                             <option value="">-- Selecciona uno de tus anuncios --</option>
                             <option value="1">Chalet Independiente con Piscina</option>
                             <option value="2">Estudio Luminoso para Estudiantes</option>
@@ -275,7 +290,7 @@
                         ></textarea>
                     </p>
 
-                    <!-- OJO: el input de color no admite required (siempre tiene valor; por defecto, negro). -->
+                    <!-- OJO: el input de color no admite (siempre tiene valor; por defecto, negro). -->
                     <p>
                         <label for="color_portada">Color de la portada *</label>
                         <input type="color" id="color_portada" name="color_portada" value="#000000">
@@ -287,11 +302,10 @@
                             type="number"
                             id="num_copias"
                             name="num_copias"
-                            min="1"
-                            max="99"
-                            value="1"
-                            required
+                            value="1" data-ayuda="ayuda_copias" aria-describedby="ayuda_copias"
+                           
                         >
+                        <small id="ayuda_copias" class="ayuda">Entre 1 y 99 copias.</small>
                     </p>
 
                     <!-- NOTA: el range es el único sitio donde se permite JavaScript (oninput). Enseña el valor elegido en el <output>.
@@ -313,10 +327,11 @@
 
                     <p>
                         <label for="fecha_recepcion">Fecha aproximada de recepción</label>
-                        <input type="date" id="fecha_recepcion" name="fecha_recepcion">
+                        <input type="date" id="fecha_recepcion" name="fecha_recepcion" data-ayuda="ayuda_fecha" aria-describedby="ayuda_fecha">
+                        <small id="ayuda_fecha" class="ayuda">Opcional. No puede ser anterior a hoy.</small>
                     </p>
 
-                    <!-- En un grupo de radios los botones comparten name; con required en uno basta. -->
+                    <!-- En un grupo de radios los botones comparten name; con en uno basta. -->
                     <fieldset>
                         <legend>¿Impresión a color? *</legend>
 
@@ -327,7 +342,7 @@
                                 name="tipo_impresion"
                                 value="color"
                                 checked
-                                required
+                               
                             >
                             A todo color
                         </label>
@@ -353,7 +368,7 @@
                                 name="imprimir_precio"
                                 value="si"
                                 checked
-                                required
+                               
                             >
                             Sí
                         </label>
