@@ -1,120 +1,218 @@
-// Atajo para no tener que escribir document.getElementById(id) constantemente
-function $(id) {
-    return document.getElementById(id);
+// Comprobación de caracteres
+function esMayuscula(c) {
+    return c >= "A" && c <= "Z";
 }
 
-// Comprueba si un texto está completamente vacío
-function estaVacio(texto) {
-    return texto.trim() === "";
+function esMinuscula(c) {
+    return c >= "a" && c <= "z";
 }
 
-// Devuelve el aviso de error de un campo; si todavía no existe, lo crea (vacío) tras el campo.
-// El aviso se crea una sola vez y se reutiliza (se rellena o se vacía), así nunca se duplica.
-function obtenerAviso(campo) {
-    let aviso = $(`error_${campo.id}`);
-    if (!aviso) {
-        aviso = document.createElement("span");
-        aviso.className = "mensaje-error";
-        aviso.id = `error_${campo.id}`; // id="email" -> "error_email"
-        aviso.setAttribute("role", "alert"); // Los lectores de pantalla lo anuncian al rellenarse
-        campo.parentElement.appendChild(aviso);
+function esLetra(c) {
+    return esMayuscula(c) || esMinuscula(c);
+}
+
+function esDigito(c) {
+    return c >= "0" && c <= "9";
+}
+
+// Validación del nombre de usuario
+function validarNombre(valor) {
+    if (valor.length < 3 || valor.length > 15) {
+        return "El nombre debe tener entre 3 y 15 caracteres.";
     }
-    return aviso;
+    if (esDigito(valor[0])) {
+        return "El nombre no puede empezar por un número.";
+    }
+    for (const c of valor) {
+        if (!esLetra(c) && !esDigito(c)) {
+            return "Solo se permiten letras del alfabeto inglés y números (sin espacios, ñ ni tildes).";
+        }
+    }
+    return "";
 }
 
-// Encargada de mostrar el aviso visual y de accesibilidad cuando un campo es incorrecto
-function mostrarError(campo, mensaje) {
-    const aviso = obtenerAviso(campo);
-    aviso.textContent = `Error: ${mensaje}`;
-
-    campo.classList.add("campo-error"); // Marcar el campo en rojo
-    campo.setAttribute("aria-invalid", "true"); // Indica a los lectores de pantalla que el dato es inválido
-    // Si el campo ya tenía texto de ayuda (data-ayuda="id"), se leen los dos
-    const ayuda = campo.dataset.ayuda; // Lee el atributo personalizado data-ayuda del HTML si existe
-    campo.setAttribute("aria-describedby", ayuda ? `${ayuda} ${aviso.id}` : aviso.id);
+// Validación de la contraseña
+function validarPassword(valor) {
+    if (valor.length < 6 || valor.length > 15) {
+        return "La contraseña debe tener entre 6 y 15 caracteres.";
+    }
+    let hayMayuscula = false;
+    let hayMinuscula = false;
+    let hayNumero = false;
+    for (const c of valor) {
+        if (esMayuscula(c)) {
+            hayMayuscula = true;
+        } else if (esMinuscula(c)) {
+            hayMinuscula = true;
+        } else if (esDigito(c)) {
+            hayNumero = true;
+        } else if (c !== "-" && c !== "_") {
+            return "Solo se permiten letras inglesas, números, guión (-) y guión bajo (_).";
+        }
+    }
+    if (!hayMayuscula || !hayMinuscula || !hayNumero) {
+        return "Debe contener al menos una mayúscula, una minúscula y un número.";
+    }
+    return "";
 }
 
-// Deja el campo como estaba antes de mostrar el error
-function limpiarError(campo) {
-    obtenerAviso(campo).textContent = ""; // Se vacía, no se elimina (ver obtenerAviso)
-    campo.classList.remove("campo-error");
-    campo.removeAttribute("aria-invalid");
+// Comprobación de la contraseña repetida
+function validarRepetir(valor) {
+    if (valor === "") {
+        return "Repite la contraseña.";
+    }
+    if (valor !== $("password").value) {
+        return "Las contraseñas no coinciden.";
+    }
+    return "";
+}
 
-    // Vuelve a apuntar solo al texto de ayuda (si lo tiene)
-    const ayuda = campo.dataset.ayuda;
-    if (ayuda) {
-        campo.setAttribute("aria-describedby", ayuda);
+// Validación del sexo
+function validarSexo(valor) {
+    return valor === "" ? "Selecciona una opción" : "";
+}
+
+// Validación del correo electrónico
+const ESPECIALES_LOCAL = "!#$%&'*+-/=?^_`{|}~";
+
+function validarParteLocal(local) {
+    if (local.length < 1 || local.length > 64) {
+        return "La parte anterior a la @ debe tener entre 1 y 64 caracteres.";
+    }
+    if (local[0] === "." || local[local.length - 1] === ".") {
+        return "Antes de la @ no puede haber un punto al principio ni al final.";
+    }
+    if (local.includes("..")) {
+        return "Antes de la @ no puede haber dos puntos seguidos.";
+    }
+    for (const c of local) {
+        if (!esLetra(c) && !esDigito(c) && c !== "." && !ESPECIALES_LOCAL.includes(c)) {
+            return `El carácter "${c}" no está permitido antes de la @.`;
+        }
+    }
+    return "";
+}
+
+function validarDominio(dominio) {
+    if (dominio.length < 1 || dominio.length > 255) {
+        return "El dominio (después de la @) debe tener entre 1 y 255 caracteres.";
+    }
+    for (const sub of dominio.split(".")) {
+        if (sub.length < 1 || sub.length > 63) {
+            return "Cada parte del dominio (entre puntos) debe tener entre 1 y 63 caracteres.";
+        }
+        if (sub[0] === "-" || sub[sub.length - 1] === "-") {
+            return "Ninguna parte del dominio puede empezar ni acabar en guión.";
+        }
+        for (const c of sub) {
+            if (!esLetra(c) && !esDigito(c) && c !== "-") {
+                return `El carácter "${c}" no está permitido en el dominio.`;
+            }
+        }
+    }
+    return "";
+}
+
+function validarEmail(valor) {
+    if (valor === "") {
+        return "El email es obligatorio.";
+    }
+    if (valor.length > 254) {
+        return "El email no puede superar los 254 caracteres.";
+    }
+    const posArroba = valor.indexOf("@");
+
+    if (posArroba === -1 || posArroba != valor.lastIndexOf("@")) {
+        return "Debe tener una única @ (ejemplo: usuario@dominio.com).";
+    }
+
+    const local = valor.slice(0, posArroba);
+    const dominio = valor.slice(posArroba + 1);
+    return validarParteLocal(local) || validarDominio(dominio);
+}
+
+// Validación de la fecha de nacimiento
+function validarFecha(valor) {
+    if (estaVacio(valor)) {
+        return "Selecciona tu fecha de nacimiento (día, mes y año completos).";
+    }
+    let anio, mes, dia;
+    if (valor.includes("/")) {
+        const p = valor.split("/");
+        if (p.length !== 3) {
+            return "Escribe la fecha con el formato dd/mm/aaaa.";
+        }
+        [dia, mes, anio] = p.map(Number);
     } else {
-        campo.removeAttribute("aria-describedby");
+        const p = valor.split("-");
+        if (p.length !== 3) {
+            return "La fecha no es válida. Vuelve a seleccionarla.";
+        }
+        [anio, mes, dia] = p.map(Number);
     }
+    if (Number.isNaN(anio) || Number.isNaN(mes) || Number.isNaN(dia)) {
+        return "La fecha no es válida. Vuelve a seleccionarla.";
+    }
+    const fecha = new Date(anio, mes - 1, dia);
+    if (fecha.getFullYear() !== anio || fecha.getMonth() !== mes - 1 || fecha.getDate() !== dia) {
+        return "La fecha no es válida. Vuelve a seleccionarla.";
+    }
+    const cumple18 = new Date(anio + 18, mes - 1, dia);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    if (cumple18 > hoy) {
+        return "Debes tener al menos 18 años cumplidos para registrarte.";
+    }
+    return "";
 }
 
-// Evalúa un único campo pasándole una función de validación personalizada (validar).
-// Esta función debe devolver un mensaje de error si falla o vacío si es correcto.
-// Dependiendo del resultado llama a mostrarError o limpiarError
-function validarCampo(campo, validar) {
-    const mensaje = validar(campo.value);
-    if (mensaje) {
-        mostrarError(campo, mensaje);
-        return false;
-    }
-    limpiarError(campo);
-    return true;
+// Validación del nombre y apellidos reales
+const LETRAS_ACENTUADAS = "áéíóúüñçàèìòùâêîôûäëïöÁÉÍÓÚÜÑÇÀÈÌÒÙÂÊÎÔÛÄËÏÖ";
+
+function esLetraPersona(c) {
+    return esLetra(c) || LETRAS_ACENTUADAS.includes(c);
 }
 
-// Recibe un bloque con varios campos y sus respectivas reglas de validación (un array de objetos).
-// Recorre todos ellos para validarlos de golpe.
-// Si encuentra errores, guarda cuál fue el primer campo que falló y, al terminar usa .focus() para
-// llevar automáticamente al cursor del usuario a ese lugar
-function validarCampos(lista) {
-    let primerError = null;
-    for (const { id, validar } of lista) {
-        const campo = $(id);
-        if (!validarCampo(campo,validar) && primerError === null) {
-            primerError = campo;
+function comprobarNombrePersona(valor, maximo) {
+    const texto = valor.trim();
+    if (texto.length > maximo) {
+        return `Máximo ${maximo} caracteres.`;
+    }
+    let hayLetra = false;
+    for (const c of texto) {
+        if (esLetraPersona(c)) {
+            hayLetra = true;
+        } else if (esDigito(c)) {
+            return "No se admiten números.";
+        } else if (c !== " " && c !== "-" && c !== "'") {
+            return `El carácter "${c}" no está permitido. Solo letras, espacios, guion (-) y apóstrofo (').`;
         }
     }
-    if (primerError !== null) {
-        primerError.focus(); // Lleva al usuario al primer fallo
+    if (!hayLetra) {
+        return "Debe contener letras.";
     }
-    return primerError === null;
+    const primero = texto[0];
+    const ultimo = texto[texto.length - 1];
+    if (primero === "-" || primero === "'" || ultimo === "-" || ultimo === "'") {
+        return "No puede empezar ni terminar con guion o apóstrofo.";
+    }
+    return "";
 }
 
-// Motor que pone todo en marcha.
-// Toma el ID del formulario y lista de campos a validar,
-// y crea dos comportamientos automáticos
-function activarValidacion(idFormulario, lista) {
-    const formulario = $(idFormulario);
-    if (!formulario) {
-        return;
+// Validación del nombre
+function validarNombrePersona(valor) {
+    if (estaVacio(valor)) {
+        return "Escribe tu nombre.";
     }
+    return comprobarNombrePersona(valor, 40);
+}
 
-    // Si el usuario pulsa "Enviar" con un campo recién editado, ese campo pierde el foco y su
-    // error aparece o desaparece ANTES de soltar el clic; al cambiar la altura de la página el
-    // botón se mueve y el clic se pierde. Evitamos que el botón le quite el foco al campo con
-    // mousedown: el clic sigue funcionando y el formulario se valida entero en el submit.
-    for (const boton of formulario.querySelectorAll('button[type="submit"]')) {
-        boton.addEventListener("mousedown", (evento) => evento.preventDefault());
-    }
-
-    // Al intentar enviar el formulario (submit), ejecuta validarCampos.
-    // Si hay algún error, cancela el envío al servidor (evento.preventDefault)
-    formulario.addEventListener("submit", (evento) => {
-        
-        if (!validarCampos(lista)) {
-            evento.preventDefault(); // Cancela el envío
+// Validación de los apellidos
+function crearValidadorApellidos(obligatorio) {
+    return (valor) => {
+        if (estaVacio(valor)) {
+            return obligatorio ? "Escribe al menos un apellido." : "";
         }
-    });
-
-    // Al pulsar "Borrar datos" (reset) también se limpian los errores
-    formulario.addEventListener("reset", () => {
-        for (const { id } of lista) {
-            limpiarError($(id));
-        }
-    });
-
-    // Al terminar de escribir un campo se validará en tiempo real
-    for (const { id, validar } of lista) {
-        $(id).addEventListener("change", () => validarCampo($(id), validar));
-    }
+        return comprobarNombrePersona(valor, 60);
+    };
 }
