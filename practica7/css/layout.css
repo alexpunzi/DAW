@@ -1,0 +1,192 @@
+/* ==========================================================================
+   layout.css
+   Estructura de la página: cabecera, contenido, tarjetas, detalle y pie
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Cabecera y menú
+   -------------------------------------------------------------------------- */
+
+header {
+    background: var(--color-principal);
+    padding: 20px 15px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--color-blanco);
+    font-size: 1.3rem; /* Define el tamaño del texto multiplicando por 1.3 el tamaño de fuente base del elemento de raíz base */
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+
+    /* Si no caben en una línea, pasan a la siguiente */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 22px;
+}
+
+header a {
+    color: var(--color-fondo);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   Contenido
+   -------------------------------------------------------------------------- */
+
+main {
+    max-width: 1200px;
+
+    /* Centra el contenido */
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+main h2 {
+    border-bottom: 2px solid var(--color-principal);
+    padding-bottom: 8px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Tarjetas de anuncios
+   -------------------------------------------------------------------------- */
+
+.cards-grid {
+    list-style: none;
+    padding: 0;
+
+    /* Activa el modo de diseño Grid Layout, permitiendo organizar elementos en una estructura bidimensional de
+       filas y columnas altamente personalizable */ 
+    display: grid;
+
+    /* Una columna en móvil */
+    grid-template-columns: 1fr; /* Establece las columnas, ocupa una fracción del espacio disponible */
+    gap: 20px;
+}
+
+.card {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 12px;
+}
+
+.card:hover {
+    border-color: var(--color-principal);
+}
+
+.card img {
+    width: 100%;
+
+    /* Altura fija y recorte para que todas las tarjetas queden iguales */
+    height: 200px;
+
+    /* La foto rellena su caja recortando lo que sobra, sin deformarse */
+    object-fit: cover;
+
+    border-radius: var(--radio);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card h3 a {
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    text-decoration: underline;
+}
+
+.card p {
+    color: var(--color-suave);
+    font-size: 0.9rem;
+    margin: 8px 0 0;
+}
+
+.card span.material-symbols-outlined {
+    color: var(--color-principal);
+}
+
+
+/* --------------------------------------------------------------------------
+   Detalle del anuncio
+   -------------------------------------------------------------------------- */
+
+.fotos img {
+    display: block; /* Sirve para hacer que un elemento ocupe todo el ancho disponible de su contenedor */
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radio);
+}
+
+/* Tres miniaturas por fila. Se usa 32% y no 33% por el hueco entre imágenes */
+.fotos .miniatura {
+    /* Permite que los elementos se coloquen uno al lado del otro en la misma línea, pero respetando
+       las dimensiones de ancho, alto y márgenes asignados */ 
+    display: inline-block;
+
+    width: 32%;
+    height: 90px;
+}
+
+.conBorde {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 20px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Pie de página
+   -------------------------------------------------------------------------- */
+
+footer {
+    background: var(--color-principal);
+    color: var(--color-fondo);
+    margin-top: 40px;
+    padding: 30px 15px;
+    text-align: center;
+}
+
+footer hr {
+    border-top-color: var(--color-suave);
+}
+
+footer a {
+    display: inline-block;
+    color: var(--color-fondo);
+    font-size: 0.9rem;
+    margin: 5px 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer small {
+    opacity: 0.8;
+}

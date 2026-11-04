@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* Campo con error: borde grueso y de otro color */
+.campo-error {
+    border: 2px solid var(--color-error);
+}
+
+.mensaje-error {
+    display: block; /* Ocupa una línea independiente y se expanda hasta abarcar el ancho completo disponible de su contenedor */
+    margin-top: 4px;
+    color: var(--color-error);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Texto de ayuda bajo cada campo */
+.ayuda {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-suave);
+    font-size: 0.85rem;
+}
