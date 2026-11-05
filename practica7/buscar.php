@@ -4,7 +4,7 @@ require_once "includes/lib/funciones.php";
 
 
 $title          = "Página de Búsqueda";
-$esPartePrivada = false; // Muestra la navegación pública (nav_publica.php)
+$esPartePrivada = estaIdentificado(); // menú privado solo si hay usuario identificado
 
 
 require_once "includes/layout/cabecera.php";
@@ -15,6 +15,7 @@ require_once "includes/layout/inicio.php";
 
 <!-- Acción reorientada al controlador de resultados en PHP -->
 <form action="resultado_busqueda.php" method="get">
+    <?= campoUsuario(); ?>
 
     <p>
         <label for="tipo_anuncio">Tipo de Anuncio</label>

@@ -5,15 +5,14 @@ require_once "includes/lib/costes.php";
 
 
 $title          = "Solicitar Folleto";
-$esPartePrivada = true; 
+$esPartePrivada = estaIdentificado();
 
 
-$scriptsExtra = [
-    'js/utilidades.js',
-    'js/validadores.js',
-    'js/solicitud.js',
-    'js/folleto.js'
-];
+$scriptsExtra = array_merge(
+    ['js/utilidades.js'],
+    scriptsValidacion(['js/validadores.js', 'js/solicitud.js']),
+    ['js/folleto.js']
+);
 
 
 require_once "includes/layout/cabecera.php";
@@ -94,9 +93,13 @@ $matrizTarifas = obtenerMatrizTarifas();
         Mostrar tabla de costes
     </button>
 
-    <!-- Tabla de costes autogenerada mediante costes.php o inyectada por folleto.js -->
-    <table id="tabla_costes" hidden>
-        <caption>Matriz de costes por páginas e impresión (incluye 10 € de envío)</caption>
+</section>
+
+<section id="costes_php">
+    <h3>Costes de un folleto calculados con PHP</h3>
+
+    <table id="tabla_costes_php">
+        <caption>Posibles costes de un folleto de publicidad impreso (incluye <?= euros(COSTE_ENVIO); ?> de envío)</caption>
         <thead>
             <tr>
                 <th scope="col">Páginas</th>
@@ -109,8 +112,8 @@ $matrizTarifas = obtenerMatrizTarifas();
         <tbody>
             <?php foreach ($matrizTarifas['filas'] as $fila): ?>
                 <tr>
-                    <th scope="row"><?= $fila['paginas']; ?></th>
-                    <td><?= $fila['fotos']; ?></td>
+                    <th scope="row"><?= (int)$fila['paginas']; ?></th>
+                    <td><?= (int)$fila['fotos']; ?></td>
                     <?php foreach ($fila['precios'] as $precio): ?>
                         <td><?= euros($precio); ?></td>
                     <?php endforeach; ?>
@@ -147,7 +150,7 @@ $matrizTarifas = obtenerMatrizTarifas();
     <?php endif; ?>
 
     <!-- Formulario redirigido al procesador backend correspondiente -->
-    <form id="form_solicitud" action="procesadores/respuesta_solicitar_folleto.php" method="post" novalidate>
+    <form id="form_solicitud" action="<?= e(urlPrivada('respuesta_solicitar_folleto.php')); ?>" method="post" novalidate>
 
         <fieldset>
             <legend>Datos de contacto y envío</legend>

@@ -3,7 +3,7 @@ require_once "includes/lib/funciones.php";
 
 
 $title          = "Mensaje Enviado";
-$esPartePrivada = true; 
+$esPartePrivada = estaIdentificado();
 
 
 require_once "includes/layout/cabecera.php";

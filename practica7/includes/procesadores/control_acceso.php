@@ -1,29 +1,39 @@
 <?php
 
-//cargamos las librerias 
-require_once __DIR__ . '/../includes/lib/funciones.php';
-require_once __DIR__ . '/../datos/usuarios.php';
-require_once __DIR__ . '/../includes/validaciones/valida_login.php';
 
-//recogida de datos pasados por POST
+//esta es una pagina que no es visible para el usuario
+//controla el acceso a la parte privada, es decir cuando ya el usuario se regitrsa que se muestren las funciones especificas 
+
+
+require_once __DIR__ . '/../lib/funciones.php';
+require_once __DIR__ . '/../validaciones/valida_login.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') { //validamos el metodo de acceso, comprobando que si el usuario no entra por peticion POST que lo redirija a index.php 
+    redirigir('index.php');
+}
+
+
+//recoge los datos del usuario que introducira en el formulario 
 $email    = post('login_email');
 $password = post('login_password');
 
+//ejecuta la funciond e validacion pasandole los parametros 
+$error = validarLogin($email, $password, cargarUsuarios());
 
-$error = validarLogin($email, $password, $usuariosValidos);
 
+
+// GESTIÓN DE ERRORES 
 if ($error !== null) {
-    
-    //redirige al usuario a la parte publica si da error 
-    $params = http_build_query([
-        'error'        => $error,
-        'email_previo' => $email
-    ]);
-    header("Location: ../index.php?" . $params);
+    redirigir('index.php', ['error' => $error, 'email_previo' => $email]);
+}
+
+if ($resultadoError !== null) {
+    // Redirigimos enviando el error y el email introducido para no perderlo
+    header("Location: ../index.php?error=" . $resultadoError . "&email_previo=" . urlencode($email));
     exit;
 }
 
-//redirige al usuario a la parte privada
-$params = http_build_query(['usuario' => $email]);
-header("Location: ../index_sesion.php?" . $params);
-exit;
+// Acceso correcto, SE REDIRIGE AL USUARIO AL index_sesion.php 
+redirigir('index_sesion.php', ['usuario' => $email]);
+
+

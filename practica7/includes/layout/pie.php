@@ -9,25 +9,25 @@ require_once __DIR__ . '/../lib/funciones.php';
         <nav aria-label="Navegación del pie de página">
             <ul>
                 <li>
-                    <a href="index.php">
+                    <a href="<?= e(urlInicio()); ?>">
                         <span class="material-symbols-outlined" aria-hidden="true">home</span>
                         Inicio
                     </a>
                 </li>
                 <li>
-                    <a href="buscar.php">
+                    <a href="<?= e(urlPrivada('buscar.php')); ?>">
                         <span class="material-symbols-outlined" aria-hidden="true">search</span>
                         Buscar
                     </a>
                 </li>
                 <li>
-                    <a href="solicitar_folleto.php">
+                    <a href="<?= e(urlPrivada('solicitar_folleto.php')); ?>">
                         <span class="material-symbols-outlined" aria-hidden="true">description</span>
                         Solicitar folleto
                     </a>
                 </li>
                 <li>
-                    <a href="accesibilidad.php">
+                    <a href="<?= e(urlPrivada('accesibilidad.php')); ?>">
                         <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
                         Accesibilidad
                     </a>
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../lib/funciones.php';
                 &copy; <?= date('Y'); ?> PI - Pisos &amp; Inmuebles. El portal de tu vivienda.
             </small>
         </p>
-    </footer>
+</footer>
 
 </body>
 </html>

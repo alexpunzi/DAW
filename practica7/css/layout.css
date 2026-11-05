@@ -190,3 +190,18 @@ footer a:hover {
 footer small {
     opacity: 0.8;
 }
+
+footer nav ul {
+    list-style: none; /* Elimina los puntos */
+    display: flex;    /* Coloca los elementos en línea horizontal */
+    flex-wrap: wrap;  /* Permite que bajen si la pantalla es muy pequeña */
+    gap: 20px;        /* Espacio de separación entre cada opción */
+    justify-content: center; /* Centra el menú (puedes cambiarlo a 'flex-start' si lo prefieres a la izquierda) */
+    padding: 0;
+    margin: 15px 0;
+}
+
+
+footer nav ul li {
+    display: inline-block;
+}

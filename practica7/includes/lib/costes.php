@@ -1,4 +1,5 @@
 <?php
+//funciones para calcular los costes de impresion que apareceran en las tablas 
 
 require_once __DIR__ . '/funciones.php';
 
@@ -63,7 +64,7 @@ function obtenerMatrizTarifas(): array {
     $filas = [];
 
     for ($p = 1; $p <= 15; $p++) {
-        $fotos = $p * 3; // 3 fotos por página por norma de la práctica[cite: 101]
+        $fotos = $p * 3; // 3 fotos por página 
         $preciosCol = [];
 
         foreach ($columnas as $col) {

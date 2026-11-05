@@ -1,26 +1,28 @@
 <?php
 
-//valida los campos del fromulariuo de registro de un usuario
-
+// Valida los campos obligatorios del formulario de registro de usuario.
+// Devuelve una lista de códigos de error (vacía si todo es correcto).
 function validarRegistro(array $datos) {
     $errores = [];
 
-    $usuario    = trim($datos['nombre'] ?? '');
-    $password   = trim($datos['password'] ?? '');
-    $repassword = trim($datos['confirmar_password'] ?? '');
+    $usuario    = trim((string)($datos['nombre'] ?? ''));
+    $password   = trim((string)($datos['password'] ?? ''));
+    $repassword = trim((string)($datos['confirmar_password'] ?? ''));
 
-    //validar nombre de usuario obligatorio
     if ($usuario === '') {
         $errores[] = 'e_usuario_vacio';
     }
 
-    //validar contraseña obligatoria
     if ($password === '') {
         $errores[] = 'e_password_vacio';
     }
 
-    //validar coincidencia de contraseñas
-    if ($password !== $repassword) {
+    if ($repassword === '') {
+        $errores[] = 'e_repassword_vacio';
+    }
+
+    // solo se comparan si el usuario ha escrito ambas
+    if ($password !== '' && $repassword !== '' && $password !== $repassword) {
         $errores[] = 'e_password_mismatch';
     }
 

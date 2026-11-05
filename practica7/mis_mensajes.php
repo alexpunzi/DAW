@@ -3,7 +3,8 @@
 require_once "includes/lib/funciones.php";
 
 $title          = "Mis Mensajes";
-$esPartePrivada = true; // Activa la navegación de usuario autenticado (nav_privada.php)
+requiereUsuario(); // parte privada
+$esPartePrivada = true;
 
 require_once "includes/layout/cabecera.php";
 require_once "includes/layout/inicio.php";

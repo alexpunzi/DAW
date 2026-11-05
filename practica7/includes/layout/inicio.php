@@ -10,7 +10,7 @@ $esPartePrivada = $esPartePrivada ?? false;
 
     <header>
         <div class="header-branding">
-            <h1><a href="index.php">PI - Pisos &amp; Inmuebles</a></h1>
+            <h1><a href="<?= e(urlInicio()); ?>">PI - Pisos &amp; Inmuebles</a></h1>
             <p class="slogan">El portal de tu vivienda</p>
         </div>
 

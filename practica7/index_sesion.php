@@ -4,8 +4,9 @@ require_once "includes/lib/funciones.php";
 $title          = "Panel de Usuario - Inicio";
 $esPartePrivada = true; // Activa la navegación privada (nav_privada.php)
 
-$usuario = get('usuario');
-$nombreMostrar = !empty($usuario) ? $usuario : "Usuario";
+// Solo accesible con un usuario identificado (si no, vuelve al formulario de acceso)
+$usuario = requiereUsuario();
+$nombreMostrar = $usuario['nombre'];
 
 
 require_once "includes/layout/cabecera.php";
@@ -20,6 +21,7 @@ require_once "includes/layout/inicio.php";
     <h2>Búsqueda Rápida</h2>
 
     <form action="resultado_busqueda.php" method="get">
+        <?= campoUsuario(); ?>
         <p>
             <label for="texto_busqueda">
                 <span class="material-symbols-outlined" aria-hidden="true">key</span>
@@ -42,7 +44,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="detalle_anuncio.php?id=3">Chalet Independiente con Piscina</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 3])); ?>">Chalet Independiente con Piscina</a>
             </h3>
 
             <img src="img/chalet-piscina.jpg"
@@ -91,7 +93,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="detalle_anuncio.php?id=2">Estudio Luminoso para Estudiantes</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 2])); ?>">Estudio Luminoso para Estudiantes</a>
             </h3>
 
             <img src="img/estudio.jpg"
@@ -140,7 +142,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="detalle_anuncio.php?id=1">Piso Céntrico con Terraza</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 1])); ?>">Piso Céntrico con Terraza</a>
             </h3>
 
             <img src="img/piso-terraza.jpg"
@@ -189,7 +191,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="detalle_anuncio.php?id=4">Dúplex Elegante con Amplias Estancias</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 4])); ?>">Dúplex Elegante con Amplias Estancias</a>
             </h3>
 
             <img src="img/duplex-valencia.jpg"
@@ -238,7 +240,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="detalle_anuncio.php?id=5">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 5])); ?>">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
             </h3>
 
             <img src="img/piso-valencia.jpg"

@@ -111,3 +111,17 @@ button[type="reset"] {
     background: var(--color-blanco);
     color: var(--color-principal);
 }
+
+
+.input-error{
+    border: 2px solid red !important; 
+    background-color: #ffe6e6;
+
+}
+
+.error-text {
+    color: red;
+    display: block;
+    font-size: 0.85em;
+    margin-top: 4px;
+}
