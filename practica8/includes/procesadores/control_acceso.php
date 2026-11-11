@@ -62,4 +62,4 @@ if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
 }
 
 // Redirigimos al panel privado de forma limpia
-redirigir('index_sesion.php', ['usuario' => $email]);
+redirigir('index_sesion.php');

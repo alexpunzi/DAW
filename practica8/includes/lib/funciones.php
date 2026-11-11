@@ -57,39 +57,40 @@ function urlBase(): string {
     return rtrim($dir, '/');
 }
 
-// Redirección en el servidor con URL absoluta
-// Si hay un usuario identificado, se conserva automáticamente en la URL.
+// Redirige al usuario a una página determinada dentro del sitio web
 function redirigir(string $pagina, array $params = []): void {
-    $usuario = usuarioActual();
-    if ($usuario !== null && !isset($params['usuario'])) {
-        $params['usuario'] = $usuario['email'];
-    }
-    $esquema = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    // Detecta protocolo y construye la URL
+    $esquema = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== off) ? 'https' : 'http';
     $url = $esquema . '://' . $_SERVER['HTTP_HOST'] . urlBase() . '/' . ltrim($pagina, '/');
+
+    // Si se enviaron parámetros GET adicionales, los concatena a la URL
     if (!empty($params)) {
         $url .= '?' . http_build_query($params);
     }
+
+    // Envía la cabecera HTTP al navegador
     header('Location: ' . $url);
     exit;
 }
 
-// Devuelve los datos del usuario identificado o null
+// Obtiene los datos del usuario actualmente identificado
 function usuarioActual(): ?array {
+    // Almacena en caché el resultado dentro de la misma petición y evitar múltiples búsquedas
     static $actual = false;
-    if ($actual !== false) {
+
+    // Atajo por si ya se ha determinado el usuario en esta petición
+    if ($actual !== false) { 
         return $actual;
     }
+
+    // Si es la primera vez que se llama a la función en la página
     $actual = null;
+
+    // Comprueba si existe el parámetro usuario en la cookie, si existe busca el usuario
     if (!empty($_SESSION['usuario'])) {
         $actual = buscarUsuario((string)$_SESSION['usuario']);
     }
-    if ($actual !== null) {
-        return $actual;
-    }
-    $email = get('usuario');
-    if ($email !== '') {
-        $actual = buscarUsuario($email);
-    }
+    
     return $actual;
 }
 
@@ -106,22 +107,14 @@ function requiereUsuario(): array {
     return $usuario;
 }
 
-// construye un enlace conservando el usuario identificado (si lo hay)
+// Construye enlaces hacia páginas privadas
 function urlPrivada(string $pagina, array $params = []): string {
-    $usuario = usuarioActual();
-    if ($usuario !== null) {
-        $params['usuario'] = $usuario['email'];
-    }
     return $pagina . (!empty($params) ? '?' . http_build_query($params) : '');
 }
 
-// Campo oculto para los formularios GET que deben conservar el usuario
+// Genera el campo oculto de formulario para la identidad del usuario
 function campoUsuario(): string {
-    $usuario = usuarioActual();
-    if ($usuario === null) {
-        return '';
-    }
-    return '<input type="hidden" name="usuario" value="' . e($usuario['email']) . '">';
+    return '';
 }
 
 // Enlace a la página de inicio según el usuario esté identificado o no
