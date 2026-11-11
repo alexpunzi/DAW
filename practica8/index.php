@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
 
@@ -15,21 +16,23 @@ $scriptsExtra = scriptsValidacion([
 require_once "includes/layout/cabecera.php";
 require_once "includes/layout/inicio.php";
 
-//captura los errores devueltos por el procesador (procesadores/control_acceso.php)
-$codigoError   = get('error');
+// Captura los errores desde la sesión usando Flashdata
+$codigoError = flash_get('error');
+
 $mensajesError = [
-    'vacio'        => 'Por favor, rellena el correo electrónico y la contraseña.',
+    'vacio' => 'Por favor, rellena el correo electrónico y la contraseña.',
     'credenciales' => 'El correo electrónico o la contraseña son incorrectos.',
-    'acceso'       => 'Debes iniciar sesión para acceder a esa página.'
-];
+    'acceso' => 'Debes iniciar sesión para acceder a esa página.'
+]
 ?>
 
-<!-- Notificación gráfica de errores de inicio de sesión -->
-<?php if (isset($mensajesError[$codigoError])): ?>
+<!-- Notificación gráfica de erroes de inicio de sesión -->
+ <?php if ($codigoError): ?>
     <section class="alerta-error" role="alert">
-        <p><?= e($mensajesError[$codigoError]); ?></p>
+        <!-- Comprobamos si el error es una clave del array -->
+         <p><?= e(isset($mensajesError[$codigoError]) ? $mensajesError[$codigoError] : $codigoError); ?></p>
     </section>
-<?php endif; ?>
+ <?php endif; ?>
 
 <!-- Formulario modular de inicio de sesión (includes/layout/acceso.php) -->
 <?php require_once "includes/layout/acceso.php"; ?>

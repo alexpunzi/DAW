@@ -1,39 +1,42 @@
 <?php
+require_once __DIR__ . '/../bootstrap.php';
 
-
-//esta es una pagina que no es visible para el usuario
-//controla el acceso a la parte privada, es decir cuando ya el usuario se regitrsa que se muestren las funciones especificas 
-
-
+// Esta es una página que no es visible para el usuario
+// Controla el acceso a la parte privada
 require_once __DIR__ . '/../lib/funciones.php';
 require_once __DIR__ . '/../validaciones/valida_login.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { //validamos el metodo de acceso, comprobando que si el usuario no entra por peticion POST que lo redirija a index.php 
-    redirigir('index.php');
-}
-
-
-//recoge los datos del usuario que introducira en el formulario 
-$email    = post('login_email');
-$password = post('login_password');
-
-//ejecuta la funciond e validacion pasandole los parametros 
-$error = validarLogin($email, $password, cargarUsuarios());
-
-
-
-// GESTIÓN DE ERRORES 
-if ($error !== null) {
-    redirigir('index.php', ['error' => $error, 'email_previo' => $email]);
-}
-
-if ($resultadoError !== null) {
-    // Redirigimos enviando el error y el email introducido para no perderlo
-    header("Location: ../index.php?error=" . $resultadoError . "&email_previo=" . urlencode($email));
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    // Redirigimos de forma limpia, sin parámetros
+    header('Location: ../index.php');
     exit;
 }
 
-// Acceso correcto, SE REDIRIGE AL USUARIO AL index_sesion.php 
-redirigir('index_sesion.php', ['usuario' => $email]);
+// Recoge los datos del usuario
+$email    = post('login_email');
+$password = post('login_password');
+
+// Ejecuta la validación
+$error = validarLogin($email, $password, cargarUsuarios());
 
 
+// ----- GESTIÓN DE ERRORES -----
+if ($error !== null) {
+    // Guardamos el error y el email en la sesión (flashdata)
+    flash_set('error', $error);
+    flash_set('email_previo', $email);
+
+    // Redirigimos sin variables en la URL
+    header('Location: ../index.php');
+    exit;
+}
+
+
+// ----- ACCESO CORRECTO -----
+$_SESSION['usuario'] = $email;
+
+// Aquí es donde añadiremos la lógica de la casilla "Recordame"
+
+// Redirigimos al panel privado de forma limpia
+header('Location: ../index_sesion.php');
+exit;

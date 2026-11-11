@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
 // Identificador recibido por la URL (si no es un entero positivo, no hay anuncio)

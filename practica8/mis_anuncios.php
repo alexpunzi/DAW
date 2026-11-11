@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
 $usuario  = requiereUsuario();

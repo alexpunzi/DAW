@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/bootstrap.php';
 //cargamos las librerias y funciones auxiliares 
 require_once "includes/lib/funciones.php";
 require_once "includes/lib/costes.php";

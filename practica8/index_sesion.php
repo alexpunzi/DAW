@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/bootstrap.php';
 //funciones auxiliares 
 require_once "includes/lib/funciones.php";
 $title          = "Panel de Usuario - Inicio";
