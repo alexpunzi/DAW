@@ -34,7 +34,7 @@ function flash_get($clave) {
 }
 
 
-// 4. LÓGICA DE AUTO-LOGIN (Opción "Recordarme")
+// ----- LÓGICA DE AUTO-LOGIN (Opción "Recordarme") -----
 // Si no hay sesión activa, pero el navegador nos trae la cookie de "recordarme"
 if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
     
@@ -66,6 +66,13 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
                 if (is_numeric($registro['caducidad']) && (int)$registro['caducidad'] > time()) {
                     
                     $_SESSION['usuario'] = $email;
+
+                    // Cargar y guardar el estilo del usuario registrado
+                    require_once __DIR__ . '/lib/funciones.php';
+                    $uDatos = buscarUsuario($email);
+                    if ($uDatos !== null && isset($uDatos['estilo'])) {
+                        $_SESSION['estilo'] = $uDatos['estilo'];
+                    }
                     
                     // Preparamos el mensaje con la fecha de su última visita
                     $fecha_visita = date('d/m/Y \a \l\a\s H:i', (int)$registro['ultima_visita']);

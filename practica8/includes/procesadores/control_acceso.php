@@ -61,5 +61,11 @@ if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
     }
 }
 
+// Guardar el estilo del usuario en la sesión
+$usuarioDatos = buscarUsuario($email);
+if ($usuarioDatos !== null && isset($usuarioDatos['estilo'])) {
+    $_SESSION['estilo'] = $usuarioDatos['estilo'];
+}
+
 // Redirigimos al panel privado de forma limpia
 redirigir('index_sesion.php');

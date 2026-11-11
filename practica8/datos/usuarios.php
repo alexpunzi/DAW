@@ -1,25 +1,29 @@
 <?php
 
-//array de 4 usuarios simulados 
+// Array de 4 usuarios simulados 
 $usuariosValidos = [
     [
         'email'    => 'ana.lopez@ua.es',
         'password' => 'ana1234',
-        'nombre'   => 'Ana López Pérez'
+        'nombre'   => 'Ana López Pérez',
+        'estilo'   => 'noche'
     ],
     [
         'email'    => 'juana@ejemplo.com',
         'password' => 'juana1234',
-        'nombre'   => 'Juana Valentina'
+        'nombre'   => 'Juana Valentina',
+        'estilo'   => 'contraste'
     ],
     [
         'email'    => 'alex@ejemplo.com',
         'password' => 'alex1234',
-        'nombre'   => 'Alex Punzano'
+        'nombre'   => 'Alex Punzano',
+        'estilo'   => 'letra-grande'
     ],
     [
         'email'    => 'luis@ejemplo.com',
         'password' => 'luis1234',
-        'nombre'   => 'Luis Martín'
+        'nombre'   => 'Luis Martín',
+        'estilo'   => 'contraste-letra-grande'
     ]
 ];
