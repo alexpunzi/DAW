@@ -2,6 +2,8 @@
 require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
+// Exigir usuario identificado para ver la identificación
+requiereUsuario();
 
 $title          = "Mensaje Enviado";
 $esPartePrivada = estaIdentificado();

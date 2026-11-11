@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
-
 require_once __DIR__ . '/../lib/funciones.php';
 require_once __DIR__ . '/../validaciones/valida_mensaje.php';
+
+// Proteger el procesador backend de envíos
+requiereUsuario();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirigir('mensaje.php');

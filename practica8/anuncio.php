@@ -2,6 +2,9 @@
 require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
+// Exigir usuario identificado para ver el detalle
+requiereUsuario();
+
 // Identificador recibido por la URL (si no es un entero positivo, no hay anuncio)
 $id      = leerId(get('id'));
 $anuncio = ($id !== null) ? buscarAnuncio($id) : null;

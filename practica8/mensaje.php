@@ -1,8 +1,9 @@
 <?php
 require_once 'includes/bootstrap.php';
-
 require_once "includes/lib/funciones.php";
 
+// Exigir usuario identificado para enviar mensajes
+requiereUsuario();
 
 $title          = "Enviar Mensaje";
 $esPartePrivada = estaIdentificado();

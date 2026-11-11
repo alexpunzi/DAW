@@ -75,7 +75,7 @@ $mensajesError = [
     <ul class="cards-grid">
         <li class="card">
             <h3>
-                <a href="anuncio.php?id=3">Chalet Independiente con Piscina</a>
+                <a href="advertencia.php">Chalet Independiente con Piscina</a>
             </h3>
 
             <img src="img/chalet-piscina.jpg"
@@ -106,7 +106,7 @@ $mensajesError = [
 
         <li class="card">
             <h3>
-                <a href="anuncio.php?id=2">Estudio Luminoso para Estudiantes</a>
+                <a href="advertencia.php">Estudio Luminoso para Estudiantes</a>
             </h3>
 
             <img src="img/estudio.jpg"
@@ -137,7 +137,7 @@ $mensajesError = [
 
         <li class="card">
             <h3>
-                <a href="anuncio.php?id=1">Piso Céntrico con Terraza</a>
+                <a href="advertencia.php">Piso Céntrico con Terraza</a>
             </h3>
 
             <img src="img/piso-terraza.jpg"
@@ -168,7 +168,7 @@ $mensajesError = [
 
         <li class="card">
             <h3>
-                <a href="anuncio.php?id=4">Dúplex Elegante con Amplias Estancias</a>
+                <a href="advertencia.php">Dúplex Elegante con Amplias Estancias</a>
             </h3>
 
             <img src="img/duplex-valencia.jpg"
@@ -199,7 +199,7 @@ $mensajesError = [
 
         <li class="card">
             <h3>
-                <a href="anuncio.php?id=5">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
+                <a href="advertencia.php">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
             </h3>
 
             <img src="img/piso-valencia.jpg"
