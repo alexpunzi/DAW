@@ -72,6 +72,13 @@ if ($errorActual === 'vacio') {
             <?php endif; ?>
         </p>
 
+        <p>
+            <label>
+                <input type="checkbox" name="recordarme" value="1">
+                Recordarme en este equipo durante 90 días
+            </label>
+        </p>
+
         <button type="submit">
             <span class="material-symbols-outlined" aria-hidden="true">login</span>
             Entrar

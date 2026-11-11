@@ -26,13 +26,23 @@ $mensajesError = [
 ]
 ?>
 
-<!-- Notificación gráfica de erroes de inicio de sesión -->
- <?php if ($codigoError): ?>
+<!-- Notificación gráfica de errores de inicio de sesión -->
+<?php if ($codigoError): ?>
     <section class="alerta-error" role="alert">
-        <!-- Comprobamos si el error es una clave del array -->
-         <p><?= e(isset($mensajesError[$codigoError]) ? $mensajesError[$codigoError] : $codigoError); ?></p>
+        <p>
+            <?php 
+            // Comprobamos si el código ('vacio', 'credenciales'...) está en nuestro diccionario
+            if (isset($mensajesError[$codigoError])) {
+                // Si existe, imprimimos la frase larga y amigable
+                echo e($mensajesError[$codigoError]);
+            } else {
+                // Si no existe, imprimimos el error tal y como nos llegó
+                echo e($codigoError);
+            }
+            ?>
+        </p>
     </section>
- <?php endif; ?>
+<?php endif; ?>
 
 <!-- Formulario modular de inicio de sesión (includes/layout/acceso.php) -->
 <?php require_once "includes/layout/acceso.php"; ?>
