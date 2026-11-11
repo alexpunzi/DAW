@@ -133,3 +133,33 @@ function obtenerErrorCampo($nombreCampo, array $errores) {
     }
     return '';
 }
+
+function registrarTokenEnServidor($email, $token) {
+    
+    // Preparar el archivo
+    $ruta_archivo = __DIR__ . '/../../datos/recordar.json';
+
+    // Leer los datos que ya existen
+    $datos = [];
+    if (file_exists($ruta_archivo)) {
+        $contenido = file_get_contents($ruta_archivo);
+        $datos = json_decode($contenido, true) ?: [];
+    }
+
+    // Proteger la clave (hash)
+    $token_hash = hash('sha256', $token);
+
+    // Preparamos los datos del usuario
+    $registro = [
+        'email'         => $email,
+        'token_hash'    => $token_hash,
+        'caducidad'     => time() + (90 * 24 * 60 * 60), // 90 días
+        'ultima_visita' => time()                        // Fecha actual (timestamp)
+    ];
+
+    // Si el usuario ya tenía un token viejo de otro día, se sobrescribe
+    $datos[$email] = $registro;
+
+    // Guardar los cambios en el disco duro
+    file_put_contents($ruta_archivo, json_encode($datos, JSON_PRETTY_PRINT));
+}
