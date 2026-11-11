@@ -1,1 +1,8 @@
-[]
+{
+    "alex@ejemplo.com": {
+        "email": "alex@ejemplo.com",
+        "token_hash": "e8ef5c44fbd49d1af60d5d5fab723ae124793a67a7e533218a0d1b4523441c14",
+        "caducidad": 1802172779,
+        "ultima_visita": 1794396779
+    }
+}

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../validaciones/valida_login.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Redirigimos de forma limpia, sin parámetros
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
     exit;
 }
 
@@ -27,7 +27,7 @@ if ($error !== null) {
     flash_set('email_previo', $email);
 
     // Redirigimos sin variables en la URL
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
     exit;
 }
 
@@ -53,5 +53,4 @@ if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
 }
 
 // Redirigimos al panel privado de forma limpia
-header('Location: ../index_sesion.php');
-exit;
+redirigir('index_sesion.php', ['usuario' => $email]);
