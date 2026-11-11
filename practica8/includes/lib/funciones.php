@@ -80,6 +80,12 @@ function usuarioActual(): ?array {
         return $actual;
     }
     $actual = null;
+    if (!empty($_SESSION['usuario'])) {
+        $actual = buscarUsuario((string)$_SESSION['usuario']);
+    }
+    if ($actual !== null) {
+        return $actual;
+    }
     $email = get('usuario');
     if ($email !== '') {
         $actual = buscarUsuario($email);
@@ -143,8 +149,19 @@ function registrarTokenEnServidor($email, $token) {
     $datos = [];
     if (file_exists($ruta_archivo)) {
         $contenido = file_get_contents($ruta_archivo);
-        $datos = json_decode($contenido, true) ?: [];
+        if ($contenido === false) {
+            throw new RuntimeException('No se pudo leer el archivo de recordatorio.');
+        }
+        $datos = json_decode($contenido, true);
+        if (!is_array($datos)) {
+            throw new RuntimeException('El archivo de recordatorio no contiene datos válidos.');
+        }
     }
+
+    $ultimaVisita = $datos[$email]['ultima_visita'] ?? null;
+    $ultimaVisita = is_numeric($ultimaVisita) && (int)$ultimaVisita > 0
+        ? (int)$ultimaVisita
+        : null;
 
     // Proteger la clave (hash)
     $token_hash = hash('sha256', $token);
@@ -161,5 +178,40 @@ function registrarTokenEnServidor($email, $token) {
     $datos[$email] = $registro;
 
     // Guardar los cambios en el disco duro
-    file_put_contents($ruta_archivo, json_encode($datos, JSON_PRETTY_PRINT));
+    $contenido = json_encode($datos, JSON_PRETTY_PRINT);
+    if ($contenido === false || file_put_contents($ruta_archivo, $contenido, LOCK_EX) === false) {
+        throw new RuntimeException('No se pudo guardar el recordatorio de acceso.');
+    }
+
+    return $ultimaVisita;
+}
+
+function eliminarTokenRecordarme(string $token): void {
+    $ruta_archivo = __DIR__ . '/../../datos/recordar.json';
+    if (!file_exists($ruta_archivo)) {
+        return;
+    }
+
+    $contenido = file_get_contents($ruta_archivo);
+    if ($contenido === false) {
+        throw new RuntimeException('No se pudo leer el archivo de recordatorio.');
+    }
+    $datos = json_decode($contenido, true);
+    if (!is_array($datos)) {
+        throw new RuntimeException('El archivo de recordatorio no contiene datos válidos.');
+    }
+
+    $hashToken = hash('sha256', $token);
+    foreach ($datos as $email => $registro) {
+        if (isset($registro['token_hash'])
+            && is_string($registro['token_hash'])
+            && hash_equals($registro['token_hash'], $hashToken)) {
+            unset($datos[$email]);
+            $contenido = json_encode($datos, JSON_PRETTY_PRINT);
+            if ($contenido === false || file_put_contents($ruta_archivo, $contenido, LOCK_EX) === false) {
+                throw new RuntimeException('No se pudo eliminar el recordatorio de acceso.');
+            }
+            return;
+        }
+    }
 }

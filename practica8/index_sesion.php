@@ -18,6 +18,12 @@ require_once "includes/layout/inicio.php";
     <b>¡Bienvenido/a, <?= e($nombreMostrar); ?>!</b>
 </p>
 
+<?php if ($mensajeAcceso = flash_get('exito')): ?>
+    <section class="alerta-exito" role="status">
+        <p><?= e($mensajeAcceso); ?></p>
+    </section>
+<?php endif; ?>
+
 <section id="busqueda-rapida">
     <h2>Búsqueda Rápida</h2>
 

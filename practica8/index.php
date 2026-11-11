@@ -2,6 +2,9 @@
 require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
+if (!empty($_SESSION['usuario'])) {
+    redirigir('index_sesion.php');
+}
 
 $title          = "Página principal";
 $esPartePrivada = false; // Carga el menú de navegación pública (nav_publica.php)

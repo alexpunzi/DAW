@@ -41,15 +41,24 @@ if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
     // Generamos el token aleatorio muy seguro
     $token = bin2hex(random_bytes(32));
 
-    // Le entregaos el billete al navegador usando una cookie
-    setcookie('recordarme', $token, [
-        'expires'  => time() + (90 * 24 * 60 * 60), // Caducidad
-        'path'     => '/', // En todas las carpetas de la web
-        'httponly' => true // Bloque el acceso desde JS por seguridad
-    ]);
-
-    // Guardamos la matrícula de este billete en el servidor
-    registrarTokenEnServidor($email, $token);
+    try {
+        // Guardamos el token en el servidor antes de entregarlo al navegador.
+        $ultimaVisita = registrarTokenEnServidor($email, $token);
+        if ($ultimaVisita !== null) {
+            $fechaVisita = date('d/m/Y \a \l\a\s H:i', $ultimaVisita);
+            flash_set('exito', "¡Bienvenido de nuevo! Tu última conexión fue el $fechaVisita.");
+        }
+        setcookie('recordarme', $token, [
+            'expires'  => time() + (90 * 24 * 60 * 60),
+            'path'     => '/',
+            'httponly' => true,
+            'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+            'samesite' => 'Lax'
+        ]);
+    } catch (RuntimeException $error) {
+        error_log($error->getMessage());
+        flash_set('exito', 'Has iniciado sesión, pero no se pudo guardar el acceso para próximas visitas.');
+    }
 }
 
 // Redirigimos al panel privado de forma limpia

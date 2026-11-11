@@ -45,7 +45,7 @@
         </a>
     </li>
     <li>
-        <a href="index.php">
+        <a href="includes/procesadores/cerrar_sesion.php">
             <span class="material-symbols-outlined" aria-hidden="true">logout</span>
             Cerrar sesión
         </a>
