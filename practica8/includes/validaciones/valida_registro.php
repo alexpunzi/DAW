@@ -6,11 +6,16 @@ function validarRegistro(array $datos) {
     $errores = [];
 
     $usuario    = trim((string)($datos['nombre'] ?? ''));
+    $apellidos  = trim((string)($datos['apellidos'] ?? ''));
     $password   = trim((string)($datos['password'] ?? ''));
     $repassword = trim((string)($datos['confirmar_password'] ?? ''));
 
     if ($usuario === '') {
         $errores[] = 'e_usuario_vacio';
+    }
+
+    if ($apellidos === '') {
+        $errores[] = 'e_apellidos_vacios';
     }
 
     if ($password === '') {

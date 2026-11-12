@@ -29,6 +29,7 @@ require_once "includes/layout/inicio.php";
 // Mapeo de códigos de error a mensajes legibles
 $mensajesError = [
     'e_usuario_vacio'     => 'El nombre de usuario es obligatorio.',
+    'e_apellidos_vacios'  => 'Debes escribir al menos un apellido.',
     'e_password_vacio'    => 'La contraseña es obligatoria.',
     'e_repassword_vacio'  => 'Debes repetir la contraseña.',
     'e_password_mismatch' => 'Las contraseñas introducidas no coinciden.'
@@ -36,11 +37,13 @@ $mensajesError = [
 
 // Comprobaciones individuales por cada campo según los códigos recibidos
 $errorNombre   = in_array('e_usuario_vacio', $listaErrores);
+$errorApellidos = in_array('e_apellidos_vacios', $listaErrores);
 $errorPassword = in_array('e_password_vacio', $listaErrores);
 $errorRepass   = in_array('e_repassword_vacio', $listaErrores) || in_array('e_password_mismatch', $listaErrores);
 
 // Mensajes específicos para mostrar debajo de cada caja
 $msgNombre = $errorNombre ? $mensajesError['e_usuario_vacio'] : '';
+$msgApellidos = $errorApellidos ? $mensajesError['e_apellidos_vacios'] : '';
 $msgPassword = $errorPassword ? $mensajesError['e_password_vacio'] : '';
 $msgRepass = '';
 if (in_array('e_repassword_vacio', $listaErrores)) {
@@ -104,15 +107,20 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
     <p>
         <label for="apellidos">
             <span class="material-symbols-outlined" aria-hidden="true">badge</span>
-            Apellido/s
+            Apellido/s *
         </label>
         <div class="campo-con-error">
             <input type="text" id="apellidos" name="apellidos"
                 value="<?= e($datosPrevios['apellidos'] ?? ''); ?>"
+                class="<?= $errorApellidos ? 'input-error' : ''; ?>"
+                required
                 data-ayuda="ayuda_apellidos" aria-describedby="ayuda_apellidos">
             <small id="ayuda_apellidos" class="ayuda">
-                Opcional. Solo letras (con tildes), espacios y guiones.
+                Escribe al menos un apellido. Solo letras (con tildes), espacios y guiones.
             </small>
+            <?php if ($errorApellidos): ?>
+                <span class="error-text"><?= e($msgApellidos); ?></span>
+            <?php endif; ?>
         </div>
     </p>
 

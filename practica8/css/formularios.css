@@ -44,6 +44,12 @@ input[type="radio"] {
     width: auto;
 }
 
+input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    padding: 0;
+}
+
 input[type="range"] {
     border: 0;
     padding: 0;
@@ -84,6 +90,44 @@ fieldset > label {
     display: inline-block;
     font-weight: 400;
     margin: 0 20px 10px 0;
+}
+
+.opcion-recordarme {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    padding: 12px 14px;
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+}
+
+.opcion-recordarme label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.opcion-recordarme input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    padding: 0;
+    flex: 0 0 16px;
+    margin: 0;
+}
+
+.opcion-recordarme label > span:last-of-type {
+    flex: 1;
+}
+
+.opcion-recordarme .material-symbols-outlined {
+    margin: 0;
+    color: var(--color-suave);
 }
 
 

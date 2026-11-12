@@ -1,6 +1,6 @@
 const camposRegistro = [
     { id: "nombre", validar: validarNombre },
-    { id: "apellidos", validar: crearValidadorApellidos(false) }, // opcional en el registro
+    { id: "apellidos", validar: crearValidadorApellidos(true) },
     { id: "email", validar: validarEmail },
     { id: "password", validar: validarPassword },
     { id: "confirmar_password", validar: validarRepetir },

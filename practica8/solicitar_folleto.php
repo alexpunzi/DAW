@@ -171,7 +171,7 @@ $matrizTarifas = obtenerMatrizTarifas();
                     <span class="material-symbols-outlined" aria-hidden="true">badge</span>
                     Apellido/s *
                 </label>
-                <input type="text" id="apellidos" name="apellidos" value="<?= e(get('apellidos')); ?>" data-ayuda="ayuda_apellidos" aria-describedby="ayuda_apellidos">
+                <input type="text" id="apellidos" name="apellidos" value="<?= e(get('apellidos')); ?>" required data-ayuda="ayuda_apellidos" aria-describedby="ayuda_apellidos">
                 <small id="ayuda_apellidos" class="ayuda">Al menos un apellido. Solo letras, espacios y guiones.</small>
             </p>
 
