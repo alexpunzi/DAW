@@ -16,11 +16,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // ----- FUNCIONES PARA MENSAJES FLASH (FLASHDATA) -----
 
-/**
- * Guarda un mensaje temporal en la sesión.
- * $clave Identificador del mensaje (ej: 'error', 'exito').
- * $valor El texto del mensaje.
- */
+// Guarda un mensaje temporal en la sesión
+// $clave es el identificador ('error','exito','aviso'...)
+// $valor es el contenido real que se muestra ("Contraseña incorrecta", "El anuncio se ha guardado con éxito")
 function flash_set($clave, $valor) {
     $_SESSION['flash'][$clave] = $valor;
 }
@@ -28,7 +26,7 @@ function flash_set($clave, $valor) {
 // Recupera un mensaje temporal y lo destruye para que no vuelva a aparecer
 function flash_get($clave) {
     if (isset($_SESSION['flash'][$clave])) {
-        $valor = $_SESSION['flash'][$clave];
+        $valor = $_SESSION['flash'][$clave]; // Lo guarda en una variable dentro de la función
         unset($_SESSION['flash'][$clave]); // Se elimina tras leerlo
         return $valor;
     }
@@ -46,36 +44,54 @@ function flash_get_many(array $claves): array {
 
 
 // ----- LÓGICA DE AUTO-LOGIN (Opción "Recordarme") -----
+// Lee la cookie, busca el token en el servidor y autocompleta el inicio de sesión
+
 // Si no hay sesión activa, pero el navegador nos trae la cookie de "recordarme"
 if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
     $cookieValida = false;
     $ruta_archivo = __DIR__ . '/../datos/recordar.json';
     
-    if (file_exists($ruta_archivo)) {
-        // Leemos nuestra libreta del servidor
+    // Si el archivo no existe, registramos el error y salimos
+    if (!file_exists($ruta_archivo)) {
+        error_log('No se encontró el archivo de recordatorio de acceso.');
+    } else {
+        // Leemos el contenido del archivo
         $contenido = file_get_contents($ruta_archivo);
-        $datos = $contenido === false ? null : json_decode($contenido, true);
-        if ($contenido === false || !is_array($datos)) {
-            error_log('No se pudieron leer datos válidos de recordar.json.');
+        
+        // Transformamos el JSON a array (si falla la lectura, ponemos null)
+        if ($contenido === false) {
+            $datos = null;
+        } else {
+            $datos = json_decode($contenido, true);
+        }
+
+        // Si los datos no tienen estructura de array válida, los inicializamos vacíos
+        if (!is_array($datos)) {
+            error_log('No se pudieron leer datos válidos de recordar.json (No es un array).');
             $datos = [];
         }
         
-        // Encriptamos el token que nos trae la cookie para poder compararlo
+        // Encriptamos el token de la cookie para poder compararlo
         $hash_cookie = hash('sha256', $_COOKIE['recordarme']);
         
-        // Buscamos al usuario en nuestra libreta
-        foreach (is_array($datos) ? $datos : [] as $email => $registro) {
+        // Recorremos la lista de usuarios de forma limpia
+        foreach ($datos as $email => $registro) {
             
-            // Si los hashes coinciden, es nuestro usuario
-            if (is_array($registro)
-                && isset($registro['token_hash'], $registro['caducidad'])
-                && is_string($registro['token_hash'])
-                && hash_equals($registro['token_hash'], $hash_cookie)) {
+            // Validamos que el registro sea un array y tenga las claves necesarias
+            $esRegistroValido = is_array($registro) 
+                && isset($registro['token_hash'], $registro['caducidad']) 
+                && is_string($registro['token_hash']);
+
+            // Si es válido y los hashes coinciden...
+            if ($esRegistroValido && hash_equals($registro['token_hash'], $hash_cookie)) {
                 
-                // Comprobamos que no hayan pasado los 90 días
-                if (is_numeric($registro['caducidad']) && (int)$registro['caducidad'] > time()) {
+                // Comprobamos que la caducidad sea un número válido y no haya expirado (90 días)
+                $noHaCaducado = is_numeric($registro['caducidad']) && (int)$registro['caducidad'] > time();
+
+                if ($noHaCaducado) {
                     require_once __DIR__ . '/lib/funciones.php';
                     $uDatos = buscarUsuario((string)$email);
+                    
                     if ($uDatos === null) {
                         break;
                     }
@@ -83,8 +99,8 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
                     session_regenerate_id(true);
                     $_SESSION['usuario'] = $email;
 
-                    // Cargar y guardar el estilo del usuario registrado
-                    if ($uDatos !== null && isset($uDatos['estilo'])) {
+                    // Guardamos el estilo si existe
+                    if (isset($uDatos['estilo'])) {
                         $_SESSION['estilo'] = $uDatos['estilo'];
                     }
                     
@@ -92,9 +108,11 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
 
                     try {
                         $ultimaSesion = registrarUltimaSesion((string)$email);
+                        
                         if ($ultimaSesion === null && isset($registro['ultima_visita']) && is_numeric($registro['ultima_visita'])) {
                             $ultimaSesion = (int)$registro['ultima_visita'];
                         }
+                        
                         if ($ultimaSesion !== null) {
                             $nombre = $uDatos['nombre'];
                             flash_set('exito', "¡Bienvenido de nuevo, $nombre! Tu última conexión fue el " . formatearFechaHora($ultimaSesion) . '.');
@@ -103,14 +121,13 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
                         error_log($error->getMessage());
                         flash_set('exito', 'Has iniciado sesión, pero no se pudo consultar ni guardar la hora de tu última sesión.');
                     }
- 
                 }
-                break; // Dejamos de buscar en la lista
+                
+                break; // Rompemos el bucle porque ya encontramos al usuario
             }
         }
-    } else {
-        error_log('No se encontró el archivo de recordatorio de acceso.');
     }
+}
 
     if (!$cookieValida) {
         setcookie('recordarme', '', [
