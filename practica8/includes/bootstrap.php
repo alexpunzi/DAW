@@ -46,9 +46,10 @@ function flash_get_many(array $claves): array {
 // ----- LÓGICA DE AUTO-LOGIN (Opción "Recordarme") -----
 // Lee la cookie, busca el token en el servidor y autocompleta el inicio de sesión
 
+$cookieValida = false; // Inicializamos por defecto para evitar warnings
+
 // Si no hay sesión activa, pero el navegador nos trae la cookie de "recordarme"
 if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
-    $cookieValida = false;
     $ruta_archivo = __DIR__ . '/../datos/recordar.json';
     
     // Si el archivo no existe, registramos el error y salimos
@@ -129,13 +130,14 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
     }
 }
 
-    if (!$cookieValida) {
-        setcookie('recordarme', '', [
-            'expires' => time() - 3600,
-            'path' => '/',
-            'httponly' => true,
-            'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-            'samesite' => 'Lax'
-        ]);
-        unset($_COOKIE['recordarme']);
-    }
+// Si la cookie venía en el navegador pero no era válida (o expiró/falló), la borramos
+if (isset($_COOKIE['recordarme']) && !$cookieValida) {
+    setcookie('recordarme', '', [
+        'expires' => time() - 3600,
+        'path' => '/',
+        'httponly' => true,
+        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+        'samesite' => 'Lax'
+    ]);
+    unset($_COOKIE['recordarme']);
+}
