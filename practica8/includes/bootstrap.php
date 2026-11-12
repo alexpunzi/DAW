@@ -139,4 +139,3 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
         ]);
         unset($_COOKIE['recordarme']);
     }
-}
