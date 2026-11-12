@@ -104,7 +104,7 @@ require_once "includes/layout/inicio.php";
 <section>
     <h3>Limitaciones conocidas</h3>
     <ul>
-        <li>La selección del estilo de página no se conserva automáticamente al cambiar o navegar a otra página distinta del sitio.</li>
+        <li>Al iniciar sesión, cada usuario recibe automáticamente su estilo accesible asignado; este se conserva durante la sesión. Al cerrar sesión, vuelve a aplicarse el estilo base.</li>
         <li>Navegadores como Google Chrome no ofrecen la opción nativa de seleccionar estilos alternativos (requieren extensiones de terceros).</li>
         <li>La validación de los formularios necesita JavaScript activado; sin él, los datos se envían sin comprobar.</li>
     </ul>

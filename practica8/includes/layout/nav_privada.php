@@ -1,5 +1,5 @@
 <?php
-// Menú de usuario registrado: todos los enlaces conservan el usuario (?usuario=email)
+// La identidad se mantiene en la sesión, nunca en los enlaces.
 ?>
 <ul>
     <li>

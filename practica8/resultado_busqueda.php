@@ -92,16 +92,16 @@ require_once "includes/layout/inicio.php";
     <!-- Resultado de ejemplo -->
     <ul class="cards-grid">
         <li class="card">
-            <h3><a href="<?= e(urlPrivada('anuncio.php', ['id' => 2])); ?>">Piso Exclusivo de 4 Habitaciones y 3 Baños</a></h3>
+            <h3><a href="<?= e(urlPrivada('anuncio.php', ['id' => 4])); ?>">Piso Amplio en Ruzafa</a></h3>
 
             <img src="img/piso-valencia.jpg"
-                alt="Piso en venta en Passatge de Ripalda, Valencia"
+                alt="Piso amplio en el barrio de Ruzafa, Valencia"
                 width="600"
                 height="400">
 
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b> Sant Francesc, Valencia, España</p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros(1400000); ?></p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 12/04/2026</p>
+            <p><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b> Valencia, Valencia, España</p>
+            <p><b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros(240000); ?></p>
+            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 01/11/2026</p>
         </li>
 
         <li class="card">
@@ -114,7 +114,7 @@ require_once "includes/layout/inicio.php";
 
             <p><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b> Altea, Alicante, España</p>
             <p><b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros(320000); ?></p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 22/09/2026</p>
+            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 15/10/2026</p>
         </li>
     </ul>
 </section>

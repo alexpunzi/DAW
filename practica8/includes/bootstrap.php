@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Madrid');
+
 // Configuramos seguridad de la cookie de sesión antes de iniciarla
 session_set_cookie_params([
     'httponly' => true, // Evita que JS acceda a la cookie
@@ -33,11 +35,20 @@ function flash_get($clave) {
     return null;
 }
 
+// Recupera y elimina de una vez varios valores flash.
+function flash_get_many(array $claves): array {
+    $valores = [];
+    foreach ($claves as $clave) {
+        $valores[$clave] = flash_get($clave);
+    }
+    return $valores;
+}
+
 
 // ----- LÓGICA DE AUTO-LOGIN (Opción "Recordarme") -----
 // Si no hay sesión activa, pero el navegador nos trae la cookie de "recordarme"
 if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
-    
+    $cookieValida = false;
     $ruta_archivo = __DIR__ . '/../datos/recordar.json';
     
     if (file_exists($ruta_archivo)) {
@@ -57,32 +68,40 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
             
             // Si los hashes coinciden, es nuestro usuario
             if (is_array($registro)
-                && isset($registro['token_hash'], $registro['caducidad'], $registro['ultima_visita'])
+                && isset($registro['token_hash'], $registro['caducidad'])
                 && is_string($registro['token_hash'])
-                && is_numeric($registro['ultima_visita'])
                 && hash_equals($registro['token_hash'], $hash_cookie)) {
                 
                 // Comprobamos que no hayan pasado los 90 días
                 if (is_numeric($registro['caducidad']) && (int)$registro['caducidad'] > time()) {
-                    
+                    require_once __DIR__ . '/lib/funciones.php';
+                    $uDatos = buscarUsuario((string)$email);
+                    if ($uDatos === null) {
+                        break;
+                    }
+
+                    session_regenerate_id(true);
                     $_SESSION['usuario'] = $email;
 
                     // Cargar y guardar el estilo del usuario registrado
-                    require_once __DIR__ . '/lib/funciones.php';
-                    $uDatos = buscarUsuario($email);
                     if ($uDatos !== null && isset($uDatos['estilo'])) {
                         $_SESSION['estilo'] = $uDatos['estilo'];
                     }
                     
-                    // Preparamos el mensaje con la fecha de su última visita
-                    $fecha_visita = date('d/m/Y \a \l\a\s H:i', (int)$registro['ultima_visita']);
-                    flash_set('exito', "¡Bienvenido de nuevo! Tu última conexión fue el $fecha_visita.");
-                    
-                    // Actualizamos la fecha de su visita a HOY en el archivo JSON
-                    $datos[$email]['ultima_visita'] = time();
-                    $contenido = json_encode($datos, JSON_PRETTY_PRINT);
-                    if ($contenido === false || file_put_contents($ruta_archivo, $contenido, LOCK_EX) === false) {
-                        error_log('No se pudo actualizar la última visita en recordar.json.');
+                    $cookieValida = true;
+
+                    try {
+                        $ultimaSesion = registrarUltimaSesion((string)$email);
+                        if ($ultimaSesion === null && isset($registro['ultima_visita']) && is_numeric($registro['ultima_visita'])) {
+                            $ultimaSesion = (int)$registro['ultima_visita'];
+                        }
+                        if ($ultimaSesion !== null) {
+                            $nombre = $uDatos['nombre'];
+                            flash_set('exito', "¡Bienvenido de nuevo, $nombre! Tu última conexión fue el " . formatearFechaHora($ultimaSesion) . '.');
+                        }
+                    } catch (RuntimeException $error) {
+                        error_log($error->getMessage());
+                        flash_set('exito', 'Has iniciado sesión, pero no se pudo consultar ni guardar la hora de tu última sesión.');
                     }
  
                 }
@@ -91,5 +110,16 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
         }
     } else {
         error_log('No se encontró el archivo de recordatorio de acceso.');
+    }
+
+    if (!$cookieValida) {
+        setcookie('recordarme', '', [
+            'expires' => time() - 3600,
+            'path' => '/',
+            'httponly' => true,
+            'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+            'samesite' => 'Lax'
+        ]);
+        unset($_COOKIE['recordarme']);
     }
 }

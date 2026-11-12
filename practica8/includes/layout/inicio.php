@@ -27,3 +27,8 @@ $esPartePrivada = $esPartePrivada ?? false;
     </header>
 
     <main id="contenido">
+        <?php if ($mensajeFlash = flash_get('exito')): ?>
+            <section class="alerta-exito" role="status">
+                <p><?= e($mensajeFlash); ?></p>
+            </section>
+        <?php endif; ?>

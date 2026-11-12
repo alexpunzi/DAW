@@ -7,6 +7,7 @@ require_once "includes/lib/costes.php";
 
 $title          = "Solicitar Folleto";
 $esPartePrivada = estaIdentificado();
+requiereUsuario();
 
 
 $scriptsExtra = array_merge(

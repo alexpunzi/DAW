@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../lib/funciones.php';
 
-// Comprobamos si hay un error de inicio de sesión activo en la URL
-$errorActual = get('error');
+// Los datos flash se consumen una sola vez en index.php.
+$errorActual = $codigoError ?? null;
+$emailPrevio = $emailPrevio ?? '';
 $tieneError = ($errorActual === 'vacio' || $errorActual === 'credenciales');
 
 // Definimos los mensajes específicos por campo 
@@ -34,7 +35,7 @@ if ($errorActual === 'vacio') {
                 type="text" 
                 id="login_email" 
                 name="login_email"
-                value="<?= e(get('email_previo')); ?>"
+                value="<?= e($emailPrevio); ?>"
                 class="<?= $tieneError ? 'input-error' : ''; ?>"
                 data-ayuda="ayuda_login_email" 
                 aria-describedby="ayuda_login_email"

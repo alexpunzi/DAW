@@ -2,6 +2,15 @@
 require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 
+$registroFlash = flash_get_many(['registro_errores', 'registro_datos', 'registro_exito']);
+$listaErrores = is_array($registroFlash['registro_errores'])
+    ? $registroFlash['registro_errores']
+    : [];
+$datosPrevios = is_array($registroFlash['registro_datos'])
+    ? $registroFlash['registro_datos']
+    : [];
+$exito = $registroFlash['registro_exito'] === true;
+
 //configuracion de las vartiables especificas 
 $title        = "Registro";
 $esPartePrivada = false; // muestra la navegación pública 
@@ -16,11 +25,6 @@ $scriptsExtra = scriptsValidacion([
 
 require_once "includes/layout/cabecera.php";
 require_once "includes/layout/inicio.php";
-
-
-$exito        = get('exito');
-$erroresRaw   = get('errores');
-$listaErrores = !empty($erroresRaw) ? explode(',', $erroresRaw) : [];
 
 // Mapeo de códigos de error a mensajes legibles
 $mensajesError = [
@@ -51,29 +55,29 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
 <p><small>* Campos obligatorios</small></p>
 
 
-<?php if ($exito === '1'): ?>
+<?php if ($exito): ?>
     <section class="alerta-exito" role="alert">
-        <p>¡Registro completado con éxito! Bienvenido/a, <strong><?= e(get('nombre')); ?></strong>.</p>
+        <p>¡Registro completado con éxito! Bienvenido/a, <strong><?= e($datosPrevios['nombre'] ?? ''); ?></strong>.</p>
     </section>
 
     <!-- Datos recibidos (por seguridad no se muestran las contraseñas; la foto se tratará en otra práctica) -->
     <section>
         <h3>Datos introducidos</h3>
         <ul>
-            <li><strong>Nombre:</strong> <?= e(get('nombre')); ?></li>
-            <li><strong>Apellido/s:</strong> <?= e(get('apellidos')); ?></li>
-            <li><strong>Email:</strong> <?= e(get('email')); ?></li>
-            <li><strong>Sexo:</strong> <?= e(ucfirst(get('sexo'))); ?></li>
-            <li><strong>Fecha de nacimiento:</strong> <?= e(get('fecha_nacimiento')); ?></li>
-            <li><strong>Ciudad:</strong> <?= e(get('ciudad')); ?></li>
-            <li><strong>País:</strong> <?= e(paises()[get('pais')] ?? get('pais')); ?></li>
+            <li><strong>Nombre:</strong> <?= e($datosPrevios['nombre'] ?? ''); ?></li>
+            <li><strong>Apellido/s:</strong> <?= e($datosPrevios['apellidos'] ?? ''); ?></li>
+            <li><strong>Email:</strong> <?= e($datosPrevios['email'] ?? ''); ?></li>
+            <li><strong>Sexo:</strong> <?= e(ucfirst($datosPrevios['sexo'] ?? '')); ?></li>
+            <li><strong>Fecha de nacimiento:</strong> <?= e($datosPrevios['fecha_nacimiento'] ?? ''); ?></li>
+            <li><strong>Ciudad:</strong> <?= e($datosPrevios['ciudad'] ?? ''); ?></li>
+            <li><strong>País:</strong> <?= e(paises()[$datosPrevios['pais'] ?? ''] ?? ($datosPrevios['pais'] ?? '')); ?></li>
         </ul>
         <p><a href="index.php">Ir a la página principal para iniciar sesión</a></p>
     </section>
 <?php endif; ?>
 
 
-<?php if ($exito !== '1'): ?>
+<?php if (!$exito): ?>
 <form id="form_registro" action="includes/procesadores/respuesta_registro.php" method="post" enctype="multipart/form-data" novalidate>
 
     <!-- NOMBRE -->
@@ -84,7 +88,7 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         </label>
         <div class="campo-con-error">
             <input type="text" id="nombre" name="nombre"
-                value="<?= e(get('nombre')); ?>"
+                value="<?= e($datosPrevios['nombre'] ?? ''); ?>"
                 class="<?= $errorNombre ? 'input-error' : ''; ?>"
                 data-ayuda="ayuda_nombre" aria-describedby="ayuda_nombre">
             <small id="ayuda_nombre" class="ayuda">
@@ -104,7 +108,7 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         </label>
         <div class="campo-con-error">
             <input type="text" id="apellidos" name="apellidos"
-                value="<?= e(get('apellidos')); ?>"
+                value="<?= e($datosPrevios['apellidos'] ?? ''); ?>"
                 data-ayuda="ayuda_apellidos" aria-describedby="ayuda_apellidos">
             <small id="ayuda_apellidos" class="ayuda">
                 Opcional. Solo letras (con tildes), espacios y guiones.
@@ -120,7 +124,7 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         </label>
         <div class="campo-con-error">
             <input type="text" id="email" name="email"
-                value="<?= e(get('email')); ?>"
+                value="<?= e($datosPrevios['email'] ?? ''); ?>"
                 data-ayuda="ayuda_email" aria-describedby="ayuda_email">
             <small id="ayuda_email" class="ayuda">
                 Formato: parte-local@dominio (ej.: ana.lopez@ua.es).
@@ -173,8 +177,8 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         <div class="campo-con-error">
             <select id="sexo" name="sexo">
                 <option value="">Selecciona una opción...</option>
-                <option value="mujer" <?= get('sexo') === 'mujer' ? 'selected' : ''; ?>>Mujer</option>
-                <option value="hombre" <?= get('sexo') === 'hombre' ? 'selected' : ''; ?>>Hombre</option>
+                <option value="mujer" <?= ($datosPrevios['sexo'] ?? '') === 'mujer' ? 'selected' : ''; ?>>Mujer</option>
+                <option value="hombre" <?= ($datosPrevios['sexo'] ?? '') === 'hombre' ? 'selected' : ''; ?>>Hombre</option>
             </select>
         </div>
     </p>
@@ -184,7 +188,7 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         <label for="fecha_nacimiento">Fecha nacimiento *</label>
         <div class="campo-con-error">
             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
-                value="<?= e(get('fecha_nacimiento')); ?>"
+                value="<?= e($datosPrevios['fecha_nacimiento'] ?? ''); ?>"
                 data-ayuda="ayuda_fecha" aria-describedby="ayuda_fecha">
             <small id="ayuda_fecha" class="ayuda">
                 Elige la fecha con el calendario. Debes tener 18 años cumplidos.
@@ -197,7 +201,7 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         <label for="ciudad">Ciudad de residencia</label>
         <div class="campo-con-error">
             <input type="text" id="ciudad" name="ciudad"
-                value="<?= e(get('ciudad')); ?>">
+                value="<?= e($datosPrevios['ciudad'] ?? ''); ?>">
         </div>
     </p>
 
@@ -207,9 +211,9 @@ if (in_array('e_repassword_vacio', $listaErrores)) {
         <div class="campo-con-error">
             <select id="pais" name="pais">
                 <option value="">Selecciona un país...</option>
-                <option value="argentina" <?= get('pais') === 'argentina' ? 'selected' : ''; ?>>Argentina</option>
-                <option value="espana" <?= get('pais') === 'espana' ? 'selected' : ''; ?>>España</option>
-                <option value="mexico" <?= get('pais') === 'mexico' ? 'selected' : ''; ?>>México</option>
+                <option value="argentina" <?= ($datosPrevios['pais'] ?? '') === 'argentina' ? 'selected' : ''; ?>>Argentina</option>
+                <option value="espana" <?= ($datosPrevios['pais'] ?? '') === 'espana' ? 'selected' : ''; ?>>España</option>
+                <option value="mexico" <?= ($datosPrevios['pais'] ?? '') === 'mexico' ? 'selected' : ''; ?>>México</option>
             </select>
         </div>
     </p>

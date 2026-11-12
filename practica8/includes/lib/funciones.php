@@ -48,7 +48,38 @@ function scriptsValidacion(array $scripts): array {
     return VALIDACION_JS ? $scripts : [];
 }
 
+function registrarUltimaSesion(string $email): ?int {
+    $rutaArchivo = __DIR__ . '/../../datos/ultimas_sesiones.json';
+    $sesiones = [];
 
+    if (file_exists($rutaArchivo)) {
+        $contenido = file_get_contents($rutaArchivo);
+        if ($contenido === false) {
+            throw new RuntimeException('No se pudo leer el historial de sesiones.');
+        }
+        $sesiones = json_decode($contenido, true);
+        if (!is_array($sesiones)) {
+            throw new RuntimeException('El historial de sesiones no contiene datos válidos.');
+        }
+    }
+
+    $ultimaSesion = $sesiones[$email] ?? null;
+    $ultimaSesion = is_numeric($ultimaSesion) && (int)$ultimaSesion > 0
+        ? (int)$ultimaSesion
+        : null;
+
+    $sesiones[$email] = time();
+    $contenido = json_encode($sesiones, JSON_PRETTY_PRINT);
+    if ($contenido === false || file_put_contents($rutaArchivo, $contenido, LOCK_EX) === false) {
+        throw new RuntimeException('No se pudo guardar el historial de sesiones.');
+    }
+
+    return $ultimaSesion;
+}
+
+function formatearFechaHora(int $timestamp): string {
+    return date('d/m/Y \a \l\a\s H:i', $timestamp);
+}
 
 // ruta base de la aplicación 
 function urlBase(): string {
@@ -59,8 +90,9 @@ function urlBase(): string {
 
 // Redirige al usuario a una página determinada dentro del sitio web
 function redirigir(string $pagina, array $params = []): void {
+    unset($params['usuario']);
     // Detecta protocolo y construye la URL
-    $esquema = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== off) ? 'https' : 'http';
+    $esquema = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $url = $esquema . '://' . $_SERVER['HTTP_HOST'] . urlBase() . '/' . ltrim($pagina, '/');
 
     // Si se enviaron parámetros GET adicionales, los concatena a la URL
@@ -86,7 +118,7 @@ function usuarioActual(): ?array {
     // Si es la primera vez que se llama a la función en la página
     $actual = null;
 
-    // Comprueba si existe el parámetro usuario en la cookie, si existe busca el usuario
+    // La identidad procede únicamente de la sesión del servidor.
     if (!empty($_SESSION['usuario'])) {
         $actual = buscarUsuario((string)$_SESSION['usuario']);
     }
@@ -102,19 +134,16 @@ function estaIdentificado(): bool {
 function requiereUsuario(): array {
     $usuario = usuarioActual();
     if ($usuario === null) { // si no hay usuario 
-        redirigir('index.php', ['error' => 'acceso']); //redirige al index.pho sin sesion 
+        flash_set('error', 'acceso');
+        redirigir('index.php');
     }
     return $usuario;
 }
 
 // Construye enlaces hacia páginas privadas
 function urlPrivada(string $pagina, array $params = []): string {
+    unset($params['usuario']);
     return $pagina . (!empty($params) ? '?' . http_build_query($params) : '');
-}
-
-// Genera el campo oculto de formulario para la identidad del usuario
-function campoUsuario(): string {
-    return '';
 }
 
 // Enlace a la página de inicio según el usuario esté identificado o no
@@ -133,12 +162,26 @@ function obtenerErrorCampo($nombreCampo, array $errores) {
     return '';
 }
 
+function saludoPorHora(): string {
+    $hora = (int)date('G');
+    if ($hora >= 6 && $hora <= 11) {
+        return 'Buenos días';
+    }
+    if ($hora >= 12 && $hora <= 15) {
+        return 'Hola';
+    }
+    if ($hora >= 16 && $hora <= 19) {
+        return 'Buenas tardes';
+    }
+    return 'Buenas noches';
+}
+
 function registrarTokenEnServidor($email, $token) {
     
     // Preparar el archivo
     $ruta_archivo = __DIR__ . '/../../datos/recordar.json';
 
-    // Leer los datos que ya existen
+    // Solo se mantiene un usuario recordado a la vez.
     $datos = [];
     if (file_exists($ruta_archivo)) {
         $contenido = file_get_contents($ruta_archivo);
@@ -168,7 +211,7 @@ function registrarTokenEnServidor($email, $token) {
     ];
 
     // Si el usuario ya tenía un token viejo de otro día, se sobrescribe
-    $datos[$email] = $registro;
+    $datos = [$email => $registro];
 
     // Guardar los cambios en el disco duro
     $contenido = json_encode($datos, JSON_PRETTY_PRINT);

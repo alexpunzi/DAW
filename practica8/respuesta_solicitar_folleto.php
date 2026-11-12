@@ -3,6 +3,8 @@ require_once 'includes/bootstrap.php';
 require_once "includes/lib/funciones.php";
 require_once "includes/lib/costes.php";
 
+requiereUsuario();
+
 // Solo se llega aquí enviando el formulario de solicitud
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirigir('solicitar_folleto.php');

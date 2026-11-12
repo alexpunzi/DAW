@@ -16,8 +16,6 @@ require_once "includes/layout/inicio.php";
 
 <!-- Acción reorientada al controlador de resultados en PHP -->
 <form action="resultado_busqueda.php" method="get">
-    <?= campoUsuario(); ?>
-
     <p>
         <label for="tipo_anuncio">Tipo de Anuncio</label>
         <select id="tipo_anuncio" name="tipo_anuncio">

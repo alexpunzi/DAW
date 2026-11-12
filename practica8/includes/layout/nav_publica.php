@@ -17,10 +17,4 @@
             Registro
         </a>
     </li>
-    <li>
-        <a href="solicitar_folleto.php">
-            <span class="material-symbols-outlined" aria-hidden="true">description</span>
-            Solicitar folleto
-        </a>
-    </li>
 </ul>

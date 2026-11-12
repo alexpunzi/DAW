@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirigir('registro.php');
 }
 
-// Datos que se devuelven por URL, las contraseñas y URL no
+// Los datos se conservan temporalmente en sesión, excepto las contraseñas.
 $datos = [
     'nombre'           => post('nombre'),
     'apellidos'        => post('apellidos'),
@@ -22,9 +22,13 @@ $datos = [
 $errores = validarRegistro($_POST);
 
 if (!empty($errores)) {
-    // Vuelve al formulario con los errores y los datos ya escritos
-    redirigir('registro.php', $datos + ['errores' => implode(',', $errores)]);
+    flash_set('registro_errores', $errores);
+    flash_set('registro_datos', $datos);
+    flash_set('registro_exito', false);
+    redirigir('registro.php');
 }
 
-// si todo es correcto, se muestran los datos recibidos
-redirigir('registro.php', $datos + ['exito' => '1']);
+flash_set('registro_errores', []);
+flash_set('registro_datos', $datos);
+flash_set('registro_exito', true);
+redirigir('registro.php');

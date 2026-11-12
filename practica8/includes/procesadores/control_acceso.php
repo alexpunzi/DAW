@@ -33,7 +33,20 @@ if ($error !== null) {
 
 
 // ----- ACCESO CORRECTO -----
+session_regenerate_id(true);
 $_SESSION['usuario'] = $email;
+
+try {
+    $ultimaSesion = registrarUltimaSesion($email);
+    if ($ultimaSesion !== null) {
+        $usuarioDatos = buscarUsuario($email);
+        $nombre = $usuarioDatos['nombre'] ?? $email;
+        flash_set('exito', "¡Bienvenido de nuevo, $nombre! Tu última conexión fue el " . formatearFechaHora($ultimaSesion) . '.');
+    }
+} catch (RuntimeException $error) {
+    error_log($error->getMessage());
+    flash_set('exito', 'Has iniciado sesión, pero no se pudo consultar ni guardar la hora de tu última sesión.');
+}
 
 // Lógica de "Recordarme"
 // Comprobamos si el usuario marcó la casila en el formulario
@@ -43,11 +56,7 @@ if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
 
     try {
         // Guardamos el token en el servidor antes de entregarlo al navegador.
-        $ultimaVisita = registrarTokenEnServidor($email, $token);
-        if ($ultimaVisita !== null) {
-            $fechaVisita = date('d/m/Y \a \l\a\s H:i', $ultimaVisita);
-            flash_set('exito', "¡Bienvenido de nuevo! Tu última conexión fue el $fechaVisita.");
-        }
+        registrarTokenEnServidor($email, $token);
         setcookie('recordarme', $token, [
             'expires'  => time() + (90 * 24 * 60 * 60),
             'path'     => '/',

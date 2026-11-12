@@ -29,11 +29,8 @@ function leerId($valor): ?int {
 
 
 
-//solo hay dos anuncios de ejemplo por lo que se busca por si es par o impar 
 function buscarAnuncio(int $id): ?array {
-    $anuncios = cargarAnuncios();
-    $clave = ($id % 2 === 0) ? 'par' : 'impar';
-    return $anuncios[$clave] ?? null;
+    return cargarAnuncios()[$id] ?? null;
 }
 
 function anunciosDeUsuario(string $email): array {

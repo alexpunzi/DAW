@@ -7,28 +7,18 @@ $esPartePrivada = true; // Activa la navegación privada (nav_privada.php)
 
 // Solo accesible con un usuario identificado (si no, vuelve al formulario de acceso)
 $usuario = requiereUsuario();
-$nombreMostrar = $usuario['nombre'];
-
-
 require_once "includes/layout/cabecera.php";
 require_once "includes/layout/inicio.php";
 ?>
 
 <p class="mensaje-bienvenida">
-    <b>¡Bienvenido/a, <?= e($nombreMostrar); ?>!</b>
+    <b><?= e(saludoPorHora()); ?>, <?= e($usuario['nombre']); ?>.</b>
 </p>
-
-<?php if ($mensajeAcceso = flash_get('exito')): ?>
-    <section class="alerta-exito" role="status">
-        <p><?= e($mensajeAcceso); ?></p>
-    </section>
-<?php endif; ?>
 
 <section id="busqueda-rapida">
     <h2>Búsqueda Rápida</h2>
 
     <form action="resultado_busqueda.php" method="get">
-        <?= campoUsuario(); ?>
         <p>
             <label for="texto_busqueda">
                 <span class="material-symbols-outlined" aria-hidden="true">key</span>
@@ -51,7 +41,7 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 3])); ?>">Chalet Independiente con Piscina</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 1])); ?>">Chalet Independiente con Piscina</a>
             </h3>
 
             <img src="img/chalet-piscina.jpg"
@@ -100,11 +90,11 @@ require_once "includes/layout/inicio.php";
 
         <li class="card">
             <h3>
-                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 2])); ?>">Estudio Luminoso para Estudiantes</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 3])); ?>">Estudio Moderno Cerca de la Universidad</a>
             </h3>
 
             <img src="img/estudio.jpg"
-                 alt="Estudio luminoso para estudiantes en Alicante"
+                 alt="Estudio moderno cerca de la universidad en San Vicente del Raspeig"
                  width="150"
                  height="100">
 
@@ -113,7 +103,7 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
                     Localización
                 </b>
-                Alicante, Alicante, España
+                San Vicente del Raspeig, Alicante, España
             </p>
 
             <p>
@@ -121,7 +111,7 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">euro</span>
                     Precio
                 </b>
-                <?= euros(600); ?>/mes |
+                <?= euros(95000); ?> |
                 <b>
                     <span class="material-symbols-outlined" aria-hidden="true">bed</span>
                     Habitaciones
@@ -139,21 +129,21 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
                     Publicado el
                 </b>
-                18/09/2026
+                25/10/2026
             </p>
 
             <p>
-                Estudio completamente equipado, ideal para estudiantes y situado cerca de la universidad
+                Coqueto estudio ideal para inversores o estudiantes, muy cerca del campus universitario.
             </p>
         </li>
 
         <li class="card">
             <h3>
-                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 1])); ?>">Piso Céntrico con Terraza</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 2])); ?>">Ático Luminoso en el Centro Histórico</a>
             </h3>
 
             <img src="img/piso-terraza.jpg"
-                 alt="Piso céntrico con terraza en Jávea"
+                 alt="Ático luminoso con terraza en Alicante"
                  width="150"
                  height="100">
 
@@ -162,7 +152,7 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
                     Localización
                 </b>
-                Jávea, Alicante, España
+                Alicante, Alicante, España
             </p>
 
             <p>
@@ -170,56 +160,7 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">euro</span>
                     Precio
                 </b>
-                <?= euros(150000); ?> |
-                <b>
-                    <span class="material-symbols-outlined" aria-hidden="true">bed</span>
-                    Habitaciones
-                </b>
-                3 |
-                <b>
-                    <span class="material-symbols-outlined" aria-hidden="true">bathtub</span>
-                    Baños
-                </b>
-                2
-            </p>
-
-            <p>
-                <b>
-                    <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
-                    Publicado el
-                </b>
-                15/09/2026
-            </p>
-
-            <p>
-                Piso amplio y luminoso situado en el centro, con una gran terraza
-            </p>
-        </li>
-
-        <li class="card">
-            <h3>
-                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 4])); ?>">Dúplex Elegante con Amplias Estancias</a>
-            </h3>
-
-            <img src="img/duplex-valencia.jpg"
-                 alt="Dúplex Elegante con Amplias Estancias"
-                 width="150"
-                 height="100">
-
-            <p>
-                <b>
-                    <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
-                    Localización
-                </b>
-                Sant Francesc, Valencia, España
-            </p>
-
-            <p>
-                <b>
-                    <span class="material-symbols-outlined" aria-hidden="true">euro</span>
-                    Precio
-                </b>
-                <?= euros(2300); ?>/mes |
+                <?= euros(185000); ?> |
                 <b>
                     <span class="material-symbols-outlined" aria-hidden="true">bed</span>
                     Habitaciones
@@ -237,21 +178,21 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
                     Publicado el
                 </b>
-                24/07/2026
+                20/10/2026
             </p>
 
             <p>
-                Disfruta de Valencia viviendo en este duplex en una de las zonas más señoriales de la ciudad.
+                Ático céntrico reformado con terraza exterior y luz natural todo el día.
             </p>
         </li>
 
         <li class="card">
             <h3>
-                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 5])); ?>">Piso Exclusivo de 4 Habitaciones y 3 Baños</a>
+                <a href="<?= e(urlPrivada('anuncio.php', ['id' => 4])); ?>">Piso Amplio en Ruzafa</a>
             </h3>
 
             <img src="img/piso-valencia.jpg"
-                 alt="Piso en venta en Passatge de Ripalda, Valencia"
+                 alt="Piso amplio en el barrio de Ruzafa, Valencia"
                  width="150"
                  height="100">
 
@@ -260,7 +201,7 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
                     Localización
                 </b>
-                Sant Francesc, Valencia, España
+                Valencia, Valencia, España
             </p>
 
             <p>
@@ -268,17 +209,17 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">euro</span>
                     Precio
                 </b>
-                <?= euros(1400000); ?> |
+                <?= euros(240000); ?> |
                 <b>
                     <span class="material-symbols-outlined" aria-hidden="true">bed</span>
                     Habitaciones
                 </b>
-                4 |
+                3 |
                 <b>
                     <span class="material-symbols-outlined" aria-hidden="true">bathtub</span>
                     Baños
                 </b>
-                3
+                2
             </p>
 
             <p>
@@ -286,11 +227,11 @@ require_once "includes/layout/inicio.php";
                     <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
                     Publicado el
                 </b>
-                12/04/2026
+                01/11/2026
             </p>
 
             <p>
-                Échale un vistazo a este piso en Passatge de Ripalda, Sant Francesc, Valencia
+                Vivienda señorial en el moderno barrio de Ruzafa con techos altos, molduras originales y amplio balcón.
             </p>
         </li>
 
