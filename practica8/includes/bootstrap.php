@@ -131,7 +131,7 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['recordarme'])) {
 }
 
 // Si la cookie venía en el navegador pero no era válida (o expiró/falló), la borramos
-if (isset($_COOKIE['recordarme']) && !$cookieValida) {
+if (isset($_COOKIE['recordarme']) && !$cookieValida && !isset($_SESSION['usuario'])) {
     setcookie('recordarme', '', [
         'expires' => time() - 3600,
         'path' => '/',

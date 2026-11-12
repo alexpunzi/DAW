@@ -27,47 +27,45 @@ foreach ($visitadosIds as $vId) {
 $anunciosVisitados = array_slice($anunciosVisitados, 0, 4);
 ?>
 
-    <?php if (!empty($anunciosVisitados)): ?>
-        <!-- PANEL DE ÚLTIMOS ANUNCIOS VISITADOS (VISIBLE EN TODAS LAS PÁGINAS) -->
-        <section class="ultimos-visitados">
-            <h2>Últimos anuncios visitados</h2>
-            <ul class="cards-grid">
-                <?php foreach ($anunciosVisitados as $a): ?>
-                    <li class="card">
-                        <h3>
-                            <a href="<?= e(urlPrivada('anuncio.php', ['id' => $a['id']])); ?>"><?= e($a['titulo']); ?></a>
-                        </h3>
-                        <img src="<?= e($a['foto_principal'] ?? $a['foto'] ?? ''); ?>"
-                            alt="<?= e($a['titulo']); ?>"
-                            width="150"
-                            height="100">
+    <!-- PANEL DE ÚLTIMOS ANUNCIOS VISITADOS (VISIBLE EN TODAS LAS PÁGINAS) -->
+    <section class="ultimos-visitados">
+        <h2>Últimos anuncios visitados</h2>
+        <ul class="cards-grid">
+            <?php foreach ($anunciosVisitados as $a): ?>
+                <li class="card">
+                    <h3>
+                        <a href="<?= e(urlPrivada('anuncio.php', ['id' => $a['id']])); ?>"><?= e($a['titulo']); ?></a>
+                    </h3>
+                    <img src="<?= e($a['foto_principal'] ?? $a['foto'] ?? ''); ?>"
+                        alt="<?= e($a['titulo']); ?>"
+                        width="150"
+                        height="100">
 
-                        <p>
-                            <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
-                            <?= e($a['ciudad']); ?>, <?= e($a['provincia'] ?? ''); ?>, <?= e($a['pais']); ?>
-                        </p>
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                        <?= e($a['ciudad']); ?>, <?= e($a['provincia'] ?? ''); ?>, <?= e($a['pais']); ?>
+                    </p>
 
-                        <p>
-                            <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros($a['precio']); ?> |
-                            <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> <?= (int)($a['caracteristicas']['habitaciones'] ?? 0); ?> |
-                            <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> <?= (int)($a['caracteristicas']['banos'] ?? 0); ?>
-                        </p>
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros($a['precio']); ?> |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bed</span> Habitaciones</b> <?= (int)($a['caracteristicas']['habitaciones'] ?? 0); ?> |
+                        <b><span class="material-symbols-outlined" aria-hidden="true">bathtub</span> Baños</b> <?= (int)($a['caracteristicas']['banos'] ?? 0); ?>
+                    </p>
 
-                        <?php
-                        $fechaPublicacion = $a['fecha'] ?? '';
-                        $fechaPublicacion = $fechaPublicacion !== '' ? date('d/m/Y', strtotime($fechaPublicacion)) : '';
-                        ?>
-                        <p>
-                            <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
-                            <?= e($fechaPublicacion); ?>
-                        </p>
+                    <?php
+                    $fechaPublicacion = $a['fecha'] ?? '';
+                    $fechaPublicacion = $fechaPublicacion !== '' ? date('d/m/Y', strtotime($fechaPublicacion)) : '';
+                    ?>
+                    <p>
+                        <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                        <?= e($fechaPublicacion); ?>
+                    </p>
 
-                        <p><?= e($a['descripcion'] ?? ''); ?></p>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </section>
-    <?php endif; ?>
+                    <p><?= e($a['descripcion'] ?? ''); ?></p>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </section>
 
     </main>
 
