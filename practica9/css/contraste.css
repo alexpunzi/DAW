@@ -1,0 +1,45 @@
+@charset "UTF-8"; 
+
+:root {
+    --color-principal: #000000; /* texto, cabecera y pie */
+    --color-suave: #303034; /* texto secundario: 13,1 : 1 sobre blanco */
+    --color-fondo: #ffffff;
+    --color-blanco: #ffffff;
+    --color-borde: #000000; /* bordes bien visibles */
+    --color-foco: #0033cc; /* 8,9 : 1 sobre blanco */
+}
+
+header a, 
+footer a, 
+main a, 
+.card h3 a {
+    text-decoration: underline;
+}
+
+/*Bordes más gruesos para ver la estructura*/
+
+.card,
+.conBorde, 
+fieldset{
+    border-width: 2px;
+}
+
+/* El pie tenía opacity 0.8, que baja el contraste del texto */
+footer small {
+    opacity: 1;
+}
+footer hr {
+    border-top-color: var(--color-blanco);
+}
+/* Foco visible también sobre la cabecera y el pie negros */
+header :focus-visible,
+footer :focus-visible {
+    outline-color: #ffe600;
+}
+/* La cebra usaba --color-fondo, que ahora es blanco como la tabla: se perdería */
+tbody tr:nth-child(even) {
+    background: #e8e8e8;
+}
+tbody tr:hover {
+    background: #ffec99;
+}
