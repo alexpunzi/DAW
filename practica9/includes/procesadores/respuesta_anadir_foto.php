@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $idAnuncio = post('anuncio');
 $textoAlt  = post('alt');
 $titulo    = post('titulo_foto');
-$fijo      = post('fijo') === '1'; // el anuncio venía bloqueado en el formulario
+$fijo      = post('fijo') === '1'; //el anuncio venía bloqueado en el formulario
 
 $errores = validarFoto($_POST);
 
-// El anuncio debe pertenecer al usuario
+//el anuncio debe pertenecer al usuario
 if (empty($errores)) {
     if (!usuarioEsPropietarioDeAnuncio((int)$idAnuncio, $usuario['email'])) {
         $errores[] = 'El anuncio seleccionado no es válido.';
@@ -33,6 +33,4 @@ if (!empty($errores)) {
     $params[$fijo ? 'anuncio' : 'seleccionado'] = $idAnuncio;
     redirigir('anadir_foto.php', $params);
 }
-
-// La subida real de la foto se implementará en una práctica posterior
 redirigir('ver_anuncio.php', ['id' => (int)$idAnuncio, 'foto_exito' => '1']);

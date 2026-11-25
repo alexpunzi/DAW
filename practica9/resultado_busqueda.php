@@ -1,13 +1,13 @@
 <?php
 require_once 'includes/bootstrap.php';
+require_once 'includes/repositorios/carga_anuncios.php';
 
 $title          = "Resultados de búsqueda";
 $esPartePrivada = estaIdentificado();
 
-
-//CRITERIOS RECIBIDOS 
+// CRITERIOS RECIBIDOS
 $etiquetas = [
-    'texto_busqueda' => 'Palabra clave',
+    'texto_busqueda' => 'Búsqueda rápida',
     'tipo_anuncio'   => 'Tipo de anuncio',
     'tipo_vivienda'  => 'Tipo de vivienda',
     'ciudad'         => 'Ciudad',
@@ -20,8 +20,13 @@ $etiquetas = [
 
 $valoresLegibles = [
     'tipo_anuncio'  => ['venta' => 'Venta', 'alquiler' => 'Alquiler'],
-    'tipo_vivienda' => ['garaje' => 'Garaje', 'local' => 'Local', 'obra_nueva' => 'Obra nueva',
-                        'oficina' => 'Oficina', 'vivienda' => 'Vivienda'],
+    'tipo_vivienda' => [
+        'garaje'     => 'Garaje',
+        'local'      => 'Local',
+        'obra_nueva' => 'Obra nueva',
+        'oficina'    => 'Oficina',
+        'vivienda'   => 'Vivienda'
+    ],
     'pais'          => paises()
 ];
 
@@ -54,6 +59,15 @@ if (isset($criterios['precio_desde'], $criterios['precio_hasta'])
     $errores[] = 'El precio mínimo no puede ser mayor que el máximo.';
 }
 
+// Si no hay errores de validación, consultamos en MySQL
+$resultados = empty($errores) ? buscarAnuncios($criterios) : [];
+
+// Si se usó búsqueda rápida, preparamos el desglose interpretado para mostrarlo
+$interpretacionRapida = null;
+if (isset($criterios['texto_busqueda'])) {
+    $interpretacionRapida = parsearBusquedaRapida($criterios['texto_busqueda']);
+}
+
 require_once "includes/layout/cabecera.php";
 require_once "includes/layout/inicio.php";
 ?>
@@ -84,38 +98,61 @@ require_once "includes/layout/inicio.php";
                 </li>
             <?php endforeach; ?>
         </ul>
+
+        <?php if ($interpretacionRapida !== null): ?>
+            <p>
+                <small>
+                    <strong>Filtros detectados:</strong>
+                    Tipo de vivienda: <em><?= e($interpretacionRapida['tipo_vivienda'] ?? 'cualquiera'); ?></em> |
+                    Tipo de anuncio: <em><?= e($interpretacionRapida['tipo_anuncio'] ?? 'cualquiera'); ?></em> |
+                    Ciudad: <em><?= e($interpretacionRapida['ciudad'] ?? 'cualquiera'); ?></em>
+                </small>
+            </p>
+        <?php endif; ?>
     <?php endif; ?>
 
-    <p>Se han encontrado 2 anuncios que coinciden con tus criterios:</p>
+    <?php if (empty($errores)): ?>
+        <?php if (empty($resultados)): ?>
+            <p>No se han encontrado anuncios que coincidan con los criterios seleccionados.</p>
+            <p><a href="buscar.php">Realizar una nueva búsqueda</a></p>
+        <?php else: ?>
+            <p>Se han encontrado <strong><?= count($resultados); ?></strong> anuncio(s).</p>
 
-    <!-- Resultado de ejemplo -->
-    <ul class="cards-grid">
-        <li class="card">
-            <h3><a href="<?= e(urlPrivada('anuncio.php', ['id' => 4])); ?>">Piso Amplio en Ruzafa</a></h3>
+            <ul class="cards-grid">
+                <?php foreach ($resultados as $anuncio): ?>
+                    <li class="card">
+                        <h3>
+                            <a href="<?= e(urlPrivada('anuncio.php', ['id' => $anuncio['id']])); ?>">
+                                <?= e($anuncio['titulo']); ?>
+                            </a>
+                        </h3>
 
-            <img src="img/piso-valencia.jpg"
-                alt="Piso amplio en el barrio de Ruzafa, Valencia"
-                width="600"
-                height="400">
+                        <img src="<?= e($anuncio['foto_principal']); ?>"
+                             alt="<?= e($anuncio['alternativo']); ?>"
+                             width="600"
+                             height="400">
 
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b> Valencia, Valencia, España</p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros(240000); ?></p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 01/11/2026</p>
-        </li>
-
-        <li class="card">
-            <h3><a href="<?= e(urlPrivada('anuncio.php', ['id' => 1])); ?>">Chalet Independiente con Piscina</a></h3>
-
-            <img src="img/chalet-piscina.jpg"
-                alt="Chalet independiente con piscina en Altea"
-                width="600"
-                height="400">
-
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b> Altea, Alicante, España</p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b> <?= euros(320000); ?></p>
-            <p><b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b> 15/10/2026</p>
-        </li>
-    </ul>
+                        <p>
+                            <b><span class="material-symbols-outlined" aria-hidden="true">home_work</span> Tipo</b>
+                            <?= e($anuncio['tipo_vivienda']); ?> (<?= e($anuncio['tipo_anuncio']); ?>)
+                        </p>
+                        <p>
+                            <b><span class="material-symbols-outlined" aria-hidden="true">location_on</span> Localización</b>
+                            <?= e($anuncio['ciudad']); ?>, <?= e($anuncio['pais']); ?>
+                        </p>
+                        <p>
+                            <b><span class="material-symbols-outlined" aria-hidden="true">euro</span> Precio</b>
+                            <?= euros($anuncio['precio']); ?>
+                        </p>
+                        <p>
+                            <b><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span> Publicado el</b>
+                            <?= e(date('d/m/Y', strtotime($anuncio['fecha']))); ?>
+                        </p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    <?php endif; ?>
 </section>
 
 <?php

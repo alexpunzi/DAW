@@ -1,6 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../repositorios/anuncios.php';
 
 function usuarioEsPropietarioDeAnuncio(int $idAnuncio, string $email): bool
 {

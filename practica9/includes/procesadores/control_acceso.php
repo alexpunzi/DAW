@@ -1,16 +1,16 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
 
-// Esta es una página que no es visible para el usuario
-// Controla el acceso a la parte privada
+//esta es una página que no es visible para el usuario
+//controla el acceso a la parte privada
 require_once __DIR__ . '/../servicios/autentificacion.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirigir('index.php');
 }
 
-$email    = post('login_email');
-$password = post('login_password');
+$email     = post('login_email');
+$password  = post('login_password');
 $resultado = autenticarUsuario($email, $password);
 
 if ($resultado['error'] !== null) {
@@ -19,27 +19,52 @@ if ($resultado['error'] !== null) {
     redirigir('index.php');
 }
 
-if ($resultado['error_historial']) {
-    flash_set('exito', 'Has iniciado sesión, pero no se pudo consultar ni guardar la hora de tu última sesión.');
-} elseif ($resultado['ultima_sesion'] !== null) {
-    $nombre = $resultado['usuario']['nombre'] ?? $email;
-    flash_set(
-        'exito',
-        "¡Bienvenido de nuevo, $nombre! Tu última conexión fue el "
-        . formatearFechaHora($resultado['ultima_sesion']) . '.'
-    );
+$emailUsuario   = $resultado['usuario']['email'];
+$quiereRecordar = isset($_POST['recordarme']) && $_POST['recordarme'] === '1';
+
+//cookie "recordarme" que pueda existir de un acceso anterior (aunque se cerrase la sesión)
+$tokenAnterior    = (isset($_COOKIE['recordarme']) && is_string($_COOKIE['recordarme'])) ? $_COOKIE['recordarme'] : null;
+$registroAnterior = registroCookieRecordarme();
+$mismoUsuario     = $registroAnterior !== null
+    && strcasecmp((string)($registroAnterior['email'] ?? ''), $emailUsuario) === 0;
+
+if (!$quiereRecordar) {
+    //el usuario no quiere que se le recuerde: se revoca el token y se eliminan las cookies de la aplicación
+    if ($tokenAnterior !== null) {
+        try {
+            eliminarTokenRecordarme($tokenAnterior);
+        } catch (RuntimeException $error) {
+            error_log($error->getMessage());
+        }
+    }
+    borrarCookiesApp();
 }
 
-if (isset($_POST['recordarme']) && $_POST['recordarme'] === '1') {
+if ($quiereRecordar) {
     try {
-        $token = crearTokenRecordatorio($email);
-        setcookie('recordarme', $token, [
-            'expires'  => time() + (90 * 24 * 60 * 60),
-            'path'     => '/',
-            'httponly' => true,
-            'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-            'samesite' => 'Lax'
-        ]);
+        if ($mismoUsuario) {
+            //mismo usuario que cerró sesión antes: se reutiliza la cookie y se renuevan sus 90 días
+            $token = $tokenAnterior;
+            renovarTokenRecordatorio($token);
+        } else {
+            //otro usuario en el mismo equipo: se revoca el token anterior y se empieza de cero
+            if ($tokenAnterior !== null) {
+                try {
+                    eliminarTokenRecordarme($tokenAnterior);
+                } catch (RuntimeException $error) {
+                    error_log($error->getMessage());
+                }
+            }
+            borrarCookiesApp();
+            $token = crearTokenRecordatorio($emailUsuario);
+        }
+        setcookie('recordarme', $token, opcionesCookie(time() + (RECORDAR_DIAS * 24 * 60 * 60)));
+
+        //con cookies aceptadas se restaura el estilo guardado en el perfil del usuario
+        if (!empty($resultado['usuario']['estilo'])) {
+            $_SESSION['estilo'] = $resultado['usuario']['estilo'];
+        }
+        activarRecordarme($emailUsuario);
     } catch (RuntimeException $error) {
         error_log($error->getMessage());
         flash_set('exito', 'Has iniciado sesión, pero no se pudo guardar el acceso para próximas visitas.');

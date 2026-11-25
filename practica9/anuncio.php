@@ -1,9 +1,7 @@
 <?php
 require_once 'includes/bootstrap.php';
 
-// Exigir usuario identificado para ver el detalle
-requiereUsuario();
-
+// Página pública: cualquier visitante puede ver el detalle (enviar mensaje sí exige identificarse)
 // Identificador recibido por la URL (si no es un entero positivo, no hay anuncio)
 $id      = leerId(get('id'));
 $anuncio = ($id !== null) ? buscarAnuncio($id) : null;
@@ -11,44 +9,8 @@ $anuncio = ($id !== null) ? buscarAnuncio($id) : null;
 if ($anuncio === null) {
     http_response_code(404);
 }
-
-// --- REGISTRAR ANUNCIO VISITADO EN LA COOKIE (1 SEMANA) ---
 if ($anuncio !== null) {
-    $visitados = [];
-    
-    // 1. Leer cookie previa si existe
-    if (!empty($_COOKIE['ultimos_visitados'])) {
-        $raw = json_decode($_COOKIE['ultimos_visitados'], true);
-        if (is_array($raw)) {
-            foreach ($raw as $val) {
-                $vId = leerId($val);
-                if ($vId !== null && buscarAnuncio($vId) !== null && !in_array($vId, $visitados, true)) {
-                    $visitados[] = $vId;
-                }
-            }
-        }
-    }
-    
-    // 2. Si el ID ya existía en la lista, lo quitamos para ponerlo al principio
-    $pos = array_search($id, $visitados, true);
-    if ($pos !== false) {
-        unset($visitados[$pos]);
-    }
-    
-    // 3. Insertar el ID actual al principio
-    array_unshift($visitados, $id);
-    
-    // 4. Limitar a un máximo de 4 anuncios
-    $visitados = array_slice(array_values($visitados), 0, 4);
-    
-    // 5. Guardar la cookie por 1 semana (7 días)
-    setcookie('ultimos_visitados', json_encode($visitados), [
-        'expires'  => time() + (7 * 24 * 60 * 60),
-        'path'     => '/',
-        'httponly' => true,
-        'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-        'samesite' => 'Lax'
-    ]);
+    registrarAnuncioVisitado($id);
 }
 
 $title          = $anuncio ? "Detalle del anuncio - " . $anuncio['titulo'] : "Anuncio no encontrado";
@@ -70,13 +32,20 @@ require_once "includes/layout/inicio.php";
     require "includes/layout/ficha_anuncio.php";
     ?>
 
-    <form action="mensaje.php" method="get">
-        <input type="hidden" name="id" value="<?= (int)$id; ?>">
-        <button type="submit">
+    <?php if (estaIdentificado()): ?>
+        <form action="mensaje.php" method="get">
+            <input type="hidden" name="id" value="<?= (int)$id; ?>">
+            <button type="submit">
+                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                Enviar mensaje
+            </button>
+        </form>
+    <?php else: ?>
+        <p>
             <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-            Enviar mensaje
-        </button>
-    </form>
+            <a href="index.php">Inicia sesión</a> para enviar un mensaje al anunciante.
+        </p>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php

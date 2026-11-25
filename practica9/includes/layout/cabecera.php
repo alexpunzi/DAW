@@ -19,21 +19,9 @@ $bodyClass    = $bodyClass ?? '';
     <link rel="stylesheet" href="css/estilos.css" media="screen">
 
     <?php
-    // Inyección de la hoja de estilo preferida del usuario identificado
+    // Inyección dinámica de la hoja de estilo preferida del usuario desde la BD
     if (!empty($_SESSION['estilo'])) {
-        $estiloUsuario = $_SESSION['estilo'];
-
-        if ($estiloUsuario === 'noche') {
-            echo '<link rel="stylesheet" href="css/noche.css" media="screen">' . "\n";
-        } elseif ($estiloUsuario === 'contraste') {
-            echo '<link rel="stylesheet" href="css/contraste.css" media="screen">' . "\n";
-        } elseif ($estiloUsuario === 'letra-grande') {
-            echo '<link rel="stylesheet" href="css/letra-grande.css" media="screen">' . "\n";
-        } elseif ($estiloUsuario === 'contraste-letra-grande') {
-            // El estilo combinado carga ambos ficheros en orden
-            echo '<link rel="stylesheet" href="css/contraste.css" media="screen">' . "\n";
-            echo '<link rel="stylesheet" href="css/letra-grande.css" media="screen">' . "\n";
-        }
+        echo '<link rel="stylesheet" href="' . e($_SESSION['estilo']) . '" media="screen">' . "\n";
     }
     ?>
 

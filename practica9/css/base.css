@@ -131,8 +131,68 @@ span.material-symbols-outlined {
     outline-offset: 2px;
 }
 
+/* --- Desplegable de cuenta en cabecera --- */
+.menu-usuario {
+    position: relative;
+}
+
+.menu-usuario summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    list-style: none;
+    white-space: nowrap;
+}
+
+.menu-usuario summary::-webkit-details-marker {
+    display: none;
+}
+
+.submenu-usuario {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    min-width: 210px;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background-color: #111111;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.submenu-usuario li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.submenu-usuario li a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+main#contenido:focus {
+    outline: none;
+}
 
 /* El atributo hidden debe ocultar siempre, aunque otra regla defina display */
 [hidden] {
     display: none !important;
 }
+
+

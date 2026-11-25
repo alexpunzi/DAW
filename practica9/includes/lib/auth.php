@@ -1,7 +1,7 @@
 <?php
 
 //Funciones que comprueban si existe un usuario u obtienen el usuario 
-require_once __DIR__ . '/../repositorios/usuarios.php';
+
 require_once __DIR__ . '/flash.php';
 require_once __DIR__ . '/url.php';
 

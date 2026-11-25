@@ -3,6 +3,7 @@
 // Los datos flash se consumen una sola vez en index.php.
 $errorActual = $codigoError ?? null;
 $emailPrevio = $emailPrevio ?? '';
+$recordadoPrevio = $recordadoPrevio ?? false;
 $tieneError = ($errorActual === 'vacio' || $errorActual === 'credenciales');
 
 // Definimos los mensajes específicos por campo 
@@ -77,7 +78,7 @@ if ($errorActual === 'vacio') {
                 <span class="material-symbols-outlined" aria-hidden="true">devices</span>
                 <span>Recordarme en este equipo durante 90 días</span>
             </label>
-            <input type="checkbox" id="recordarme" name="recordarme" value="1">
+            <input type="checkbox" id="recordarme" name="recordarme" value="1"<?= $recordadoPrevio ? ' checked' : ''; ?>>
         </p>
 
         <button type="submit">

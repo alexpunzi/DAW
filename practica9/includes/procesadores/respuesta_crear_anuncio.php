@@ -23,5 +23,5 @@ if (!empty($errores)) {
     redirigir('crear_anuncio.php', $datos + ['errores' => implode('|', $errores)]);
 }
 
-// Todavía no se guarda en base de datos: se muestran los datos recibidos
+//todavía no se guarda en base de datos
 redirigir('crear_anuncio.php', $datos + ['exito' => '1']);

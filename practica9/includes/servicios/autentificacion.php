@@ -1,16 +1,17 @@
 <?php
 
 require_once __DIR__ . '/../validaciones/valida_login.php';
-require_once __DIR__ . '/../repositorios/usuarios.php';
+require_once __DIR__ . '/../repositorios/carga_usuarios.php';
 require_once __DIR__ . '/../lib/session.php';
 require_once __DIR__ . '/../lib/recordar.php';
 
 function autenticarUsuario(string $email, string $password): array
 {
-    $error = validarLogin($email, $password, cargarUsuarios());
-    if ($error !== null) {
+    $email = trim($email);
+
+    if ($email === '' || $password === '') {
         return [
-            'error' => $error,
+            'error' => 'campos_vacios',
             'usuario' => null,
             'ultima_sesion' => null,
             'error_historial' => false,
@@ -27,26 +28,32 @@ function autenticarUsuario(string $email, string $password): array
         ];
     }
 
-    session_regenerate_id(true);
-    $_SESSION['usuario'] = $email;
-    if (isset($usuario['estilo'])) {
-        $_SESSION['estilo'] = $usuario['estilo'];
+
+    $claveGuardada = (string)($usuario['password'] ?? '');
+    $claveValida = password_verify($password, $claveGuardada) || hash_equals($claveGuardada, $password);
+
+    if (!$claveValida) {
+        return [
+            'error' => 'credenciales',
+            'usuario' => null,
+            'ultima_sesion' => null,
+            'error_historial' => false,
+        ];
     }
 
-    $ultimaSesion = null;
-    $errorHistorial = false;
-    try {
-        $ultimaSesion = registrarUltimaSesion($email);
-    } catch (RuntimeException $error) {
-        error_log($error->getMessage());
-        $errorHistorial = true;
-    }
+    session_regenerate_id(true);
+    $_SESSION['id_usuario'] = $usuario['id'];
+    $_SESSION['usuario']    = $usuario['email'];
+    $_SESSION['nombre']     = $usuario['nombre'];
+    $_SESSION['id_estilo']  = $usuario['id_estilo'];
+    // Sin "Recordarme" no se aplica el estilo guardado: se decide en control_acceso.php
+    unset($_SESSION['estilo'], $_SESSION['recordarme_activo'], $_SESSION['ultima_sesion_previa']);
 
     return [
         'error' => null,
         'usuario' => $usuario,
-        'ultima_sesion' => $ultimaSesion,
-        'error_historial' => $errorHistorial,
+        'ultima_sesion' => null,
+        'error_historial' => false,
     ];
 }
 
@@ -60,43 +67,18 @@ function crearTokenRecordatorio(string $email): string
 
 function cerrarSesionActual(): bool
 {
-    $recordatorioRevocado = true;
+    $recordatorioCerrado = true;
     if (isset($_COOKIE['recordarme']) && is_string($_COOKIE['recordarme'])) {
         try {
-            eliminarTokenRecordarme($_COOKIE['recordarme']);
+            marcarTokenSesionCerrada($_COOKIE['recordarme']);
         } catch (RuntimeException $error) {
             error_log($error->getMessage());
-            $recordatorioRevocado = false;
+            $recordatorioCerrado = false;
         }
     }
 
-    $errorCierre = $recordatorioRevocado
-        ? null
-        : ($_SESSION['flash']['error'] ?? null);
     $_SESSION = [];
-    if ($errorCierre !== null) {
-        flash_set('error', $errorCierre);
-    }
     session_regenerate_id(true);
 
-    setcookie('recordarme', '', [
-        'expires' => time() - 3600,
-        'path' => '/',
-        'httponly' => true,
-        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-        'samesite' => 'Lax',
-    ]);
-
-    if (isset($_COOKIE['ultimos_visitados'])) {
-        setcookie('ultimos_visitados', '', [
-            'expires' => time() - 3600,
-            'path' => '/',
-            'httponly' => true,
-            'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-            'samesite' => 'Lax',
-        ]);
-        unset($_COOKIE['ultimos_visitados']);
-    }
-
-    return $recordatorioRevocado;
+    return $recordatorioCerrado;
 }
